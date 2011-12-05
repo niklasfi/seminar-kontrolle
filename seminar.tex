@@ -46,7 +46,7 @@
 
 \theoremstyle{nonumberplain}
 \theoremsymbol{\rule{1ex}{1ex}}
-\newtheorem{pro}{Beweis}
+\newtheorem{Beweis}{Beweis}
 
 \newcommand{\N}[0]{\mathbb{N}}
 \newcommand{\Z}[0]{\mathbb{Z}}
@@ -91,6 +91,8 @@
 		\end{enumerate}
 	\end{Bemerkung}
 	
+	Kehren wir zunächst zurück zu einer altbekannten Definition:
+	
 	\begin{Definition}[Anfangswertproblem]\index{Anfangswertproblem}\index{AWP}
 	Sei $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion. Eine Funktion 
 	$x$ wird Lösung des \emph{Anfangswertproblems (auch: AWP)} \[
@@ -98,21 +100,9 @@
 	\] genannt, falls diese Gleichung für alle $t \in [T_0, T_1]$ erfüllt ist, und
 	für gegebene $x_0 \in \R^n$ und $t_0 \in [T_0, T_1]$ die Gleichung $x(t_0) = 
 	x_0$ gilt.
-	
-	Seien $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion, $x_0 \in \R^n$ 
-	und $t_0 \in [T_0, T_1]$. Eine Funktion $x$ wird Lösung des 
-	\emph{Anfangswertproblems (auch: AWP)}
-	\[
-		\dot x(t) = A(t)x(t) + b(t) \; \forall t \in [T_0, T_1] \quad \wedge \quad x(t_0) = x_0
-	\]
-	gennant, falls diese Gleichung erfüllt wird.
-	
-	Seien $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion, $x_0 \in \R^n$ und $t_0 \in [T_0, T_1]$.
-	Ein System
-	\begin{align}\label{gl:awp}
-		\dot x(t) = A(t)x(t) + b(t) \; \forall t \in [T_0, T_1] \quad \wedge \quad x(t_0) = x_0
-	\end{align} wird \emph{Anfangswertproblem (auch: AWP)} genannt. Eine Funktion $x$, die \eqref{gl:awp} erfüllt, wird \emph{Lösung} des Anfangswertproblems genannt.
 	\end{Definition}
+	
+	Nun können wir lineare Kontrollsysteme definieren. Diese werden einen zentralen Punkt in der Arbeit einnehmen. 
 	
 	\begin{Definition}[Lineares Kontrollsystem]\index{lineares Kontrollsystem}
 		Ein System
@@ -121,6 +111,8 @@
 		\end{align*}
 		wird \emph{lineares Kontrollsystem} genannt.
 	\end{Definition}
+	
+		Anschaulich könnte man lineare Kontrollsysteme so interpretieren, dass zum Beispiel ein Raumfahrzeug mit einer Steuerung $u$ vom Startpunkt $x_0$ zu einem Punkt $x_1$ gebracht werden soll. Dabei modelliert $A$ die "`natürlichen"' Kräfte auf das Objekt, und $B$ bildet Eigenschaften der Steuerungseinheit des Raumschiffes, beispielsweise die Anordnung der Triebwerke, ab. $u$ wiederum stellt die konkrete Steuerung dar, also zu welchem Zeitpunkt wie gesteuert werden soll.
 	
 	\begin{Definition}[kontrollierbar]\index{kontrollierbar}
 		Seien $x_0, x_1 \in \R^n$. Ein lineares Kontrollsystem 
@@ -133,10 +125,7 @@
 		\end{align*}
 		in $T_1$ den Wert $x_1$ annimmt.
 	\end{Definition}
-	\begin{pro}
-		TEST
-	\end{pro}
-	
+	Im Gegensatz zu dem oben beschriebenen Anwendungsfall ist für die Kontrollierbarkeit eines Systems also nicht nur erforderlich, dass die Sonde von der Erde aus einen bestimmten Punkt im Weltall erreichen kann, sondern, dass sie von jedem Punkt ausgehend jeden anderen Erreichen kann.
 \newpage
 \printindex
 \end{document}
