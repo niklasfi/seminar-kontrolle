@@ -6,7 +6,7 @@
 \usepackage{amsmath}
 \usepackage{enumerate}
 \usepackage{amssymb}
-\usepackage{pstricks}
+\usepackage{framed}
 \usepackage[framed]{ntheorem}
 \usepackage[normalem]{ulem}
 \usepackage[pdfborder={1 1 0}]{hyperref}
@@ -38,11 +38,11 @@
 
 \newcounter{thmc}[section] %theorem counter
 \renewcommand{\thethmc}{\thesection.\arabic{thmc}}
-\newtheorem{defn}[thmc]{Definition}
-\newtheorem{rem}[thmc]{Bemerkung}
+\newframedtheorem{Definition}[thmc]{Definition}
+\newtheorem{Bemerkung}[thmc]{Bemerkung}
 \theoremsymbol{\rule{1ex}{1ex}}
-\newtheorem{thm}[thmc]{Satz}
-\newtheorem{lem}[thmc]{Lemma}
+\newframedtheorem{Satz}[thmc]{Satz}
+\newframedtheorem{Lemma}[thmc]{Lemma}
 
 \theoremstyle{nonumberplain}
 \theoremsymbol{\rule{1ex}{1ex}}
@@ -70,7 +70,7 @@
 
 \begin{document}
 	\title{Seminararbeit zur Kontrolle}
-	\author{Elisa Friebel, Marcel Goesmann, Niklas Fischer betreut durch Michael Herty}	
+	\author{Elisa Friebel, Marcel Goesmann, Niklas Fischer, betreut durch: Michael Herty}	
 	\date{\today}
 	\maketitle
 	\begin{abstract}
@@ -80,45 +80,49 @@
 	\newpage
 	\pagestyle{mystyle}
 \section{Definitionen}
-	\begin{rem}
+	\begin{Bemerkung}
 		In der ganzen Arbeit gelten die folgenden Konventionen:
 		\begin{enumerate}
 			\item $T_0$ und $T_1$ seien reelle Zahlen und es sei $T_0 < T_1$.
-			\item $A: (T_0, T_1) \rightarrow \R^{n \times n}$ und $B: (T_0, T_1) \rightarrow \R^{n \times m}$ seien stetige Funktionen.
-			\item $x: (T_0, T_1) \rightarrow \R^n$ und $u: (T_0, T_1) \rightarrow \R^m$ seien stetige Funktionen
+			\item $A: (T_0, T_1) \rightarrow \R^{n \times n}$ und $B: (T_0, T_1) 
+				\rightarrow \R^{n \times m}$ seien stetige Funktionen.
+			\item $x: (T_0, T_1) \rightarrow \R^n$ und $u: (T_0, T_1) 
+				\rightarrow \R^m$ seien stetige Funktionen
 		\end{enumerate}
-	\end{rem}
+	\end{Bemerkung}
 	
-	\begin{defn}[Anfangswertproblem]\index{Anfangswertproblem}\index{AWP}\todo{genaue Formulierung in Gewöhnliche DGL nachgucken}
-	\subsubsection*{Alternative 1}
-		Sei $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion. Eine Funktion $x$ wird Lösung des \emph{Anfangswertproblems (auch: AWP)} \[
-			\dot x(t) = A(t) x(t) + b(t)
-		\] genannt, falls diese Gleichung für alle $t \in [T_0, T_1]$ erfüllt ist, und für gegebene $x_0 \in \R^n$ und $t_0 \in [T_0, T_1]$ die Gleichung $x(t_0) = x_0$ gilt.
-		
-	\subsubsection*{Alternative 2}
+	\begin{Definition}[Anfangswertproblem]\index{Anfangswertproblem}\index{AWP}
+	Sei $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion. Eine Funktion 
+	$x$ wird Lösung des \emph{Anfangswertproblems (auch: AWP)} \[
+		\dot x(t) = A(t) x(t) + b(t)
+	\] genannt, falls diese Gleichung für alle $t \in [T_0, T_1]$ erfüllt ist, und
+	für gegebene $x_0 \in \R^n$ und $t_0 \in [T_0, T_1]$ die Gleichung $x(t_0) = 
+	x_0$ gilt.
 	
-	Seien $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion, $x_0 \in \R^n$ und $t_0 \in [T_0, T_1]$. Eine Funktion $x$ wird Lösung des \emph{Anfangswertproblems (auch: AWP)} \[
+	Seien $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion, $x_0 \in \R^n$ 
+	und $t_0 \in [T_0, T_1]$. Eine Funktion $x$ wird Lösung des 
+	\emph{Anfangswertproblems (auch: AWP)}
+	\[
 		\dot x(t) = A(t)x(t) + b(t) \; \forall t \in [T_0, T_1] \quad \wedge \quad x(t_0) = x_0
-	\]gennant, falls diese Gleichung erfüllt wird.
-	
-	\subsubsection*{Alternative 3}
+	\]
+	gennant, falls diese Gleichung erfüllt wird.
 	
 	Seien $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion, $x_0 \in \R^n$ und $t_0 \in [T_0, T_1]$.
 	Ein System
 	\begin{align}\label{gl:awp}
 		\dot x(t) = A(t)x(t) + b(t) \; \forall t \in [T_0, T_1] \quad \wedge \quad x(t_0) = x_0
-	\end{align} wird \emph{Anfangswertproblem (auch: AWP)} genannt. Eine Funktion $x$, die \ref{gl:awp} erfüllt, wird \emph{Lösung} des Anfangswertproblems genannt.
-	\end{defn}
+	\end{align} wird \emph{Anfangswertproblem (auch: AWP)} genannt. Eine Funktion $x$, die \eqref{gl:awp} erfüllt, wird \emph{Lösung} des Anfangswertproblems genannt.
+	\end{Definition}
 	
-	\begin{defn}[Lineares Kontrollsystem]\index{lineares Kontrollsystem}
+	\begin{Definition}[Lineares Kontrollsystem]\index{lineares Kontrollsystem}
 		Ein System
-		\begin{align}\label{gl:ks}
+		\begin{align*}%\label{gl:ks}
 			\dot x(t) = A(t) x(t) + B(t) u(t),\quad t \in [T_0, T_1]
-		\end{align}
+		\end{align*}
 		wird \emph{lineares Kontrollsystem} genannt.
-	\end{defn}
+	\end{Definition}
 	
-	\begin{defn}[kontrollierbar]\index{kontrollierbar}
+	\begin{Definition}[kontrollierbar]\index{kontrollierbar}
 		Seien $x_0, x_1 \in \R^n$. Ein lineares Kontrollsystem 
 			\[
 				\dot x(t) = A(t)x(t) + B(t)u(t)
@@ -128,7 +132,7 @@
 			\dot x(t) = A(t)x(t) + B(t)u(t) \; \forall t \in [T_0, T_1] \quad \wedge \quad x(T_0) = x_0
 		\end{align*}
 		in $T_1$ den Wert $x_1$ annimmt.
-	\end{defn}
+	\end{Definition}
 	\begin{pro}
 		TEST
 	\end{pro}
