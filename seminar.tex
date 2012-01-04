@@ -205,13 +205,79 @@
 			\[
 				\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau_2) = E_n
 			\]
-			mit Lösungen $\Phi_1$ bzw. $\Phi_2$
+			mit Lösungen $\Phi_1$ bzw. $\Phi_2$.
 			Dann existiert zu jedem $\varepsilon > 0 $ ein $\delta := | \tau_1 - \tau_2 |$
 			sodass \[
 				|| \Phi_1(t) - \Phi_2(t) || < \varepsilon \; \forall t \in [T_0, T_1]
 			\]
 			dies ist äquivalent zur Stetigkeit von $R$ in der 2. Komponente.
 			Da $R$ in beiden seiner Komponenten stetig ist, it $R$ stetig.
+		\end{Beweis}
+		
+		\begin{Lemma}\label{Resolvente Eigenschaften}
+			Die Resolvente erfüllt die folgenden Eigenschaften
+			\begin{enumerate}
+				\item $	R(t_1,t_1) = E_n$
+				\item $ R(t_1, t_2) \cdot R(t_2, t_3) = R(t_1, t_3)$
+				\item $ R(t_1, t_2) \cdot R(t_2, t_1) = E_n$
+			\end{enumerate}
+			für alle $t_1, t_2, t_3 \in [T_0, T_1]$.
+		\end{Lemma}
+		
+		\begin{Beweis}
+		\begin{enumerate}
+			\item[zu 1.] Betrachten wir das zu $R(t_1, t_1) $ gehörige 
+			Anfangswertproblem \[
+				\dot M(t) = A(t) \cdot M(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad M(t_1) = E_n
+			\] mit Lösung $\Phi$.
+			Nun gilt: \[
+				R(t_1, t_1) = \tilde R (t_1)(t_1) = \Phi(t_1) = E_n
+			\]
+			\item[zu 2.] \todo{BEWEIS???}
+			\item[zu 3.]
+				\[
+					R(t_1, t_2) \cdot R(t_2, t_1) \overset{2.}= R(t_1, t_1) \overset{1.}= E_n
+				\]
+		\end{enumerate}
+		\end{Beweis}
+		
+		\begin{Lemma}
+			Für die Ableitungen der Resolvente gilt:
+			\begin{enumerate}
+				\item $ \frac{\partial R}{\partial t} (t, \tau) = A(t) \cdot R(t,\tau) \; \forall t,\tau \in [T_0, T_1]$
+				\item $ \frac{\partial R}{\partial \tau} (t, \tau) = - R(t, \tau) \cdot A(\tau) \; \forall t,\tau \in [T_0, T_1]$
+			\end{enumerate}
+		\end{Lemma}
+		
+		\begin{Beweis}
+			\begin{enumerate}
+				\item[zu 1.]
+					Die Definition der Resolvente mit ihrem Anfangswertproblem gibt uns
+					die Interpretation \[
+						R(t, \tau ) = E_n + \int_\tau^t A(t) \cdot R(t, \tau) dT
+					\]
+					Differenzieren liefert:
+					\[
+						\frac{\partial R}{\partial t}R(t,\tau) = A(t) \cdot R(t, \tau)
+					\]
+				\item[zu 2.]
+					Differenzieren von \ref{Resolvente Eigenschaften} 3. nach $t_2$ gibt uns
+					\[
+						\frac{\partial R}{\partial t_2} E_n = \frac{\partial R}{\partial t_2} R(t_1, t_2) \cdot R(t_2, t_1)
+					\] also \[
+						0 = \left[ \frac{\partial R}{\partial t_2} R(t_1, t_2) \right] \cdot R(t_2, t_1) +
+							R(t_1, t_2) \cdot \underbrace{\left[ \frac{\partial R}{\partial t_2}R(t_2, t_1) \right]}_{=A(t_2) \cdot R(t_2, t_1)} 
+					\] woraus \[
+						0 = \left [ \frac{\partial R}{\partial t_1}R(t_1, t_2) + R(t_1, t_2) \cdot A(t_2) \right] \cdot R(t_2, t_1)
+					\] folgt.
+					
+					\ref{Resolvente Eigenschaften} 3. gibt uns, dass $R(t_1, t_2)$ 
+					invertierbar ist ($R(t_2, t_1)$ ist die zugehörige Inverse). Also
+					gilt:
+					\[
+						\frac{\partial R}{\partial t_2}R(t_1, t_2) = - R(t_1, t_2) \cdot A(t_2)
+					\]
+			\end{enumerate}
 		\end{Beweis}
 	\section{Gram'sche Kontrollmatrix}\label{Gram'sche Kontrollmatrix}
 	
