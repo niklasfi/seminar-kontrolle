@@ -1,4 +1,4 @@
-\documentclass[a4paper,twoside]{article}
+\documentclass[a4paper]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -14,7 +14,8 @@
 \usepackage{todonotes}
 \usepackage[ngerman]{babel}
 \usepackage{makeidx}
-
+\usepackage{biblatex}
+\bibliography{seminar}
 \setlength{\headheight}{12.5pt}
 
 \fancypagestyle{mystyle}{ %
@@ -40,6 +41,7 @@
 \renewcommand{\thethmc}{\thesection.\arabic{thmc}}
 \newframedtheorem{Definition}[thmc]{Definition}
 \newtheorem{Bemerkung}[thmc]{Bemerkung}
+\newtheorem{Beispiel}[thmc]{Beispiel}
 \theoremsymbol{\rule{1ex}{1ex}}
 \newframedtheorem{Satz}[thmc]{Satz}
 \newframedtheorem{Lemma}[thmc]{Lemma}
@@ -112,7 +114,13 @@
 		wird \emph{lineares Kontrollsystem} genannt.
 	\end{Definition}
 	
-		Anschaulich könnte man lineare Kontrollsysteme so interpretieren, dass zum Beispiel ein Raumfahrzeug mit einer Steuerung $u$ vom Startpunkt $x_0$ zu einem Punkt $x_1$ gebracht werden soll. Dabei modelliert $A$ die "`natürlichen"' Kräfte auf das Objekt, und $B$ bildet Eigenschaften der Steuerungseinheit des Raumschiffes, beispielsweise die Anordnung der Triebwerke, ab. $u$ wiederum stellt die konkrete Steuerung dar, also zu welchem Zeitpunkt wie gesteuert werden soll.
+		Anschaulich könnte man lineare Kontrollsysteme so interpretieren, dass zum 
+		Beispiel ein Raumfahrzeug mit einer Steuerung $u$ vom Startpunkt $x_0$ zu 
+		einem Punkt $x_1$ gebracht werden soll. Dabei modelliert $A$ die 
+		"`natürlichen"' Kräfte auf das Objekt, und $B$ bildet Eigenschaften der 
+		Steuerungseinheit des Raumschiffes, beispielsweise die Anordnung der 
+		Triebwerke, ab. $u$ wiederum stellt die konkrete Steuerung dar, also zu 
+		welchem Zeitpunkt die Triebwerke wie angesteuert werden sollen.
 	
 	\begin{Definition}[kontrollierbar]\index{kontrollierbar}
 		Seien $x_0, x_1 \in \R^n$. Ein lineares Kontrollsystem 
@@ -126,8 +134,16 @@
 		in $T_1$ den Wert $x_1$ annimmt.
 	\end{Definition}
 	Im Gegensatz zu dem oben beschriebenen Anwendungsfall ist für die Kontrollierbarkeit eines Systems also nicht nur erforderlich, dass die Sonde von der Erde aus einen bestimmten Punkt im Weltall erreichen kann, sondern, dass sie von jedem Punkt ausgehend jeden anderen Erreichen kann.
+	
+	\section{das Kontrollproblem für konstante Koeffizienten}
+		Falls $A$ für alle $t \in [T_0, T_1]$ kontant ist, kann das Argument $t$ bei $A(t)$ weggelassen werden. Betrachten wir also 
+		\[
+			\dot x(t) = A x(t) + B(t) u(t)
+		\]
 \newpage
 \printindex
+\newpage
+\printbibliography
 \end{document}
 
 % ===REFERENZEN===
