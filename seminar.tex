@@ -129,21 +129,46 @@
 			\]
 		ist \emph{kontrollierbar}, falls es eine stetige Funktion $u$ gibt, sodass die Lösungfunktion $x$ des Anfangswertproblems 
 		\begin{align*}
-			\dot x(t) = A(t)x(t) + B(t)u(t) \; \forall t \in [T_0, T_1] \quad \wedge \quad x(T_0) = x_0
+			\dot x(t) = A(t)x(t) + B(t)u(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad x(T_0) = x_0
 		\end{align*}
 		in $T_1$ den Wert $x_1$ annimmt.
 	\end{Definition}
-	Im Gegensatz zu dem oben beschriebenen Anwendungsfall ist für die Kontrollierbarkeit eines Systems also nicht nur erforderlich, dass die Sonde von der Erde aus einen bestimmten Punkt im Weltall erreichen kann, sondern, dass sie von jedem Punkt ausgehend jeden anderen Erreichen kann.
+	Im Gegensatz zu dem oben beschriebenen Anwendungsfall ist für die 
+	Kontrollierbarkeit eines Systems also nicht nur erforderlich, dass die Sonde 
+	von der Erde aus einen bestimmten Punkt im Weltall erreichen kann, sondern, 
+	dass sie von jedem Punkt ausgehend jeden anderen Erreichen kann.
 	
-	\section{das Kontrollproblem für konstante Koeffizienten}
-		Falls $A$ für alle $t \in [T_0, T_1]$ kontant ist, kann das Argument $t$ bei $A(t)$ weggelassen werden. Betrachten wir also 
+	
+	\section{Die Resolvente}
+	
+	 \subsection{Definition der Resolvente}
+		Sei $\Phi$ die Funktion, die das homogene Anfangswertproblem
 		\[
-			\dot x(t) = A x(t) + B(t) u(t)
+			\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau) = E_n
 		\]
-\newpage
-\printindex
+		löst. Offensichtlich ist $\Phi$ von der Wahl von $\tau$ abhängig. Definiere
+		also $\tilde R$ als die Funktion, die $\tau$ auf die Funktion $\Phi$ 
+		abbildet.
+		
+		\[
+			\tilde R : [T_0, T_1] \rightarrow C^0( [T_0, T_1],\R^{n \times n}), 
+			\tau \mapsto \Phi
+		\]
+	
+		Jetzt können wir die Resolvente einfach definieren:
+		
+		\begin{Definition}[Resolvente]
+			Die Funktion 
+			\[
+				R: [T_0, T_1] \times [T_0, T_1] \rightarrow \R^{n \times n},
+				(t, \tau) \mapsto \tilde R(\tau)(t)
+			\]
+			heißt Resolvente.
+		\end{Definition}
 \newpage
 \printbibliography
+\newpage
+\printindex
 \end{document}
 
 % ===REFERENZEN===
