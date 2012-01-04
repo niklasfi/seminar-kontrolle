@@ -184,6 +184,35 @@
 			heißt Resolvente.
 		\end{Definition}
 		
+	\subsection*{Eigenschaften}
+		Wir beginnen damit, uns die Eigenschaften der Resolvente vor Augen zu
+		führen.
+		\begin{Lemma}
+			$R$ ist stetig.
+		\end{Lemma}
+		\begin{Beweis}
+			Die Stetigkeit von $R$ in der 1. Komponente ($t$) folgt aus der Stetigkeit
+			jeder Lösungsfunktion $\Phi$ des von $\tau$ abhängigen Anfangswertproblems.
+			
+			Die Stetigkeit in der 2. Komponente ($\tau$) folgt aus dem Satz über die
+			Stetige Abhängigkeit aus \cite{KriegWalcher2010}.
+			
+			Betrachte die Anfangswertprobleme
+			\[
+				\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau_1) = E_n
+			\]
+			und
+			\[
+				\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau_2) = E_n
+			\]
+			mit Lösungen $\Phi_1$ bzw. $\Phi_2$
+			Dann existiert zu jedem $\varepsilon > 0 $ ein $\delta := | \tau_1 - \tau_2 |$
+			sodass \[
+				|| \Phi_1(t) - \Phi_2(t) || < \varepsilon \; \forall t \in [T_0, T_1]
+			\]
+			dies ist äquivalent zur Stetigkeit von $R$ in der 2. Komponente.
+			Da $R$ in beiden seiner Komponenten stetig ist, it $R$ stetig.
+		\end{Beweis}
 	\section{Gram'sche Kontrollmatrix}\label{Gram'sche Kontrollmatrix}
 	
 \newpage
