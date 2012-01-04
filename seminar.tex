@@ -95,7 +95,7 @@
 	
 	Kehren wir zunächst zurück zu einer altbekannten Definition:
 	
-	\begin{Definition}[Anfangswertproblem]\index{Anfangswertproblem}\index{AWP}
+	\begin{Definition}[Anfangswertproblem]\label{AWP}\index{Anfangswertproblem}\index{AWP}
 	Sei $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion. Eine Funktion 
 	$x$ wird Lösung des \emph{Anfangswertproblems (auch: AWP)} \[
 		\dot x(t) = A(t) x(t) + b(t)
@@ -140,8 +140,26 @@
 	
 	
 	\section{Die Resolvente}
-	
-	 \subsection{Definition der Resolvente}
+	\subsection*{Einleitung}
+		Von besonderem Interesse ist jetzt natürlich ein Kriterium für die 
+		Kontrolleribarkeit eines linearen Kontrollsystems. Dieses wird uns in
+		Abschnitt \ref{Gram'sche Kontrollmatrix} geliefert. Hierfür ist allerdings
+		etwas vorarbeit notwendig.
+		
+		Für lineare Differentialgleichungssysteme \[
+			\dot x(t) = A \cdot x(t)
+		\] mit konstanten $A \in \R ^ {n \times n}$ ist es mithilfe der 
+		Exponentialfunktion einfach eine Fundamentalmatrix zu bestimmen, doch was
+		geschieht, wenn $A$ wie in der in \ref{AWP} gegebenen Definition eines 
+		Anfangswertproblems abhängig von $t$ ist? In diesem Fall ist die
+		Fundamentalmatrix im allgemeinen nicht elementar bestimmbar.
+		
+		Diese Klippe umbschiffen wir geschickt mit der Definition der Resolvente $R$,
+		die uns eine eindeutig bestimmte Fundamentalmatrix eines Anfangswertproblems
+		liefert. Mit der Resolvente und dem zentralen Satz aus Abschnitt
+		\ref{Gram'sche Kontrollmatrix} können wir dann überprüfen, ob das lineare 
+		Kontrollproblem kontrollierbar ist. 
+	\subsection*{Definition}
 		Sei $\Phi$ die Funktion, die das homogene Anfangswertproblem
 		\[
 			\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau) = E_n
@@ -165,6 +183,9 @@
 			\]
 			heißt Resolvente.
 		\end{Definition}
+		
+	\section{Gram'sche Kontrollmatrix}\label{Gram'sche Kontrollmatrix}
+	
 \newpage
 \printbibliography
 \newpage
