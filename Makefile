@@ -4,13 +4,11 @@ TARGET=seminar
 
 all: $(addsuffix .pdf,$(TARGET))
 
-%.pdf: %.tex %.mst
+%.pdf: %.tex %.mst %.bib
 	${LTX} $^
 	makeindex $(basename $@)
+	bibtex $(basename $@)
 	${LTX} $^
 	
 clean:
-	rm -rf *.aux *.log *.idx *.ind *.ilg *.out *.toc
-	
-cleanest: clean
-	rm -rf *.pdf
+	rm -rf $(shell tr "\n" " " < .gitignore)
