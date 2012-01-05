@@ -277,7 +277,7 @@
 						0 = \left [ \frac{\partial R}{\partial t_1}R(t_1, t_2) + R(t_1, t_2) \cdot A(t_2) \right] \cdot R(t_2, t_1)
 					\] folgt.
 					
-					\ref{Resolvente Eigenschaften:3} gibt uns, dass $R(t_1, t_2)$ 
+					\ref{Resolvente Eigenschaften:3} liefert uns, dass $R(t_1, t_2)$ 
 					invertierbar ist ($R(t_2, t_1)$ ist die zugehörige Inverse). Also
 					gilt:
 					\[
@@ -285,33 +285,28 @@
 					\]
 			\end{enumerateBew}
 		\end{Beweis}
-
-		\begin{Lemma}
-			Für die Lösung eines Linearen Anfangswertproblems \[
-				\dot x(t) = A(t) x(t) + b(t) \; \forall t \in [T_0, T_1] 
-			\] gilt
+	
+		\begin{Lemma}\label{Resolvente AWP}
+			Für die Lösung $x$ des Anfangswertproblems \[
+				\dot x(t) = A(t) \cdot x(t) + b(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad x(T_0) = x^0
+			\] gilt 
+			\begin{enumerateRef}
+				\item\label{Resolvente AWP:1} $x(t_1) = R(t_1, t_0) \cdot x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)\cdot b(\tau) d\tau$
+				\item\label{Resolvente AWP:2} $x(t) = R(t, T_0)x^0+ \int_{T_0}^t R(t, \tau) \cdot b(\tau)d\tau$
+			\end{enumerateRef} für alle $t_0, t_1, t \in [T_0, T_1]$
 		\end{Lemma}
+
+		\begin{Beweis}
+			\begin{enumerateBew}
+				\item
+					 \todo{fehlt!}
+				\item
+					Spezialfall von \ref{Resolvente AWP:1} mit $t_0:= T_0$ und $t_1 := t$ 
+			\end{enumerateBew}
+		\end{Beweis}
+		
 	\section{Gram'sche Kontrollmatrix}\label{Gram'sche Kontrollmatrix}
 	
-	\begin{Lemma}\label{Resolvente AWP}
-		Für die Lösung $x$ des Anfangswertproblems \[
-			\dot x(t) = A(t) \cdot x(t) + b(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad x(T_0) = x^0
-		\] gilt 
-		\begin{enumerateRef}
-			\item\label{Resolvente AWP:1} $x(t_1) = R(t_1, t_0) \cdot x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)\cdot b(\tau) d\tau$
-			\item\label{Resolvente AWP:2} $x(t_1) = R(t_1, t_0) \cdot x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)\cdot b(\tau) d\tau$
-			\item\label{Resolvente AWP:3} $x(t) = R(t, T_0)x^0+ \int_{T_0}^t R(t, \tau) \cdot b(\tau)d\tau$
-		\end{enumerateRef} für alle $t_0, t_1, t \in [T_0, T_1]$
-	\end{Lemma}
-	
-	\begin{Beweis}
-		\begin{enumerateBew}
-			\item
-				 \todo{fehlt!}
-			\item
-				folgt aus 1. mit $t_0:= T_0$ und $t_1 := t$ 
-		\end{enumerateBew}
-	\end{Beweis}
 \newpage
 \printbibliography
 \newpage
