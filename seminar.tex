@@ -374,10 +374,15 @@
 					\]
 					Dann gilt wieder mit \ref{Resolvente AWP:2} \begin{align*}
 						x(t) = & R(t, T_0) \cdot x^0+ \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau \\
-								 = & \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau
+								 = & \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau \tag{$\star\star$}\label{eqn:Gramsche Kontrollmatrix:star2}
 					\end{align*}
 					
-					Aus \eqref{eqn:Gramsche Kontrollmatrix:star} folgt, dass $ y^T x(T_1) = 0$ für beliebige $u$ gilt.
+					Aus \eqref{eqn:Gramsche Kontrollmatrix:star} und \eqref{eqn:Gramsche Kontrollmatrix:star2} folgt
+					\begin{align*}
+						y^T x(t) = & y^T \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau \\
+						= & \int_{T_0}^t \underbrace{ y^T R(t, \tau) \cdot B(\tau)}_{=0} u(\tau) d\tau = 0
+					\end{align*}
+					also, dass $ y^T x(T_1) = 0$ für beliebige $u$ gilt.
 					
 					Es existiert aber ein $x^1 \in \R^n$ mit $y^T x^1 \neq 0$, beispielsweise $x^1 = y$.
 					
@@ -387,7 +392,6 @@
 					Also kann das Kontrollproblem nicht kontrollierbar sein, wenn $\G$ singulär ist.
 			\end{enumerate}
 		\end{Beweis}
-		
 \newpage
 \printbibliography
 \newpage
