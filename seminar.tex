@@ -4,7 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{cmbright} %cmbright typeface
 \usepackage{amsmath}
-\usepackage{enumerate}
+\usepackage{enumitem}
 \usepackage{amssymb}
 \usepackage{framed}
 \usepackage[framed]{ntheorem}
@@ -45,6 +45,7 @@
 \theoremsymbol{\rule{1ex}{1ex}}
 \newframedtheorem{Satz}[thmc]{Satz}
 \newframedtheorem{Lemma}[thmc]{Lemma}
+\newframedtheorem{Korollar}[thmc]{Korollar}
 
 \theoremstyle{nonumberplain}
 \theoremsymbol{\rule{1ex}{1ex}}
@@ -67,6 +68,9 @@
 \newcommand{\argmin}[0]{\operatorname{Argmin}}
 \newcommand{\argmax}[0]{\operatorname{Argmax}}
 \newcommand{\dist}[0]{\operatorname{Dist}}
+
+\newenvironment{enumerateRef}{\begin{enumerate}[ref={\thethmc\alph*},label={(\alph*) }]}{\end{enumerate}}
+\newenvironment{enumerateBew}{\mbox{}\begin{enumerate}[label={zu (\alph*):}]}{\end{enumerate}}
 
 \makeindex
 
@@ -217,42 +221,43 @@
 		
 		\begin{Lemma}\label{Resolvente Eigenschaften}
 			Die Resolvente erfüllt die folgenden Eigenschaften
-			\begin{enumerate}
-				\item $	R(t_1,t_1) = E_n$
-				\item $ R(t_1, t_2) \cdot R(t_2, t_3) = R(t_1, t_3)$
-				\item $ R(t_1, t_2) \cdot R(t_2, t_1) = E_n$
-			\end{enumerate}
+			\begin{enumerateRef}
+				\item\label{Resolvente Eigenschaften:1} $	R(t_1,t_1) = E_n$
+				\item\label{Resolvente Eigenschaften:2} $ R(t_1, t_2) \cdot R(t_2, t_3) = R(t_1, t_3)$
+				\item\label{Resolvente Eigenschaften:3} $ R(t_1, t_2) \cdot R(t_2, t_1) = E_n$
+			\end{enumerateRef}
+	
 			für alle $t_1, t_2, t_3 \in [T_0, T_1]$.
 		\end{Lemma}
 		
 		\begin{Beweis}
-		\begin{enumerate}
-			\item[zu 1.] Betrachten wir das zu $R(t_1, t_1) $ gehörige 
+		\begin{enumerateBew}
+			\item Betrachten wir das zu $R(t_1, t_1) $ gehörige 
 			Anfangswertproblem \[
 				\dot M(t) = A(t) \cdot M(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad M(t_1) = E_n
 			\] mit Lösung $\Phi$.
 			Nun gilt: \[
 				R(t_1, t_1) = \tilde R (t_1)(t_1) = \Phi(t_1) = E_n
 			\]
-			\item[zu 2.] \todo{BEWEIS???}
-			\item[zu 3.]
+			\item \todo{BEWEIS???}
+			\item 
 				\[
 					R(t_1, t_2) \cdot R(t_2, t_1) \overset{2.}= R(t_1, t_1) \overset{1.}= E_n
 				\]
-		\end{enumerate}
+		\end{enumerateBew}
 		\end{Beweis}
 		
-		\begin{Lemma}
+		\begin{Lemma}\label{Resolvente Ableitung}
 			Für die Ableitungen der Resolvente gilt:
-			\begin{enumerate}
-				\item $ \frac{\partial R}{\partial t} (t, \tau) = A(t) \cdot R(t,\tau) \; \forall t,\tau \in [T_0, T_1]$
-				\item $ \frac{\partial R}{\partial \tau} (t, \tau) = - R(t, \tau) \cdot A(\tau) \; \forall t,\tau \in [T_0, T_1]$
-			\end{enumerate}
+			\begin{enumerateRef}
+				\item\label{Resolvente Ableitung:1} $ \frac{\partial R}{\partial t} (t, \tau) = A(t) \cdot R(t,\tau) \; \forall t,\tau \in [T_0, T_1]$
+				\item\label{Resolvente Ableitung:2} $ \frac{\partial R}{\partial \tau} (t, \tau) = - R(t, \tau) \cdot A(\tau) \; \forall t,\tau \in [T_0, T_1]$
+			\end{enumerateRef}
 		\end{Lemma}
 		
 		\begin{Beweis}
-			\begin{enumerate}
-				\item[zu 1.]
+			\begin{enumerateBew}
+				\item
 					Die Definition der Resolvente mit ihrem Anfangswertproblem gibt uns
 					die Interpretation \[
 						R(t, \tau ) = E_n + \int_\tau^t A(t) \cdot R(t, \tau) dT
@@ -261,8 +266,8 @@
 					\[
 						\frac{\partial R}{\partial t}R(t,\tau) = A(t) \cdot R(t, \tau)
 					\]
-				\item[zu 2.]
-					Differenzieren von \ref{Resolvente Eigenschaften} 3. nach $t_2$ gibt uns
+				\item
+					Differenzieren von \ref{Resolvente Eigenschaften:3} nach $t_2$ gibt uns
 					\[
 						\frac{\partial R}{\partial t_2} E_n = \frac{\partial R}{\partial t_2} R(t_1, t_2) \cdot R(t_2, t_1)
 					\] also \[
@@ -272,16 +277,41 @@
 						0 = \left [ \frac{\partial R}{\partial t_1}R(t_1, t_2) + R(t_1, t_2) \cdot A(t_2) \right] \cdot R(t_2, t_1)
 					\] folgt.
 					
-					\ref{Resolvente Eigenschaften} 3. gibt uns, dass $R(t_1, t_2)$ 
+					\ref{Resolvente Eigenschaften:3} gibt uns, dass $R(t_1, t_2)$ 
 					invertierbar ist ($R(t_2, t_1)$ ist die zugehörige Inverse). Also
 					gilt:
 					\[
 						\frac{\partial R}{\partial t_2}R(t_1, t_2) = - R(t_1, t_2) \cdot A(t_2)
 					\]
-			\end{enumerate}
+			\end{enumerateBew}
 		\end{Beweis}
+
+		\begin{Lemma}
+			Für die Lösung eines Linearen Anfangswertproblems \[
+				\dot x(t) = A(t) x(t) + b(t) \; \forall t \in [T_0, T_1] 
+			\] gilt
+		\end{Lemma}
 	\section{Gram'sche Kontrollmatrix}\label{Gram'sche Kontrollmatrix}
 	
+	\begin{Lemma}\label{Resolvente AWP}
+		Für die Lösung $x$ des Anfangswertproblems \[
+			\dot x(t) = A(t) \cdot x(t) + b(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad x(T_0) = x^0
+		\] gilt 
+		\begin{enumerateRef}
+			\item\label{Resolvente AWP:1} $x(t_1) = R(t_1, t_0) \cdot x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)\cdot b(\tau) d\tau$
+			\item\label{Resolvente AWP:2} $x(t_1) = R(t_1, t_0) \cdot x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)\cdot b(\tau) d\tau$
+			\item\label{Resolvente AWP:3} $x(t) = R(t, T_0)x^0+ \int_{T_0}^t R(t, \tau) \cdot b(\tau)d\tau$
+		\end{enumerateRef} für alle $t_0, t_1, t \in [T_0, T_1]$
+	\end{Lemma}
+	
+	\begin{Beweis}
+		\begin{enumerateBew}
+			\item
+				 \todo{fehlt!}
+			\item
+				folgt aus 1. mit $t_0:= T_0$ und $t_1 := t$ 
+		\end{enumerateBew}
+	\end{Beweis}
 \newpage
 \printbibliography
 \newpage
