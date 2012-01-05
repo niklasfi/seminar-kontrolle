@@ -71,8 +71,8 @@
 \newcommand{\argmax}[0]{\operatorname{Argmax}}
 \newcommand{\dist}[0]{\operatorname{Dist}}
 
-\newenvironment{enumerateRef}{\begin{enumerate}[ref={\thethmc\alph*},label={(\alph*) }]}{\end{enumerate}}
-\newenvironment{enumerateBew}{\mbox{}\begin{enumerate}[label={zu (\alph*):}]}{\end{enumerate}}
+\newenvironment{enumerateRef}{\begin{enumerate}[ref={\thethmc\alph*},label={(\alph*) }, leftmargin=*]}{\end{enumerate}}
+\newenvironment{enumerateBew}{\mbox{}\begin{enumerate}[label={zu (\alph*):}, leftmargin=*]}{\end{enumerate}}
 
 \makeindex
 
@@ -324,6 +324,70 @@
 		\begin{Beweis}
 			\todo{fehlt!}
 		\end{Beweis}
+		
+		\begin{Satz}
+			Ein lineares Kontrollsystem \[
+				\dot x(t) = A(t) \cdot x(t) + B(t) \cdot u(t)
+			\] ist genau dann kontrollierbar, wenn seine
+			Gram'sche Kontrollmatrix regulär ist.
+		\end{Satz}
+		
+		\begin{Beweis}
+			\begin{enumerate}
+				\item["`$\Leftarrow$"': ]
+					Sei $\G$ invertierbar, $x^0, x^1 \in R^n$ beiliebig. Definiere \[
+						\bar u: (T_0, T_1) \rightarrow R^m, \tau \mapsto B(\tau)^T\cdot R(T_1,\tau)^T\G^{-1}\cdot (x^1-R(T_1, T_0)\cdot x^0)
+					\]
+					Dann ist $\bar u$ stetig. \todo{Wieso?}
+					
+					Sei $\bar x$ die Lösung des Anfangswertproblems \[
+						\dot {\bar x}(t) = A(t) \cdot \bar x(t) + B(t) \cdot \bar u (t) \quad \text{mit} \quad \bar x (T_0) = x^0
+					\]
+					
+					Nach \ref{Resolvente AWP:2} gilt: \begin{align*}
+						\bar x(T_1) = & R(T_1, T_0) \cdot x^0 + \int_{T_0}^{T_1} R(T_1, \tau ) \cdot B(\tau) \cdot \bar u(\tau) d\tau \\
+						 = & R(T_1, T_0) x^0 + \\
+						 & \qquad \int_{T_0}^{T_1} R(T_1, \tau ) B(\tau) B(\tau)^T R(T_1,\tau)^T\G^{-1}(x^1-R(T_1, T_0)x^0) d\tau\\
+						 = & R(T_1, T_0) x^0 + \\
+						 & \qquad \underbrace{\int_{T_0}^{T_1} R(T_1, \tau ) B(\tau) B(\tau)^T R(T_1,\tau)^T d\tau}_{=\G} \; \G^{-1}(x^1-R(T_1, T_0)x^0) \\
+						 = & R(T_1, T_0) x^0 + x^1-R(T_1, T_0)x^0 \\
+						 = & x^1
+					\end{align*}
+					
+					also gibt es eine Steuerung $\bar u$, die die gewünschten Bedingungen erfüllt.
+					
+				\item["`$\Rightarrow$"': ]
+					Falls $\G$ singulär ist, gibt es ein $y \in \R^n\setminus \plainset{0}$ mit \[
+						\G y = 0
+					\]
+					Also gilt auch
+					\begin{align*}
+						0 = y^T \G y = &\int_{T_0}^{T_1} y^T R(T_1,y)B(\tau)B(\tau)^T R(T_1, \tau)^T y d\tau \\
+						= & \int_{T_0}^{T_1} | B(\tau)^T R(T_1, \tau)^T y |^2 d\tau
+					\end{align*}
+					Daraus folgt 
+					\[ \tag{$\star$}\label{eqn:Gramsche Kontrollmatrix:star}
+						y^T R(T_1, \tau) B(\tau) = 0
+					\] da $\tau \mapsto B(\tau)^T R(T_1, \tau)^T y$ stetig ist.
+					Sei nun $u: [T_0, T_1] \rightarrow R^m$ eine beliebige stetige Funktion. Dazu sei $x$ die Lösung des Anfangswertproblems \[
+						\dot x(t) = A(t) x(t) + B(t) u(t) \quad \text{mit} \quad x(T_1) = 0 = x^1
+					\]
+					Dann gilt wieder mit \ref{Resolvente AWP:2} \begin{align*}
+						x(t) = & R(t, T_0) \cdot x^0+ \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau \\
+								 = & \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau
+					\end{align*}
+					
+					Aus \eqref{eqn:Gramsche Kontrollmatrix:star} folgt, dass $ y^T x(T_1) = 0$ für beliebige $u$ gilt.
+					
+					Es existiert aber ein $x^1 \in \R^n$ mit $y^T x^1 \neq 0$, beispielsweise $x^1 = y$.
+					
+					Wenn das Kontrollproblem kontrollierbar wäre würde es eine Steuerung $u$ geben, sodass $x(T_1) = x^1$.
+					Daraus würde dann aber auch $0 = y^T x(T_1) = y^T x^1 \neq 0$ gelten, was ein Widerspruch ist.
+					
+					Also kann das Kontrollproblem nicht kontrollierbar sein, wenn $\G$ singulär ist.
+			\end{enumerate}
+		\end{Beweis}
+		
 \newpage
 \printbibliography
 \newpage
