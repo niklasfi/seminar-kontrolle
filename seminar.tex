@@ -294,7 +294,7 @@
 			\] gilt 
 			\begin{enumerateRef}
 				\item\label{Resolvente AWP:1} $x(t_1) = R(t_1, t_0) \cdot x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)\cdot b(\tau) d\tau$
-				\item\label{Resolvente AWP:2} $x(t) = R(t, T_0)x^0+ \int_{T_0}^t R(t, \tau) \cdot b(\tau)d\tau$
+				\item\label{Resolvente AWP:2} $x(t) = R(t, T_0) \cdot x^0+ \int_{T_0}^t R(t, \tau) \cdot b(\tau)d\tau$
 			\end{enumerateRef} für alle $t_0, t_1, t \in [T_0, T_1]$
 		\end{Lemma}
 
@@ -308,7 +308,22 @@
 		\end{Beweis}
 		
 	\section{Gram'sche Kontrollmatrix}\label{Gram'sche Kontrollmatrix}
-	
+		\begin{Definition}[Gram'sche Kontrollmatrix]
+			Für ein Kontrollsystem \[
+				\dot x(t) = A(t) \cdot x(t) + B(t) \cdot u(t)
+			\]
+			heißt die Matrix \[
+				\G:=\int_{T_0}^{T_1} R(T_1, \tau) \cdot B(\tau) \cdot B(\tau)^T\cdot R(T_1, \tau)^T d\tau \in \R^{n \times n}
+			\] Gram'sche Kontrollmatrix
+		\end{Definition}
+		
+		\begin{Lemma}
+			$\G$ ist symmetrisch positiv semidefinit.
+		\end{Lemma}
+		
+		\begin{Beweis}
+			\todo{fehlt!}
+		\end{Beweis}
 \newpage
 \printbibliography
 \newpage
