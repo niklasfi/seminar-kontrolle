@@ -1,5 +1,6 @@
 \documentclass[a4paper]{article}
 
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{cmbright} %cmbright typeface
@@ -391,6 +392,69 @@
 					
 					Also kann das Kontrollproblem nicht kontrollierbar sein, wenn $\G$ singulär ist.
 			\end{enumerate}
+		\end{Beweis}
+		
+		\begin{Satz}\label{Gramsche Minimalität}
+			Seien $T_0, T_1\in \R$ sowie $x^0, x^1 \in \R^n$. Für ein beliebiges Kontrollproblem
+			\[
+				\dot x = A(t) x(t) + B(t) u(t) \; \forall t\in [T_0, T_1] \quad \text{mit} \quad x(T_0)=x^0, \; x(T_1)=x^1
+			\]
+			mit Lösung $u$ gilt
+			\begin{enumerateRef}
+				\item $\int_{T_0}^{T_1} |\bar u(\tau)|^2 d\tau < \int_{T_0}^{T_1} |u(\tau)|^2d\tau$, falls $u \neq \bar u$ und
+				\item $\int_{T_0}^{T_1} |\bar u(\tau)|^2 d\tau = \int_{T_0}^{T_1} |u(\tau)|^2d\tau$, falls $u = \bar u$
+			\end{enumerateRef}
+			wobei
+			\[
+				\bar u: (T_0, T_1) \rightarrow R^m, \tau \mapsto B(\tau)^T\cdot R(T_1,\tau)^T\G^{-1}\cdot (x^1-R(T_1, T_0)\cdot x^0)
+			\]
+		\end{Satz}
+		
+		\begin{Beweis}
+			Definiere \[
+				v := u - \bar u
+			\]
+			Betrachte zunächst $|u(t)|^2$
+			\begin{align*}
+				|u(t)|^2 = & |\bar u(t) + v(t)|^2 \\
+					= & \langle \bar u(t) + v(t), \bar u(t) + v(t)\rangle \\
+					= & \langle \bar u(t), \bar u(t)\rangle + 2 \langle \bar u(t), v(t)\rangle + \langle v(t),v(t) \rangle \\
+					= & |\bar u(t) |^2 + 2 \bar u(t)^T v(t) + |v(t)|^2
+			\end{align*}
+			Also gilt auch
+			\[
+				\int_{T_0}^{T_1}|u(\tau)d\tau|^2 = \int_{T_0}^{T_1}|\bar u(\tau) |^2 + 2 \int_{T_0}^{T_1}\bar u(\tau)^T v(\tau) d\tau+ \int_{T_0}^{T_1}|v(\tau)|^2 d\tau
+			\]
+		Für $\int_{T_0}^{T_1}\bar u(\tau)^T v(\tau) d\tau$ aber gilt
+		\begin{align*}
+			& \int_{T_0}^{T_1}\bar u(\tau)^T v(\tau) d\tau \\
+			\overset{\text{Def. }u}= & \int_{T_0}^{T_1}(B(\tau)^T R(T_1,\tau)^T\G^{-1} (x^1-R(T_1, T_0) x^0))^T v(\tau) d\tau \\
+			\overset{\G \text{ sym.}}= & \int_{T_0}^{T_1} (x^1-R(T_1,T_0)x^0)^T \G^{-1}R(T_1,\tau)B(\tau)v(\tau)d\tau \\
+			= \;\;\,& (x^1-R(T_1,T_0)x^0)^T \G^{-1} \int_{T_0}^{T_1} R(T_1,\tau)B(\tau)v(\tau)d\tau
+		\end{align*}
+		und für $\int_{T_0}^{T_1} R(T_1,\tau)B(\tau)v(\tau)d\tau$ gilt 
+		\begin{align*}
+			 & \int_{T_0}^{T_1} R(T_1,\tau)B(\tau)v(\tau)d\tau \\
+			=& \int_{T_0}^{T_1} R(T_1,\tau)B(\tau)u(\tau)d\tau - \int_{T_0}^{T_1} R(T_1,\tau)B(\tau)\bar u(\tau)d\tau \\
+			\overset{\eqref{eqn:Gramsche Minimalitaet:star}}=& (x(T_1) - R(T_1,T_0)x(T_0)) - (\bar x(T_1)-R(T_1,T_0) \bar x(T_0)) \\
+			\overset{{x, \bar x \text{ Lsg.}}}=& (x^1-R(T_1,T_0)x^0) - (x^1-R(T_1,T_0)x^0) \\
+			=& 0
+			\tag{$\star\star$}\label{eqn:Gramsche Minimalitaet:star2} 
+		\end{align*}
+		wobei \eqref{eqn:Gramsche Minimalitaet:star} aus mit Umstellen aus \ref{Resolvente AWP:2} folgt:
+		\begin{align*}
+			& x(T_1) =R(T_1,T_0) x^0 + \int^{T_1}_{T_0}R(T^1,\tau)b(\tau)d\tau \\
+			\Leftrightarrow & x(T_1) - R(T_1,T_0) x^0 = \int^{T_1}_{T_0}R(T^1,\tau)b(\tau)d\tau
+			\tag{$\star$}\label{eqn:Gramsche Minimalitaet:star} 
+		\end{align*}
+		Mit \eqref{eqn:Gramsche Minimalitaet:star2} gilt also
+		\[
+			\int_{T_0}^{T_1} R(T_1,\tau)B(\tau)v(\tau)d\tau = 0
+		\]
+		und damit
+		\[
+			\int_{T_0}^{T_1}|u(\tau)d\tau|^2 = \int_{T_0}^{T_1}|\bar u(\tau) |^2 +  \underbrace{\int_{T_0}^{T_1}|v(\tau)|^2 d\tau}_{\geq 0}
+		\]
 		\end{Beweis}
 \newpage
 \printbibliography
