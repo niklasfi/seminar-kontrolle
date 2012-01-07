@@ -9,7 +9,7 @@
 \usepackage{amssymb}
 \usepackage{eufrak} %gibt uns das wunderschöne C!
 \usepackage{framed}
-\usepackage[framed]{ntheorem}
+\usepackage[framed,thmmarks]{ntheorem}
 \usepackage[normalem]{ulem}
 \usepackage[pdfborder={1 1 0}]{hyperref}
 \usepackage{fancyhdr}
@@ -35,7 +35,6 @@
   {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
           \large ##1\ ##2\ (##3)\theorem@separator}\hbox{\strut}}}]}
 \makeatother
-
 \theorembodyfont{}
 \theoremstyle{newBreak}
 
@@ -44,12 +43,13 @@
 \newframedtheorem{Definition}[thmc]{Definition}
 \newtheorem{Bemerkung}[thmc]{Bemerkung}
 \newtheorem{Beispiel}[thmc]{Beispiel}
-\theoremsymbol{\rule{1ex}{1ex}}
+\theoremsymbol{}
 \newframedtheorem{Satz}[thmc]{Satz}
 \newframedtheorem{Lemma}[thmc]{Lemma}
 \newframedtheorem{Korollar}[thmc]{Korollar}
 
 \theoremstyle{nonumberplain}
+
 \theoremsymbol{\rule{1ex}{1ex}}
 \newtheorem{Beweis}{Beweis}
 
@@ -364,9 +364,10 @@
 						= & \int_{T_0}^{T_1} | B(\tau)^T R(T_1, \tau)^T y |^2 d\tau
 					\end{align*}
 					Daraus folgt 
-					\[ \tag{$\star$}\label{eqn:Gramsche Kontrollmatrix:star}
-						y^T R(T_1, \tau) B(\tau) = 0
-					\] da $\tau \mapsto B(\tau)^T R(T_1, \tau)^T y$ stetig ist.
+					\begin{align*}
+						y^T R(T_1, \tau) B(\tau) = 0 \tag{$\star$}\label{eqn:Gramsche Kontrollmatrix:star}
+					\end{align*}
+					da $\tau \mapsto B(\tau)^T R(T_1, \tau)^T y$ stetig ist.
 					Sei nun $u: [T_0, T_1] \rightarrow R^m$ eine beliebige stetige Funktion. Dazu sei $x$ die Lösung des Anfangswertproblems \[
 						\dot x(t) = A(t) x(t) + B(t) u(t) \quad \text{mit} \quad x(T_1) = 0 = x^1
 					\]
