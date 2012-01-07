@@ -150,9 +150,9 @@
 	\section{Die Resolvente}
 	\subsection*{Einleitung}
 		Von besonderem Interesse ist jetzt natürlich ein Kriterium für die 
-		Kontrolleribarkeit eines linearen Kontrollsystems. Dieses wird uns in
+		Kontrolleribarkeit eines linearen Kontrollsystems. Dieses wird in
 		Abschnitt \ref{Gram'sche Kontrollmatrix} geliefert. Hierfür ist allerdings
-		etwas vorarbeit notwendig.
+		etwas Vorarbeit notwendig.
 		
 		Für lineare Differentialgleichungssysteme \[
 			\dot x(t) = A \cdot x(t)
@@ -162,11 +162,11 @@
 		Anfangswertproblems abhängig von $t$ ist? In diesem Fall ist die
 		Fundamentalmatrix im allgemeinen nicht elementar bestimmbar.
 		
-		Diese Klippe umbschiffen wir geschickt mit der Definition der Resolvente $R$,
-		die uns eine eindeutig bestimmte Fundamentalmatrix eines Anfangswertproblems
-		liefert. Mit der Resolvente und dem zentralen Satz aus Abschnitt
-		\ref{Gram'sche Kontrollmatrix} können wir dann überprüfen, ob das lineare 
-		Kontrollproblem kontrollierbar ist. 
+		Diese Klippe wird mit Resolvente $R$, die uns eine eindeutig bestimmte 
+		Fundamentalmatrix eines Anfangswertproblems	liefert, geschickt umschifft.
+		Mit der Resolvente und dem zentralen Satz aus Abschnitt
+		\ref{Gram'sche Kontrollmatrix} können kann dann überpüft werden, ob das 
+		lineare Kontrollproblem kontrollierbar ist. 
 	\subsection*{Definition}
 		Sei $\Phi$ die Funktion, die das homogene Anfangswertproblem
 		\[
@@ -181,7 +181,7 @@
 			\tau \mapsto \Phi
 		\]
 	
-		Jetzt können wir die Resolvente einfach definieren:
+		Jetzt kann die Resolvente einfach definiert werden:
 		
 		\begin{Definition}[Resolvente]
 			Die Funktion 
@@ -193,8 +193,6 @@
 		\end{Definition}
 		
 	\subsection*{Eigenschaften}
-		Wir beginnen damit, uns die Eigenschaften der Resolvente vor Augen zu
-		führen.
 		\begin{Lemma}
 			$R$ ist stetig.
 		\end{Lemma}
@@ -229,7 +227,6 @@
 				\item\label{Resolvente Eigenschaften:2} $ R(t_1, t_2) \cdot R(t_2, t_3) = R(t_1, t_3)$
 				\item\label{Resolvente Eigenschaften:3} $ R(t_1, t_2) \cdot R(t_2, t_1) = E_n$
 			\end{enumerateRef}
-	
 			für alle $t_1, t_2, t_3 \in [T_0, T_1]$.
 		\end{Lemma}
 		
