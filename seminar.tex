@@ -315,12 +315,31 @@
 			\] Gram'sche Kontrollmatrix
 		\end{Definition}
 		
-		\begin{Lemma}
-			$\G$ ist symmetrisch positiv semidefinit.
+		\begin{Lemma}\label{Gram'sche Kontrollmatrix:definitheit}
+			\begin{enumerateRef}
+				\item $\G$ ist symmetrisch\label{Gram'sche Kontrollmatrix:Eigenschaften:symmetrie}
+				\item $\G$ ist nichtnegativ\label{Gram'sche Kontrollmatrix:Eigenschaften:nichtnegativ}
+				\item $\G$ ist positiv semidefinit\label{Gram'sche Kontrollmatrix:Eigenschaften:definitheit}
+			\end{enumerateRef}
 		\end{Lemma}
 		
 		\begin{Beweis}
-			\todo{fehlt!}
+			\begin{enumerateBew}
+			\item Für eine beliebige quadratische Matrix $M = (m)_{i,j}\in R^{n \times n}$ ist $M\cdot M^T$
+			symmetrisch. Da das Integral einer Matrix als Integral über die Matrixeinträge 
+			definiert ist, und $m_{i,j} = m_{j,i}$ ist das Integral über eine symmetrische
+			Matrix wieder symmetrisch. Wähle nun $M := R(T_1,\tau)\cdot B(\tau)$, dann ist
+			$\G$ symmetrisch.
+
+			\item Für $x \in \R^n$ gilt:
+			\begin{align*}
+				\G = & \int_{T_0}^{T_1} R(T_1, \tau) B(\tau) B(\tau)^T R(T_1, \tau)^T d\tau \\
+					=& \int_{T_0}^{T_1} \langle B(\tau)^T R(T_1, \tau)^T, B(\tau)^T R(T_1, \tau)^T \rangle d\tau \\
+					=& \int_{T_0}^{T_1} | B(\tau)^T R(T_1, \tau)^T|^2 d\tau
+			\end{align*}
+			Also ist jeder Eintrag von $\G$ nichtnegativ.
+			\item Da jeder Eintrag von $\G$ nichtnegativ ist, sind auch alle Hauptminoren nichtnegativ. Also ist $\G$ positiv semidefinit.
+		\end{enumerateBew}
 		\end{Beweis}
 		
 		\begin{Satz}
@@ -459,8 +478,8 @@
 		\end{Beweis}
 		$\bar u$ ist also diejenige Steuerung, sodass $\int_{T_0}^{T_1} |u(\tau)|^2d\tau$ minimal ist.
 		Anschaulich ist der Vorteil dieser Bedingung auch sofort klar. Wenn zum 
-		eispiel wie anfangs ein Raumfahrzeug gesteuert werden sollte, so sorgt diese
-		Anformderung dafür, dass möglichst wenig Energie für die Steuerung verbraucht
+		Beispiel wie anfangs ein Raumfahrzeug gesteuert werden sollte, so sorgt diese
+		Anforderung dafür, dass möglichst wenig Energie für die Steuerung verbraucht
 		wird.
 \newpage
 \printbibliography
