@@ -191,7 +191,52 @@
 			\]
 			heißt Resolvente.
 		\end{Definition}
-		
+
+		\begin{Beispiel}
+			Gegeben sei die Differentialgleichung 
+			\begin{align*}
+				\dot M(t) = A(t) \cdot M(T) \quad \text{mit} \quad A(t) :=
+				\begin{pmatrix}
+					t & -1 \\
+					1 & t
+				\end{pmatrix}
+				\label{Resolvente:Beispiel:star}\tag{$\star$}
+			\end{align*} von der wir die Resolvente bestimmen wollen.
+			Die Differentialgleichung \eqref{Resolvente:Beispiel:star} kann mit
+			\begin{align*}
+				& z(t) = x_1(t) + i x_2(t)
+				\label{Resolvente:Beispiel:star2}\tag{$\star\star$} \\
+				\Rightarrow & \dot z(t) = \dot x_1(t) + i \dot x_2(t)
+			\end{align*} umgeschrieben werden:
+			\begin{align*}
+				\dot z(t) =  & ( t x_1(t) -x_2(t))+ i ( x_1(t) +t x_2(t)) \\
+				= & t ( x_1(t) + i (x_2) ) + i (x_1(t) + i x_2(t)) \\
+				= & t \cdot z(t) + i \cdot z(t)\\
+			 	= & (t + i) \cdot z(t)
+			\end{align*}
+			Betrachte also das Anfangswertproblem
+			\begin{align*}
+				\dot z(t) = (t + i)  \cdot z(t) \quad \text{mit} \quad z(t_2) = 1
+			\end{align*}
+			welches \todo{präziser} die Lösung
+			\[
+				z(t) = z(t_2) \exp \left( \frac{t^2}2 - \frac{t_2^2}2 + i t - i t_2 \right)
+			\]
+			besitzt. Mit \eqref{Resolvente:Beispiel:star2} folgt auch \[
+				x_1(t) = \Re( z(t)) \quad \text{und} \quad x_2(t) = \Im(z(t))
+			\]
+			Dann ist die Resolvente gegeben durch 
+			\[
+				R(t, t_2) =
+				\begin{pmatrix}
+					\cos(t-t_2) \exp \left( \frac{t^2}2 - \frac{t_2^2}2 \right) &
+					-\sin(t-t_2) \exp \left( \frac{t^2}2 - \frac{t_2^2}2 \right) \\
+					\sin(t-t_2) \exp \left( \frac{t^2}2 - \frac{t_2^2}2 \right) &
+					\phantom{-}\cos(t-t_2) \exp \left( \frac{t^2}2 - \frac{t_2^2}2 \right)
+				\end{pmatrix}
+			\]
+			
+		\end{Beispiel}
 	\subsection*{Eigenschaften}
 		\begin{Lemma}
 			$R$ ist stetig.
@@ -217,7 +262,7 @@
 				|| \Phi_1(t) - \Phi_2(t) || < \varepsilon \; \forall t \in [T_0, T_1]
 			\]
 			dies ist äquivalent zur Stetigkeit von $R$ in der 2. Komponente.
-			Da $R$ in beiden seiner Komponenten stetig ist, it $R$ stetig.
+			Da $R$ in beiden seiner Komponenten stetig ist, mit $R$ stetig.
 		\end{Beweis}
 		
 		\begin{Lemma}\label{Resolvente Eigenschaften}
