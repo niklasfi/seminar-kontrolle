@@ -392,6 +392,9 @@
 			\end{enumerate}
 		\end{Beweis}
 		
+		Mit $\bar u$ ist jetzt also eine allgemeine Steuerung gefunden. Aber $\bar u$ 
+		erfüllt auch noch eine Minimalitätsbedingung:
+		
 		\begin{Satz}\label{Gramsche Minimalitaet}
 			Seien $T_0, T_1\in \R$ sowie $x^0, x^1 \in \R^n$. Für ein beliebiges Kontrollproblem
 			\[
@@ -454,6 +457,11 @@
 			\int_{T_0}^{T_1}|u(\tau)d\tau|^2 = \int_{T_0}^{T_1}|\bar u(\tau) |^2 +  \underbrace{\int_{T_0}^{T_1}|v(\tau)|^2 d\tau}_{\geq 0}
 		\]
 		\end{Beweis}
+		$\bar u$ ist also diejenige Steuerung, sodass $\int_{T_0}^{T_1} |u(\tau)|^2d\tau$ minimal ist.
+		Anschaulich ist der Vorteil dieser Bedingung auch sofort klar. Wenn zum 
+		eispiel wie anfangs ein Raumfahrzeug gesteuert werden sollte, so sorgt diese
+		Anformderung dafür, dass möglichst wenig Energie für die Steuerung verbraucht
+		wird.
 \newpage
 \printbibliography
 \newpage
