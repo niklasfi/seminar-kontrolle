@@ -355,7 +355,8 @@
 					Sei $\G$ invertierbar, $x^0, x^1 \in R^n$ beiliebig. Definiere \[
 						\bar u: (T_0, T_1) \rightarrow R^m, \tau \mapsto B(\tau)^T\cdot R(T_1,\tau)^T\G^{-1}\cdot (x^1-R(T_1, T_0)\cdot x^0)
 					\]
-					Dann ist $\bar u$ stetig. \todo{Wieso?}
+					Dann ist $\bar u$ stetig, da $\G^{-1}(x^1-R(T_1, T_0)\cdot x^0)$ eine
+					von $\tau$ unabhängige Konstante ist, und $B$, sowie $R$ stetig sind.
 					
 					Sei $\bar x$ die Lösung des Anfangswertproblems \[
 						\dot {\bar x}(t) = A(t) \cdot \bar x(t) + B(t) \cdot \bar u (t) \quad \text{mit} \quad \bar x (T_0) = x^0
