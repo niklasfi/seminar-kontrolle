@@ -329,25 +329,34 @@
 					invertierbar ist ($R(t_2, t_1)$ ist die zugehörige Inverse). Also
 					gilt:
 					\[
-						\frac{\partial R}{\partial t_2}R(t_1, t_2) = - R(t_1, t_2) \cdot A(t_2)
+						\frac{\partial R}{\partial t_2}R(t_1, t_2) = - R(t_1, t_2) \cdot A(t_2).
 					\]
 			\end{enumerateBew}
 		\end{Beweis}
-	
+
 		\begin{Lemma}\label{Resolvente AWP}
-			Für die Lösung $x$ des Anfangswertproblems \[
-				\dot x(t) = A(t) \cdot x(t) + b(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad x(T_0) = x^0
-			\] gilt 
+			Für die Lösung $x$ des Anfangswertproblems \begin{align*}
+				\dot x(t) = A(t) x(t) + b(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad x(T_0) = x^0
+				\label{Resolvente AWP:star}\tag{$\star$}
+			\end{align*} gilt 
 			\begin{enumerateRef}
-				\item\label{Resolvente AWP:1} $x(t_1) = R(t_1, t_0) \cdot x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)\cdot b(\tau) d\tau$
-				\item\label{Resolvente AWP:2} $x(t) = R(t, T_0) \cdot x^0+ \int_{T_0}^t R(t, \tau) \cdot b(\tau)d\tau$
+				\item\label{Resolvente AWP:1} $x(t_1) = R(t_1, t_0) x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau) b(\tau) d\tau$
+				\item\label{Resolvente AWP:2} $x(t) = R(t, T_0) x^0+ \int_{T_0}^t R(t, \tau)  b(\tau)d\tau$.
 			\end{enumerateRef} für alle $t_0, t_1, t \in [T_0, T_1]$
 		\end{Lemma}
-
 		\begin{Beweis}
 			\begin{enumerateBew}
 				\item
-					 \todo{fehlt!}
+					 Differenzieren von \ref{Resolvente AWP:1} nach $t_1$ ergibt 								\begin{align*}
+						\frac d{dt_1} x(t_1) & = \frac d{dt_1} \left(R(t_1, t_0)x(t_0) + \int_{t_0}^{t_1} R(t,\tau) b(\tau) d\tau \right)\\
+						& = \frac d{dt_1}  R(t_1,t_0)x(t_0) + \frac d{dt_1} \int_{t_0}^{t_1} R(t_1,\tau) b(\tau) d\tau \\
+						& = A(t_1)R(t_1,t_0)x(t_0) \\
+						& \qquad + \int_{t_0}^{t_1} \frac d{dt_1} R(t_1,\tau)b(\tau)d\tau +  R(t_1,t_1)b(\tau) \cdot 1 - R(t_1,t_0)b(t_0) \cdot 0 \\
+						& = A(t_1)R(t_1,t_0)x(t_0) + \int_{t_0}^{t_1} A(t_1) R(t_1,\tau)b(\tau)d\tau +  R(t_1,t_1)b(\tau) \\
+						& = A(t_1)\left[R(t_1,t_0)x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)b(\tau )d\tau \right] + b(t_1) \\
+						& = A(t_1) x(t_1) + b(t_1).
+					\end{align*}
+					Also erfüllt \ref{Resolvente AWP:1} das Anfangswertproblem \eqref{Resolvente AWP:star}.
 				\item
 					Spezialfall von \ref{Resolvente AWP:1} mit $t_0:= T_0$ und $t_1 := t$ 
 			\end{enumerateBew}
