@@ -179,13 +179,11 @@
 		\]
 		löst. Offensichtlich ist $\Phi$ von der Wahl von $\tau$ abhängig. Definiere
 		also $\tilde R$ als die Funktion, die $\tau$ auf die Funktion $\Phi$ 
-		abbildet.
-		
+		abbildet:
 		\[
 			\tilde R : [T_0, T_1] \rightarrow C^0( [T_0, T_1],\R^{n \times n}), 
 			\tau \mapsto \Phi
 		\]
-	
 		Jetzt kann die Resolvente einfach definiert werden:
 		
 		\begin{Definition}[Resolvente]\index{Resolvente}
@@ -223,12 +221,12 @@
 			\begin{align*}
 				\dot z(t) = (t + i)  \cdot z(t) \quad \text{mit} \quad z(t_2) = 1
 			\end{align*}
-			welches \todo{präziser} die Lösung
+			welches mit dem Korollar über lineare Differentialgleichungen aus \cite{KriegWalcher2010}[S. 14]
 			\[
 				z(t) = z(t_2) \exp \left( \frac{t^2}2 - \frac{t_2^2}2 + i t - i t_2 \right)
 			\]
-			besitzt. Mit \eqref{Resolvente:Beispiel:star2} folgt auch \[
-				x_1(t) = \Re( z(t)) \quad \text{und} \quad x_2(t) = \Im(z(t))
+			ergibt. Mit \eqref{Resolvente:Beispiel:star2} folgt auch \[
+				x_1(t) = \Re( z(t)) \quad \text{und} \quad x_2(t) = \Im(z(t)).
 			\]
 			Dann ist die Resolvente gegeben durch 
 			\[
@@ -287,7 +285,7 @@
 				\dot M(t) = A(t) \cdot M(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad M(t_1) = E_n
 			\] mit Lösung $\Phi$.
 			Nun gilt: \[
-				R(t_1, t_1) = \tilde R (t_1)(t_1) = \Phi(t_1) = E_n
+				R(t_1, t_1) = \tilde R (t_1)(t_1) = \Phi(t_1) = E_n.
 			\]
 			\item \todo{BEWEIS???}
 			\item 
@@ -308,13 +306,13 @@
 		\begin{Beweis}
 			\begin{enumerateBew}
 				\item
-					Die Definition der Resolvente mit ihrem Anfangswertproblem gibt uns
+					Die Definition der Resolvente mit ihrem Anfangswertproblem liefert uns
 					die Interpretation \[
-						R(t, \tau ) = E_n + \int_\tau^t A(t) \cdot R(t, \tau) dT
+						R(t, \tau ) = E_n + \int_\tau^t A(t) \cdot R(t, \tau) dt.
 					\]
-					Differenzieren liefert:
+					Differenzieren liefert
 					\[
-						\frac{\partial R}{\partial t}R(t,\tau) = A(t) \cdot R(t, \tau)
+						\frac{\partial R}{\partial t}R(t,\tau) = A(t) \cdot R(t, \tau).
 					\]
 				\item
 					Differenzieren von \ref{Resolvente Eigenschaften:3} nach $t_2$ gibt uns
@@ -358,7 +356,7 @@
 	\section{Gram'sche Kontrollmatrix}\label{Gram'sche Kontrollmatrix}
 		\begin{Definition}[Gram'sche Kontrollmatrix]\index{Gram'sche Kontrollmatrix}
 			Für ein Kontrollsystem \[
-				\dot x(t) = A(t) \cdot x(t) + B(t) \cdot u(t)
+				\dot x(t) = A(t) x(t) + B(t) u(t)
 			\]
 			heißt die Matrix \[
 				\G:=\int_{T_0}^{T_1} R(T_1, \tau) \cdot B(\tau) \cdot B(\tau)^T\cdot R(T_1, \tau)^T d\tau \in \R^{n \times n}
@@ -413,7 +411,7 @@
 					\]
 					
 					Nach \ref{Resolvente AWP:2} gilt: \begin{align*}
-						\bar x(T_1) = & R(T_1, T_0) \cdot x^0 + \int_{T_0}^{T_1} R(T_1, \tau ) \cdot B(\tau) \cdot \bar u(\tau) d\tau \\
+						\bar x(T_1) = & R(T_1, T_0) x^0 + \int_{T_0}^{T_1} R(T_1, \tau )  B(\tau) \bar u(\tau) d\tau \\
 						 = & R(T_1, T_0) x^0 + \\
 						 & \qquad \int_{T_0}^{T_1} R(T_1, \tau ) B(\tau) B(\tau)^T R(T_1,\tau)^T\G^{-1}(x^1-R(T_1, T_0)x^0) d\tau\\
 						 = & R(T_1, T_0) x^0 + \\
@@ -426,12 +424,12 @@
 					
 				\item["`$\Rightarrow$"': ]
 					Falls $\G$ singulär ist, gibt es ein $y \in \R^n\setminus \plainset{0}$ mit \[
-						\G y = 0
+						\G y = 0.
 					\]
 					Also gilt auch
 					\begin{align*}
 						0 = y^T \G y = &\int_{T_0}^{T_1} y^T R(T_1,y)B(\tau)B(\tau)^T R(T_1, \tau)^T y d\tau \\
-						= & \int_{T_0}^{T_1} | B(\tau)^T R(T_1, \tau)^T y |^2 d\tau
+						= & \int_{T_0}^{T_1} | B(\tau)^T R(T_1, \tau)^T y |^2 d\tau.
 					\end{align*}
 					Daraus folgt 
 					\begin{align*}
@@ -439,11 +437,12 @@
 					\end{align*}
 					da $\tau \mapsto B(\tau)^T R(T_1, \tau)^T y$ stetig ist.
 					Sei nun $u: [T_0, T_1] \rightarrow R^m$ eine beliebige stetige Funktion. Dazu sei $x$ die Lösung des Anfangswertproblems \[
-						\dot x(t) = A(t) x(t) + B(t) u(t) \quad \text{mit} \quad x(T_1) = 0 = x^1
+						\dot x(t) = A(t) x(t) + B(t) u(t) \quad \text{mit} \quad x(T_1) = 0 = x^1.
 					\]
 					Dann gilt wieder mit \ref{Resolvente AWP:2} \begin{align*}
 						x(t) = & R(t, T_0) \cdot x^0+ \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau \\
-								 = & \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau \tag{$\star\star$}\label{eqn:Gramsche Kontrollmatrix:star2}
+								 = & \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau.
+								 \tag{$\star\star$}\label{eqn:Gramsche Kontrollmatrix:star2}
 					\end{align*}
 					
 					Aus \eqref{eqn:Gramsche Kontrollmatrix:star} und \eqref{eqn:Gramsche Kontrollmatrix:star2} folgt
@@ -483,7 +482,7 @@
 		
 		\begin{Beweis}
 			Definiere \[
-				v := u - \bar u
+				v := u - \bar u.
 			\]
 			Betrachte zunächst $|u(t)|^2$
 			\begin{align*}
