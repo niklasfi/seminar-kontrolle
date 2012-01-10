@@ -247,7 +247,7 @@
 		\begin{Beweis}
 			Die Stetigkeit von $R$ in der 1. Komponente ($t$) folgt aus der Stetigkeit
 			jeder Lösungsfunktion $\Phi$ des von $\tau$ abhängigen Anfangswertproblems.
-			
+		
 			Die Stetigkeit in der 2. Komponente ($\tau$) folgt aus dem Satz über die
 			Stetige Abhängigkeit aus \cite{KriegWalcher2010}.
 			
@@ -350,6 +350,7 @@
 					 Differenzieren von \ref{Resolvente AWP:1} nach $t_1$ ergibt 								\begin{align*}
 						\frac d{dt_1} x(t_1) & = \frac d{dt_1} \left(R(t_1, t_0)x(t_0) + \int_{t_0}^{t_1} R(t,\tau) b(\tau) d\tau \right)\\
 						& = \frac d{dt_1}  R(t_1,t_0)x(t_0) + \frac d{dt_1} \int_{t_0}^{t_1} R(t_1,\tau) b(\tau) d\tau \\
+						%LEIBNITZ REGEL FÜR PARAMETERINTEGRALE
 						& = A(t_1)R(t_1,t_0)x(t_0) \\
 						& \qquad + \int_{t_0}^{t_1} \frac d{dt_1} R(t_1,\tau)b(\tau)d\tau +  R(t_1,t_1)b(\tau) \cdot 1 - R(t_1,t_0)b(t_0) \cdot 0 \\
 						& = A(t_1)R(t_1,t_0)x(t_0) + \int_{t_0}^{t_1} A(t_1) R(t_1,\tau)b(\tau)d\tau +  R(t_1,t_1)b(\tau) \\
