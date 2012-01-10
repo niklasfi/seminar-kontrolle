@@ -17,6 +17,7 @@
 \usepackage[ngerman]{babel}
 \usepackage{makeidx}
 \usepackage{biblatex}
+\usepackage{fullpage}
 \bibliography{seminar}
 \setlength{\headheight}{12.5pt}
 
@@ -26,7 +27,11 @@
 	\renewcommand{\footrulewidth}{0.25pt}
 	\fancyhead[LE,RO]{\thepage}
 	\fancyhead[RE,LO]{\leftmark}
+
 }
+
+	\addtolength{\headsep}{12pt}
+
 %TODO spacing sollte genauso wie von section sein.
 \makeatletter
 \newtheoremstyle{newBreak}%
