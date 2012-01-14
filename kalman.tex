@@ -150,25 +150,26 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
  \end{enumerate}
 \end{Beweis}
 
-Jetzt soll das Ergebnis auf den zeitabhängigen Fall übertragen werden. Dafür wird zunächst induktiv die Folge $\{ B_i\}_{i \in \N} \subset \mathcal{C}^\infty ([T_0,T_1])$ wie folgt definiert.
+Jetzt soll das Ergebnis auf den zeitabhängigen Fall übertragen werden. Dafür wird zunächst induktiv die Folge $\{ B_i\}_{i \in \N} \subset \R^{n \times m} ([T_0,T_1])$ wie folgt definiert.
 \[
-	B_0(t)=B(t); \qquad B_i(t)=B_{i-1}(t) - A(t) \cdot B{i-1}(t) \; \forall t \in [T_0,T_1]
+	B_0(t)=B(t); \qquad B_i(t)=\dot B_{i-1}(t) - A(t) \cdot B_{i-1}(t) \; \forall t \in [T_0,T_1]
 \]
 Damit erhält man folgenden Satz
 
-\begin{Satz}\label{Kalman Rang Bedingung zeitabhänig}
-Sei ein $\overline t \in [T_0,T_1]$ und $\{i_1,\dots i_n\}\subset \N$ mit
+\begin{Satz}\label{Kalman Rang Bedingung zeitabhängig}
+Sei ein $\overline t \in [T_0,T_1]$ und $\{i_1,\dots i_k\}\subset \N$ für ein $k\in \N$ mit
 \[
-	\rang(B_{i_1} \mid B_{i_2} \mid \dots \mid B_{i_{n}})=n 
+	\rang(B_{i_1} \mid B_{i_2} \mid \dots \mid B_{i_{k}})=n 
 \]
 Dann ist das System $\dot x = A(t) x +B(t) u$ kontrollierbar in $[T_0,T_1]$
 \end{Satz}
 
 \begin{Bemerkung}
-Im Gegensatz zum zeitunabhängigen Fall ist jetzt nur noch eine Folgerung gegeben. Und statt der vorher zu prüfenden Matrizen $A^0B, \dots A^{n-1}B$ gibt es jetzt mehr Freiheiten für die Wahl der Matrizen BLBLABA
+Im Gegensatz zum zeitunabhängigen Fall ist jetzt nur noch eine Folgerung gegeben. Und statt vorher nur "die ersten" $n$ Matrizen $A^0B, \dots A^{n-1}B$ zu prüfen, muss man jetzt mehr Freiheiten für die Wahl der Matrizen BLBLABA. Die Forderung ist jedoch notwendig. Sei z.B.  $T_0=0, T_1=1, \;n=m=1 $ und $ A(t)=0, B(t)=t.$ Dann ist $B_0(t)=t, \;  B_1(t)=\dot B_0(t)-A(t)\cdot B_0(t)= B_0(t)=1$ und $B_i(t)=0 \; \forall i >1$. 
+	Würde man jetzt für $\overline t=0$ nur den Rang der aus den $n-1$ zusammengesetzten $B_i(\overline t)$ betrachten, ist dieser $\rang(B_0(\overline t)=0$, allerdings ist $\rang(B_1(\overline t)) =1$.
 \end{Bemerkung}
 
-\begin{Beweis}[zu \ref{Kalman Rang Bedingung zeitabhänig}]
+\begin{Beweis}[zu \ref{Kalman Rang Bedingung zeitabhängig}]
 Annahme: $\dot x = A(t) x + B(t)u$ ist nicht kontrollierbar. Dann ist auch $\G$ nicht invertierbar und hat damit keinen trivialen Kern. Es exisiert also $y \in \R^n, y \neq 0$ mit $\G y =0$.
 Also
 \[
@@ -190,11 +191,93 @@ Ableiten von $K(\tau)$ mithilfe von (\ref{Resolvente Ableitung:2}), und der Prod
 	=& z^T R(\overline t, \tau) B_1(\tau)	
 \end{align*}
 
-Wenn man nun $(i)$-mal differenziert
+Aus
 \begin{align*}
-	\frac d {d\tau^i} K (\tau) =& z^T (A(\tau) R(\overline t, \tau) B_i(\tau)+R(\overline t, \tau) \dot B_i(\tau)\\
+	\frac d {d\tau} z^T R(\overline t, \tau) B_i(\tau) =& z^T (A(\tau) R(\overline t, \tau) B_i(\tau)+R(\overline t, \tau) \dot B_i(\tau))\\
 	=& z^T R(\overline t, \tau) (\dot B_i(\tau)-(A(\tau)B_i(\tau)\\
 	=& z^T R(\overline t, \tau) B_{i+1}(\tau)
 \end{align*}
+ergibt sich dann für $(i)$-maliges Differenzieren von $K(\tau)$
+\[ 
+	K^{(i)}(\tau)= z^T R(\overline t, \tau) B_i(\tau).
+\]
+Da $K \equiv 0$ ist, muss dann auch $K^{(i)} \equiv 0 \; \forall i \in \N$ sein. Also ist insbesondere
+\[
+	K^{(i)}(\overline t) = z^T R(\overline t, \overline t) B_i(\overline t)=z^T B_i(\overline t)=0 \; \forall i \in \N
+\]
+Das wiederum heißt
+\[
+	(B_{i_1} \mid B_{i_2} \mid \dots \mid B_{i_k})^T \cdot z = 
+	\begin{pmatrix}
+		(B_{i_1})^T \\
+		(B_{i_2})^T \\
+		\hdots \\
+		(B_{i_k})^T
+	\end{pmatrix}
+	=0 \in \R^{n\times k\cdot m}
+\]
 
+Also hat $(B_{i_1} \mid B_{i_2} \mid \dots \mid B_{i_k})^T$ keinen trivialen Kern und damit keinen vollen Rang. Durch die Beziehung Zeilenrang = Spaltenrang gilt dasselbe für $(B_{i_1} \mid B_{i_2} \mid \dots \mid B_{i_k})$, das ist dann die Verneinung der Bedingung aus Satz(\ref{Kalman Rang Bedingung zeitabhängig}).
 \end{Beweis}
+
+Es fällt auf, dass in (\ref{Kalman Rang Bedingung zeitabhängig}) nur noch eine Folgerung gegeben ist. Tatsächlich ist es so, dass die Kalman Rang Bedingung nur hinreichend und nicht notwendig ist.
+\begin{Beispiel}
+	Sei $n=2, m=1, A(t)=0$\\
+	Seien $f,g \in \mathcal(C)^\infty([0,1])$ mit 
+	\[
+		 g \equiv 0 \text{ auf } [0,\frac12] \qquad f \equiv 0 \text{ auf } [\frac12,1]
+	\]
+	Weiterhin seien $f(0) \neq 0$ und $g(1) \neq 0$.
+	
+	Betrachte das System $\dot x = 
+		\begin{pmatrix}
+			f(t) \\
+			g(t)
+		\end{pmatrix} u $ auf $[0,1]$.
+	
+	Da $A=0$ ist die Resolvente $R(T,\tau)=\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}=Id_2.$
+	\begin{align*}
+		\G=& \int\limits_0^1 R(T_1,\tau) B(\tau) B(\tau)^T R(T_1,\tau)^T d\tau \\
+			=& \int\limits_0^1 \begin{pmatrix} f(\tau) \\ g(\tau) \end{pmatrix} \cdot \begin{pmatrix} f(\tau) & g(\tau) \end{pmatrix} d\tau \\
+			=& \int\limits_0^1 
+			\begin{pmatrix}
+				f^2(\tau) & (f\cdot g)(\tau) \\
+				(f\cdot g)(\tau) & g^2(\tau)
+			\end{pmatrix} d\tau
+	\end{align*}
+Durch die Konstruktion von $f$ und $g$ ergibt sich	
+	\[
+	\G	= \begin{pmatrix}
+				\int\limits_0^1 f^2(\tau)d\tau & 0 \\
+				0 & \int\limits_0^1 f^2(\tau)d\tau
+			\end{pmatrix}.
+	\]
+	Da $f$ und $g$ stetig sind und $f(0) \neq 0$ und $g(1) \neq 0$, sind die Integrale über $f^2$ und $g^2$ größer 0 und damit $\G$ invertierbar.
+	Dann ist 
+	\[
+		B_0(t)=\begin{pmatrix} f(t) \\ g(t) \end{pmatrix}, \; B_1(t)=\dot B_0(t) - 0= \begin{pmatrix} f'(t) \\ g'(t) \end{pmatrix}
+	\]
+	und die für die $B_i$ gilt 
+	\[
+		B_i(t)=\begin{pmatrix} f^{(i)}(t) \\ g^{(i)}(t) \end{pmatrix}.
+	\]
+	Sei $k \in N$ und $\{i_1,\dots, i_k\}\subset \N$ endlich.\\
+	
+	Mithilfe der Eigenschaft $g^{(i)}=0$ auf $[0,\frac12]$ gilt dann für alle
+	\[
+		(B_{i_1}(t) \mid B_{i_2}(t) \mid \dots \mid B_{i_k}(t))
+		\subset\{\begin{pmatrix}
+						a_1 &  \dots & a_k \\
+						0 &  \dots & 0
+						\end{pmatrix} : a_1,\dots, a_k \in \R \} \qquad \forall t \in [0,\frac12]
+	\]
+	Genauso ist wegen $f^{(i)}(t)=0$ auf $[\frac12,1]$ dann
+	\[
+		(B_{i_1}(t) \mid B_{i_2}(t) \mid \dots \mid B_{i_k}(t))
+		\subset\{\begin{pmatrix}
+						0 &  \dots & 0 \\
+						a_1 &  \dots & a_k
+						\end{pmatrix} : a_1,\dots, a_k \in \R \} \qquad \forall t \in [\frac12,1]
+	\]
+	Das heißt für alle $\overline t \in [0,1]$ ist $\rang(B_{i_1}(t) \mid B_{i_2}(t) \mid \dots \mid B_{i_k}(t)) \leq 1 < 2=n$. Also ist Kalman Rang Bedingung nicht erfüllt, das System ist aber kontrollierbar.	 
+\end{Beispiel}
