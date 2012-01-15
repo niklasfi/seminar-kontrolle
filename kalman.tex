@@ -165,7 +165,9 @@ Dann ist das System $\dot x = A(t) x +B(t) u$ kontrollierbar in $[T_0,T_1]$
 \end{Satz}
 
 \begin{Bemerkung}
-Im Gegensatz zum zeitunabhängigen Fall ist jetzt nur noch eine Folgerung gegeben. Und statt vorher nur "die ersten" $n$ Matrizen $A^0B, \dots A^{n-1}B$ zu prüfen, muss man jetzt mehr Freiheiten für die Wahl der Matrizen BLBLABA. Die Forderung ist jedoch notwendig. Sei z.B.  $T_0=0, T_1=1, \;n=m=1 $ und $ A(t)=0, B(t)=t.$ Dann ist $B_0(t)=t, \;  B_1(t)=\dot B_0(t)-A(t)\cdot B_0(t)= B_0(t)=1$ und $B_i(t)=0 \; \forall i >1$. 
+Im Gegensatz zum zeitunabhängigen Fall ist jetzt nur noch eine Folgerung gegeben. Und statt vorher nur eine Kombination "der ersten" $n$ Matrizen $A^0B, \dots A^{n-1}B$ zu prüfen war, gibt es jetzt unendlich viele Kominationen der Matrizen $B_i(t)$ für jedes $t \in [T_0,T_1]$. 
+
+Die Forderung ist jedoch notwendig. Sei z.B.  $T_0=0, T_1=1, \;n=m=1 $ und $ A(t)=0, B(t)=t.$ Dann ist $B_0(t)=t, \;  B_1(t)=\dot B_0(t)-A(t)\cdot B_0(t)= B_0(t)=1$ und $B_i(t)=0 \; \forall i >1$. 
 	Würde man jetzt für $\overline t=0$ nur den Rang der aus den $n-1$ zusammengesetzten $B_i(\overline t)$ betrachten, ist dieser $\rang(B_0(\overline t)=0$, allerdings ist $\rang(B_1(\overline t)) =1$.
 \end{Bemerkung}
 
@@ -281,3 +283,39 @@ Durch die Konstruktion von $f$ und $g$ ergibt sich
 	\]
 	Das heißt für alle $\overline t \in [0,1]$ ist $\rang(B_{i_1}(t) \mid B_{i_2}(t) \mid \dots \mid B_{i_k}(t)) \leq 1 < 2=n$. Also ist Kalman Rang Bedingung nicht erfüllt, das System ist aber kontrollierbar.	 
 \end{Beispiel}
+
+\begin{Lemma}
+Die Bedingung in Satz (\ref{Kalman Rang Bedingung zeitabhängig}) ist äquivalent zu folgender:
+\[
+	\operatorname{span}\{B_i(\overline t)u: \; u \in \R^m, i \in \N\}=\R^n \; \text{ für ein } \overline t\in [T_0,T_1]
+\]
+\end{Lemma}
+\begin{Beweis}
+Sei $\operatorname{span}\{B_i(\overline t)u: \; u \in \R^m, i \in \N\}=\R^n \; $ für ein $\overline t\in [T_0,T_1]$ und sei $e_1,\dots,e_n$ die Standardbasis des $\R^n$.
+
+Dann gibt es für jedes $i \in \{1,\dots,n\}$ ein $l_i \in \N$ und $\alpha_{ij}\in \R, i_j \in \N, u_{ij} \in \R^m$ für $1 \leq j \leq l_i$ mit
+\[
+	e_i=\sum\limits_{j=1}^{l_i} \alpha_{ij} B_{i_j} u_{ij}
+\]
+und jedes $ w \in \R^n$ gibt es dann $w_i \in \R$, so dass
+\[
+w = \sum\limits_{i=1}^n w_i e_i = \sum\limits_{i=1}^n w_i \sum\limits_{j=1}^{l_i}\alpha_{ij} B_{i_j} u_{ij}.
+\]
+Da beide Summen endlich sind, können sie zusammengefasst werden.
+\begin{align*}
+	w=& \sum\limits_{i,j} w_i \alpha_{ij}B_{i_j} u_{ij}	\\
+	 =& \sum\limits_{i,j} B_{i_j} w_i \alpha_{ij} u_{ij}	\\
+	 =&(B_{1 1} \mid B_{1 2} \mid \dots \mid B_{1 l_1} \mid B_{2 1} \mid \dots \mid B_{n l_n}) \cdot
+	 \begin{pmatrix}
+	 	w_1 \alpha_{11} u_{11} \\
+	 	w_1 \alpha _{12} u_{12} \\
+	 	\hdots \\
+	 	w_1 \alpha _{1 l_1} u_{1 l_1} \\
+	 	w_2 \alpha _{21} u_{21} \\
+	 	\hdots \\
+	 	w_n \alpha _{n l_n} u_{n l_n} \\
+	 \end{pmatrix}
+\end{align*}
+
+Das heißt $w$ ist im Bild von $M:=(B_{1 1} \mid B_{1 2} \mid \dots \mid B_{1 l_1} \mid B_{2 1} \mid \dots \mid B_{n l_n})$. Da $w \in \R^n $ beliebig war, muss also das Bild von $M$ den ganzen $\R^n$ aufspannen. Aus der linearen Algebra ist bekannt, dass dafür $\rang(M) \geq n$ gelten muss, da $M \in \R^{n \times \sum\limits_{i=1}^n l_i}$ ist gilt auch die Gleichheit. Die Bedingung aus Satz (\ref{Kalman Rang Bedingung zeitabhängig}) ist also durch dieses $M$ gegeben. Da alle Schritte des Beweises auch umkehrbar sind, folgt die Äquivalenz.
+\end{Beweis}
