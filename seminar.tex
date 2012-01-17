@@ -288,7 +288,31 @@
 			Nun gilt: \[
 				R(t_1, t_1) = \tilde R (t_1)(t_1) = \Phi(t_1) = E_n.
 			\]
-			\item \todo{BEWEIS???}
+			\item 
+				Erinnern wir uns zunächst an die Vektorraumeigenschaft von homogenen Differentialgleichungen wie in \cite{KriegWalcher2010}[S. 43] beschrieben. Für uns interessant ist, dass die Abbildung die einem Anfangswert eine Lösungsfunktion zuordnet ein Isomorphismus ist. Wenn also die Funktion $\Phi$ das Anfangswertproblem \[
+					\dot M = A M \quad \text{mit} \quad M(t_0) = C
+				\] löst,
+				so löst $\Phi \cdot D$ das Anfangswertproblem \[
+					\dot M = A M \quad \text{mit} \quad M(t_0) = C \cdot D.
+				\]
+
+				Mit dieser Eigenschaft kann die Aussage gezeigt werden. Betrachte $\tilde R(t_2)$ und $\tilde R(t_3)$. Diese beiden Funktionen sind die Lösungen der Anfangswertprobleme 
+				\[
+					\dot M_3 = M_3 A \quad \text{mit} \quad M_3(t_3) = Id
+				\]
+				beziehungsweise
+				\[
+					\dot M_2 = M_2 A \quad \text{mit} \quad M_2(t_2) = Id.
+				\]
+				Also löst $\tilde R(t_2) \cdot R(t_2,t_3)$ das Anfangswertproblem
+				\[
+					\dot M_2 = M_2 A \quad \text{mit} \quad M_2(t_2) = R(t_2,t_3).
+				\]
+				Wertet man nun $\tilde R(t_2) \cdot R(t_2,t_3)$ in $t_2$ aus, so erhält man
+				\[
+					R(t_2,t_2) \cdot R(t_2,t_3) = R(t_2,t_3) = \tilde R(t_3)(t_2).
+				\]
+				Da die Funktion $(t,x) \mapsto A(t) x$ in $x$ lokal einer Lipschitzbedingung genügt, sind die Lösungen von Anfangswertproblemen eindeutig bestimmt. Aus der obigen Gleichung folgt also, dass die Bahnen von $\tilde R(t_3)$ und $\tilde R(t_2) \cdot R(t_2,t_3)$ übereinstimmen, was dazu führt, dass die Lösungsfunktionen in $t_3$ ausgewertet auch übereinstimmen.
 			\item 
 				\[
 					R(t_1, t_2) \cdot R(t_2, t_1) \overset{2.}= R(t_1, t_1) \overset{1.}= E_n
@@ -390,14 +414,20 @@
 			Matrix wieder symmetrisch. Wähle nun $M := R(T_1,\tau)\cdot B(\tau)$, dann ist
 			$\G$ symmetrisch.
 
-			\item Für $x \in \R^n$ gilt:
+			\item Für $x \in \R^n$ gilt: \todo{Kaputt! Skalarprodukt von Matrix?}
 			\begin{align*}
 				\G = & \int_{T_0}^{T_1} R(T_1, \tau) B(\tau) B(\tau)^T R(T_1, \tau)^T d\tau \\
 					=& \int_{T_0}^{T_1} \langle B(\tau)^T R(T_1, \tau)^T, B(\tau)^T R(T_1, \tau)^T \rangle d\tau \\
-					=& \int_{T_0}^{T_1} | B(\tau)^T R(T_1, \tau)^T|^2 d\tau
+					=& \int_{T_0}^{T_1} | B(\tau)^T R(T_1, \tau)^T|^2 d\tau.
 			\end{align*}
 			Also ist jeder Eintrag von $\G$ nichtnegativ.
-			\item Da jeder Eintrag von $\G$ nichtnegativ ist, sind auch alle Hauptminoren nichtnegativ. Also ist $\G$ positiv semidefinit.
+			\item Analog zu \ref{Gram'sche Kontrollmatrix:Eigenschaften:nichtnegativ} gilt für $x \in \R^n$:
+				\begin{align*}
+				x^T \G x = & x^T \int_{T_0}^{T_1} R(T_1, \tau) B(\tau) B(\tau)^T R(T_1, \tau)^T d\tau \; x\\
+					=& \int_{T_0}^{T_1} \langle B(\tau)^T R(T_1, \tau)^T x, B(\tau)^T R(T_1, \tau)^T x\rangle d\tau \\
+					=& \int_{T_0}^{T_1} | B(\tau)^T R(T_1, \tau)^T x|^2 d\tau \geq 0.
+			\end{align*}
+			Damit ist $\G$ positiv semidefinit.
 		\end{enumerateBew}
 		\end{Beweis}
 		
