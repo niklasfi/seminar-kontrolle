@@ -63,6 +63,8 @@
 \newcommand{\R}[0]{\mathbb{R}}
 \newcommand{\C}[0]{\mathbb{C}}
 \newcommand{\G}[0]{\mathfrak{C}}
+\newcommand{\E}[1][n]{\mathrm{E_{#1}}}
+\newcommand{\Id}[1][n]{\mathrm{Id_{#1}}}
 
 \newcommand{\plainset}[1]{\left\{#1\right\}}
 \newcommand{\ouptoset}[1]{\plainset{1, ..., #1}} %one up to set
@@ -79,7 +81,6 @@
 
 \newenvironment{enumerateRef}{\begin{enumerate}[ref={\thethmc\alph*},label={(\alph*) }, leftmargin=*]}{\end{enumerate}}
 \newenvironment{enumerateBew}{\mbox{}\begin{enumerate}[label={zu (\alph*):}, leftmargin=*]}{\end{enumerate}}
-
 \makeindex
 
 \begin{document}
@@ -175,9 +176,9 @@
 	\subsection*{Definition}
 		Sei $\Phi$ die Funktion, die das homogene Anfangswertproblem
 		\[
-			\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau) = E_n
+			\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau) = \E
 		\]
-		löst. Offensichtlich ist $\Phi$ von der Wahl von $\tau$ abhängig. Definiere
+		löst. Hierbei steht $\E \in \R^{n \times n}$ für die Einheitsmatrix. Offensichtlich ist $\Phi$ von der Wahl von $\tau$ abhängig. Definiere
 		also $\tilde R$ als die Funktion, die $\tau$ auf die Funktion $\Phi$ 
 		abbildet:
 		\[
@@ -253,11 +254,11 @@
 			
 			Betrachte die Anfangswertprobleme
 			\[
-				\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau_1) = E_n
+				\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau_1) = \E
 			\]
 			und
 			\[
-				\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau_2) = E_n
+				\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau_2) = \E
 			\]
 			mit Lösungen $\Phi_1$ bzw. $\Phi_2$.
 			Dann existiert zu jedem $\varepsilon > 0 $ ein $\delta := | \tau_1 - \tau_2 |$
@@ -271,9 +272,9 @@
 		\begin{Lemma}\label{Resolvente Eigenschaften}
 			Die Resolvente erfüllt die folgenden Eigenschaften
 			\begin{enumerateRef}
-				\item\label{Resolvente Eigenschaften:1} $	R(t_1,t_1) = E_n$
+				\item\label{Resolvente Eigenschaften:1} $	R(t_1,t_1) = \E$
 				\item\label{Resolvente Eigenschaften:2} $ R(t_1, t_2) \cdot R(t_2, t_3) = R(t_1, t_3)$
-				\item\label{Resolvente Eigenschaften:3} $ R(t_1, t_2) \cdot R(t_2, t_1) = E_n$
+				\item\label{Resolvente Eigenschaften:3} $ R(t_1, t_2) \cdot R(t_2, t_1) = \E$
 			\end{enumerateRef}
 			für alle $t_1, t_2, t_3 \in [T_0, T_1]$.
 		\end{Lemma}
@@ -282,10 +283,10 @@
 		\begin{enumerateBew}
 			\item Betrachten wir das zu $R(t_1, t_1) $ gehörige 
 			Anfangswertproblem \[
-				\dot M(t) = A(t) \cdot M(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad M(t_1) = E_n
+				\dot M(t) = A(t) \cdot M(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad M(t_1) = \E
 			\] mit Lösung $\Phi$.
 			Nun gilt: \[
-				R(t_1, t_1) = \tilde R (t_1)(t_1) = \Phi(t_1) = E_n.
+				R(t_1, t_1) = \tilde R (t_1)(t_1) = \Phi(t_1) = \E.
 			\]
 			\item 
 				Erinnern wir uns an die Vektorraumeigenschaft von homogenen Differentialgleichungen wie in \cite{KriegWalcher2010}[S. 43] beschrieben. Für uns interessant ist, dass die Abbildung die einem Anfangswert eine Lösungsfunktion zuordnet ein Isomorphismus ist. Wenn also die Funktion $\Phi$ das Anfangswertproblem \[
@@ -297,11 +298,11 @@
 
 				Mit dieser Eigenschaft kann die Aussage gezeigt werden. Betrachte $\tilde R(t_2)$ und $\tilde R(t_3)$. Diese beiden Funktionen sind die Lösungen der Anfangswertprobleme 
 				\[
-					\dot M_3 = M_3 A \quad \text{mit} \quad M_3(t_3) = Id
+					\dot M_3 = M_3 A \quad \text{mit} \quad M_3(t_3) = \E
 				\]
 				beziehungsweise
 				\[
-					\dot M_2 = M_2 A \quad \text{mit} \quad M_2(t_2) = Id.
+					\dot M_2 = M_2 A \quad \text{mit} \quad M_2(t_2) = \E.
 				\]
 				Also löst $\tilde R(t_2) \cdot R(t_2,t_3)$ das Anfangswertproblem
 				\[
@@ -311,10 +312,10 @@
 				\[
 					R(t_2,t_2) \cdot R(t_2,t_3) = R(t_2,t_3) = \tilde R(t_3)(t_2).
 				\]
-				Da die Funktion $(t,x) \mapsto A(t) x$ in $x$ lokal einer Lipschitzbedingung genügt, sind die Lösungen von Anfangswertproblemen eindeutig bestimmt. Aus der obigen Gleichung folgt also, dass die Bahnen von $\tilde R(t_3)$ und $\tilde R(t_2) \cdot R(t_2,t_3)$ übereinstimmen, was dazu führt, dass die Lösungsfunktionen in $t_3$ ausgewertet auch übereinstimmen.
+				Da die Funktion $(t,x) \mapsto A(t) x$ in $x$ lokal einer Lipschitzbedingung genügt, sind die Lösungen von Anfangswertproblemen eindeutig bestimmt. Aus der obigen Gleichung folgt also, dass die Bahnen von $\tilde R(t_3)$ und $\tilde R(t_2) \cdot R(t_2,t_3)$ übereinstimmen, was dazu führt, dass die Lösungsfunktionen in $t_1$ ausgewertet auch übereinstimmen.
 			\item 
 				\[
-					R(t_1, t_2) \cdot R(t_2, t_1) \overset{2.}= R(t_1, t_1) \overset{1.}= E_n
+					R(t_1, t_2) \cdot R(t_2, t_1) \overset{\ref{Resolvente Eigenschaften:2}}= R(t_1, t_1) \overset{\ref{Resolvente Eigenschaften:1}}= E_n
 				\]
 		\end{enumerateBew}
 		\end{Beweis}
@@ -400,7 +401,6 @@
 		\begin{Lemma}\label{Gram'sche Kontrollmatrix:definitheit}
 			\begin{enumerateRef}
 				\item $\G$ ist symmetrisch\label{Gram'sche Kontrollmatrix:Eigenschaften:symmetrie}
-				\item $\G$ ist nichtnegativ\label{Gram'sche Kontrollmatrix:Eigenschaften:nichtnegativ}
 				\item $\G$ ist positiv semidefinit\label{Gram'sche Kontrollmatrix:Eigenschaften:definitheit}
 			\end{enumerateRef}
 		\end{Lemma}
@@ -412,15 +412,7 @@
 			definiert ist, und $m_{i,j} = m_{j,i}$ ist das Integral über eine symmetrische
 			Matrix wieder symmetrisch. Wähle nun $M := R(T_1,\tau)\cdot B(\tau)$, dann ist
 			$\G$ symmetrisch.
-
-			\item Für $x \in \R^n$ gilt: \todo{Kaputt! Skalarprodukt von Matrix?}
-			\begin{align*}
-				\G = & \int_{T_0}^{T_1} R(T_1, \tau) B(\tau) B(\tau)^T R(T_1, \tau)^T d\tau \\
-					=& \int_{T_0}^{T_1} \langle B(\tau)^T R(T_1, \tau)^T, B(\tau)^T R(T_1, \tau)^T \rangle d\tau \\
-					=& \int_{T_0}^{T_1} | B(\tau)^T R(T_1, \tau)^T|^2 d\tau.
-			\end{align*}
-			Also ist jeder Eintrag von $\G$ nichtnegativ.
-			\item Analog zu \ref{Gram'sche Kontrollmatrix:Eigenschaften:nichtnegativ} gilt für $x \in \R^n$:
+			\item Es gilt für $x \in \R^n$:
 				\begin{align*}
 				x^T \G x = & x^T \int_{T_0}^{T_1} R(T_1, \tau) B(\tau) B(\tau)^T R(T_1, \tau)^T d\tau \; x\\
 					=& \int_{T_0}^{T_1} \langle B(\tau)^T R(T_1, \tau)^T x, B(\tau)^T R(T_1, \tau)^T x\rangle d\tau \\
@@ -500,7 +492,6 @@
 					Also kann das Kontrollproblem nicht kontrollierbar sein, wenn $\G$ singulär ist.
 			\end{enumerate}
 		\end{Beweis}
-		
 		Mit $\bar u$ ist jetzt also eine allgemeine Steuerung gefunden. Aber $\bar u$ 
 		erfüllt auch noch eine Minimalitätsbedingung:
 		
@@ -533,7 +524,7 @@
 			\end{align*}
 			Also gilt auch
 			\[
-				\int_{T_0}^{T_1}|u(\tau)d\tau|^2 = \int_{T_0}^{T_1}|\bar u(\tau) |^2 + 2 \int_{T_0}^{T_1}\bar u(\tau)^T v(\tau) d\tau+ \int_{T_0}^{T_1}|v(\tau)|^2 d\tau
+				\int_{T_0}^{T_1}|u(\tau)d\tau|^2 = \int_{T_0}^{T_1}|\bar u(\tau) |^2 + 2 \int_{T_0}^{T_1}\bar u(\tau)^T v(\tau) d\tau+ \int_{T_0}^{T_1}|v(\tau)|^2 d\tau.
 			\]
 		Für $\int_{T_0}^{T_1}\bar u(\tau)^T v(\tau) d\tau$ aber gilt
 		\begin{align*}
@@ -547,15 +538,15 @@
 			 & \int_{T_0}^{T_1} R(T_1,\tau)B(\tau)v(\tau)d\tau \\
 			=& \int_{T_0}^{T_1} R(T_1,\tau)B(\tau)u(\tau)d\tau - \int_{T_0}^{T_1} R(T_1,\tau)B(\tau)\bar u(\tau)d\tau \\
 			\overset{\eqref{eqn:Gramsche Minimalitaet:star}}=& (x(T_1) - R(T_1,T_0)x(T_0)) - (\bar x(T_1)-R(T_1,T_0) \bar x(T_0)) \\
-			\overset{{x, \bar x \text{ Lsg.}}}=& (x^1-R(T_1,T_0)x^0) - (x^1-R(T_1,T_0)x^0) \\
+			\overset{x, \bar x \text{ Lsg.}}=& (x^1-R(T_1,T_0)x^0) - (x^1-R(T_1,T_0)x^0) \\
 			=& 0
 			\tag{$\star\star$}\label{eqn:Gramsche Minimalitaet:star2} 
 		\end{align*}
 		wobei \eqref{eqn:Gramsche Minimalitaet:star} aus mit Umstellen aus \ref{Resolvente AWP:2} folgt:
 		\begin{align*}
-			& x(T_1) =R(T_1,T_0) x^0 + \int^{T_1}_{T_0}R(T^1,\tau)b(\tau)d\tau \\
-			\Leftrightarrow & x(T_1) - R(T_1,T_0) x^0 = \int^{T_1}_{T_0}R(T^1,\tau)b(\tau)d\tau
-			\tag{$\star$}\label{eqn:Gramsche Minimalitaet:star} 
+			  & x(T_1) =R(T_1,T_0) x^0 + \int^{T_1}_{T_0}R(T^1,\tau)b(\tau)d\tau \\
+			\Leftrightarrow {}&  x(T_1) - R(T_1,T_0) x^0 = \int^{T_1}_{T_0}R(T^1,\tau)b(\tau)d\tau
+			\tag{$\star$}\label{eqn:Gramsche Minimalitaet:star} .
 		\end{align*}
 		Mit \eqref{eqn:Gramsche Minimalitaet:star2} gilt also
 		\[
@@ -563,7 +554,7 @@
 		\]
 		und damit
 		\[
-			\int_{T_0}^{T_1}|u(\tau)d\tau|^2 = \int_{T_0}^{T_1}|\bar u(\tau) |^2 +  \underbrace{\int_{T_0}^{T_1}|v(\tau)|^2 d\tau}_{\geq 0}
+			\int_{T_0}^{T_1}|u(\tau)d\tau|^2 = \int_{T_0}^{T_1}|\bar u(\tau) |^2 +  \underbrace{\int_{T_0}^{T_1}|v(\tau)|^2 d\tau.}_{\geq 0}
 		\]
 		\end{Beweis}
 		$\bar u$ ist also diejenige Steuerung, sodass $\int_{T_0}^{T_1} |u(\tau)|^2d\tau$ minimal ist.
