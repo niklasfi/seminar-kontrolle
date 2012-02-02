@@ -9,7 +9,7 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
 \begin{Satz}[Kalman Rang Bedingung]\label{Kalman Rang Bedingung}
   Das lineare, zeitunabhängige System $\dot{x}(t)=Ax(t)+Bu(t)$ ist in $[T_0,T_1]$ kontrollierbar genau dann wenn
 \[
-  \rang(A^0 \mid A^1B \mid A^2B \mid \dots  \mid A^{n-1}B)=n
+  \rang(A^0B \mid A^1B \mid A^2B \mid \dots  \mid A^{n-1}B)=n
 \]
 \end{Satz}
 
@@ -20,25 +20,25 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
 \begin{Beweis}[zu \ref{Kalman Rang Bedingung}]
  \begin{enumerate}
   \item["`$\Leftarrow$"']
-    Da $A$ zeitunabhängig ist können wir die DGL leicht lösen und erhalten die Resolvente $R(t_1,t_2)=e^{(t_1-t_2)A} \; \forall  (t_1,t_2) \in [T_0,T_1]^2$ oder $R(t_1,t_2)=e^{(t_1-t_2)A} \; \forall \: (t_1,t_2) \in [T_0,T_1]^2$
+    Da $A$ zeitunabhängig ist können wir die Differentialgleichung leicht lösen und erhalten die Resolvente $R(t_1,t_2)=e^{(t_1-t_2)A} \; \forall  (t_1,t_2) \in [T_0,T_1]^2$
 
     Bestimmen der Gramschen Matrix
     \begin{align*}
       \G=&\int\limits_{T_0}^{T_1} R(T_1,\tau \cdot B(\tau) \cdot B(\tau)^T \cdot R(T_1,\tau)^T d\tau \\
-	=&\int\limits_{T_0}^{T_1} e^{(t_1-\tau)A} B B^T (e^{(t_1-\tau)A})^T d\tau \\
-	=&\int\limits_{T_0}^{T_1} e^{(t_1-\tau)A} B B^T e^{(t_1-\tau)A^T} d\tau
+	=&\int\limits_{T_0}^{T_1} e^{(T_1-\tau)A} B B^T (e^{(T_1-\tau)A})^T d\tau \\
+	=&\int\limits_{T_0}^{T_1} e^{(T_1-\tau)A} B B^T e^{(T_1-\tau)A^T} d\tau
     \end{align*}
 
 		Bewiesen wird die Kontraktion, also wird angenommen: $\dot x(t) = Ax(t)+Bu(t)$ ist nicht kontrollierbar in $[T_0,T_1]$. Dann ist $\G$ nicht invertierbar und hat somit einen nicht trivialen Kern. Es exisitert also $y \in \R^n \setminus \{0\}$ mit $\G y=0$
-    Also auch
+    Da Multiplizeren der 0 nichts ändert gilt auch
      \[
 	y^T \G y = 0 
      \]
      und somit
     \[ 
-      0 = c^T \G y = \int\limits_{T_0}^{T_1} \underbrace{|B^T e^{(T_1-\tau)A^T} y |^2}_{ \geq 0} d\tau.
+      0 = y^T \G y = \int\limits_{T_0}^{T_1} \underbrace{|B^T e^{(T_1-\tau)A^T} y |^2}_{ \geq 0} d\tau.
     \]
-      Aus der Stetigkeit folgt dann 
+      Aus der Stetigkeit von $A,B$ und damit der Stetigkeit von $|B^T e^{(T_1-\tau)A^T} y |^2$ folgt dann 
      \[  
       B^T e^{(T_1-\tau)A^T} y = 0
      \]
@@ -48,12 +48,12 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
     \]
     Es ist 
     \begin{align*}
-      K'(\tau)=y^T e^{(T_1-\tau)A} B \cdot (-A) \\
-      K'(T_1)=y^T B (-A).
+      K'(\tau)=y^T e^{(T_1-\tau)A} (-A) \cdot B, \; \tau \in [T_0,T_1]\\
+      K'(T_1)=y^T (-A) B .
     \end{align*}
     i-faches Differenzen von $K(\tau)$ nach $\tau$ ergibt
     \begin{align*}
-      K^{(i)}(\tau)=y^T e^{(T_1-\tau)A} \cdot B (-1)^i A^i \\
+      K^{(i)}(\tau)=y^T e^{(T_1-\tau)A} \cdot (-1)^i A^i B, \; \tau \in [T_0,T_1]\\
       K^{(i)}(T_1)=(-1)^i y^T A^i B
     \end{align*}
     Da $K \equiv 0$ auf $[T_0,T_1]$ gilt auch 
@@ -81,7 +81,7 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
     \]
     Also hat $(A^0 B | A^1 B | \dots | A^{n-1} B)^T$ keinen trivialen Kern, somit keinen vollen Rang. Da der  Zeilenrang gleich dem Spaltenrang ist, muss auch $(A^0 B | A^1 B | \dots | A^{n-1} B)$ nicht vollen Rang haben. Das ist aber ein Widerspruch zur Kalman Rang Bedingung.
    \item["`$\Rightarrow$"']
-    Die Rückrichtung wird wieder per Kontraktion gezeigt, die Beweisidee ist dieselbe wie in der Hinrichtung. 
+    Die Hinrichtung wird wieder per Kontraktion gezeigt, die Beweisidee ist dieselbe wie in der Rückrichtung. 
 
     Angenommen, die Kalman Rang Bedigung wäre nicht erfüllt. Dann existiert ein $y \in \R^n$ mit $y^T A^i B = 0 \; \forall i \in \{0,\dots,n-1\}$.
 
@@ -110,9 +110,9 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
 		\end{enumerate}
 		Es folgt die Behauptung per vollständiger Induktion.		
         
-		Damit lässt sich für alle $m \in \N, m>n-1$ folgern:
+		Damit lässt sich für alle $m \in \N$ folgern:
 		\[
-			y^T A^m B = y^T (-\sum\limits_{i=0}^{n-1}\alpha_i A^i) B = -\sum\limits_{i=0}^{n-1} \alpha_i \underbrace{(y^T A^i B)}_{=0}=0
+			y^T A^m B = y^T (\sum\limits_{i=0}^{n-1}\alpha_i A^i) B = \sum\limits_{i=0}^{n-1} \alpha_i \underbrace{(y^T A^i B)}_{=0}=0
 		\]
 		Sei wieder 
 		\[
@@ -128,19 +128,19 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
 		\]
 		Es ergibt sich aus $\int_{T_0}^{T_1} |K(\tau)|^2 d\tau = 0$, dass
 		\[ 
-			\int\limits_{T_0}^{T_1} |B^T e^{(T_1-\tau)A^T} y | ^2 d\tau=0
+			0=\int\limits_{T_0}^{T_1} |B^T e^{(T_1-\tau)A^T} y | ^2 d\tau=\G
 		\]
 		und damit auch
 		\[
 		y^T \G y = 0
 		\]
-		Da $\G$ semipositiv definit und symmetrisch ist, ist durch $(x,y) = x^T \G y$ eine symmetrische semipositive Bilinearform gegeben und auf diese die Cauchy-Schwarzsche Ungleichung anwendbar: Sei $z \in \R^n$
+		Da $\G$ nach (\ref{Gram'sche Kontrollmatrix:Eigenschaften:symmetrie}) und (\ref{Gram'sche Kontrollmatrix:Eigenschaften:definitheit}) symmetrisch und semipositiv definit  ist, ist durch $(x,y) = x^T \G y$ eine symmetrische semipositive Bilinearform gegeben und auf diese die Cauchy-Schwarzsche Ungleichung anwendbar: Sei $z \in \R^n$
 		\[
 			0 \leq |y^T \G z| \leq \underbrace{\sqrt{y^T \G y}}_{=0} \cdot \sqrt{z^T \G z}=0
 		\]
 		Damit ist 
 		\[
-			z^T \G y = 0 \forall z \in \R^n,
+			z^T \G y = 0 \; \forall z \in \R^n,
 		\]
 		was bedeutet
 		\[
@@ -165,10 +165,12 @@ Dann ist das System $\dot x(t) = A(t) x +B(t) u(t)$ kontrollierbar in $[T_0,T_1]
 \end{Satz}
 
 \begin{Bemerkung}
-Im Gegensatz zum zeitunabhängigen Fall ist jetzt nur noch eine Folgerung gegeben. Und statt vorher nur eine Kombination "der ersten" $n$ Matrizen $A^0B, \dots A^{n-1}B$ zu prüfen war, gibt es jetzt unendlich viele Kominationen der Matrizen $B_i(t)$ für jedes $t \in [T_0,T_1]$. 
+Im Gegensatz zum zeitunabhängigen Fall ist jetzt nur noch eine Folgerung gegeben. Und statt vorher nur eine Kombination "der ersten" $n$ Matrizen $A^0B, \dots A^{n-1}B$ zu prüfen war, gibt es jetzt unendlich viele Kominationen der Matrizen $B_i(t)$ für jedes $t \in [T_0,T_1]$. Und ein Ausschluss aller dieser Möglichkeiten liefert noch keinerlei Aussage über die Stabilität des Systems.
 
-Die Forderung ist jedoch notwendig. Sei z.B.  $T_0=0, T_1=1, \;n=m=1 $ und $ A(t)=0, B(t)=t.$ Dann ist $B_0(t)=t, \;  B_1(t)=\dot B_0(t)-A(t)\cdot B_0(t)= B_0(t)=1$ und $B_i(t)=0 \; \forall i >1$. 
-	Würde man jetzt für $\overline t=0$ nur den Rang der aus den $n-1$ zusammengesetzten $B_i(\overline t)$ betrachten, ist dieser $\rang(B_0(\overline t)=0$, allerdings ist $\rang(B_1(\overline t)) =1$.
+Die Forderung ist jedoch notwendig. \\
+Sei z.B.  $T_0=0, T_1=1, \;n=m=1 $ und $ A(t)=0, B(t)=t.$ \\
+Dann ist $B_0(t)=t, \;  B_1(t)=\dot B_0(t)-A(t)\cdot B_0(t)= B_0(t)=1$ und $B_i(t)=0 \; \forall i >1$. 
+	Würde man jetzt für $\overline t=0$ nur den Rang der aus den $n-1$ zusammengesetzten $B_i(\overline t)$ betrachten, ist dieser $\rang(B_0(\overline t))=0$, allerdings ist $\rang(B_1(\overline t)) =1$.
 \end{Bemerkung}
 
 \begin{Beweis}[zu \ref{Kalman Rang Bedingung zeitabhängig}]
@@ -181,7 +183,7 @@ Wiederum folgt aus der Stetigkeit
 \[
 	B(\tau)^T\cdot R(T_1,\tau)^T \cdot y = 0 \; \forall \tau \in [T_0,T_1]
 \]
-Indem $z:=R(T_1,\overline t)^T y$ definiert wird, kommt das $\overline t $ zum Einsatz. Zu bemerken ist, dass aus (\ref{Resolvente Eigenschaften:3}) folgt, dass $R(T_1,\overline t)$ invertierbar ist und damit dann auch $R(T_1,\overline t)^T$. Da $y \neq 0$, ist auch $z \neq 0$.\\
+Indem $z:=R(T_1,\overline t)^T y$ definiert wird, werden die Eigenschaften der Resolvente geschickt ausgenutzt. Man könnte den Beweis auch mit $K(\tau)=y^t R(T_1,\tau) B(\tau)$ führen, dies würde aber zu einer schwächeren Version des Satzes führen, in der statt $\overline x$ bel. $\in [T_0,T_1]$ nur $T_1$ ein Kriterium für die Kontrollierbarkeit wäre. Zu bemerken ist, dass aus (\ref{Resolvente Eigenschaften:3}) folgt, dass $R(T_1,\overline t)$ invertierbar ist und damit dann auch $R(T_1,\overline t)^T$. Da $y \neq 0$, ist auch $z \neq 0$.\\
 Definiere jetzt
 \[
 	K(\tau):=z^T R(T_1,\tau) B(\tau) \overset{\ref{Resolvente Eigenschaften:2}}{=} y^T R(T_1,\overline t) R(\overline t, \tau) B(\tau) = 0 \; \forall \tau \in [T_0,T_1]
@@ -203,7 +205,7 @@ ergibt sich dann für $(i)$-maliges Differenzieren von $K(\tau)$
 \[ 
 	K^{(i)}(\tau)= z^T R(\overline t, \tau) B_i(\tau).
 \]
-Da $K \equiv 0$ ist, muss dann auch $K^{(i)} \equiv 0 \; \forall i \in \N$ sein. Also ist insbesondere
+Da $K \equiv 0$ ist, muss dann auch $K^{(i)} \equiv 0 \; \forall i \in \N$ sein. Mit (\ref{Resolvente Eigenschaften:1}) gilt insbesondere
 \[
 	K^{(i)}(\overline t) = z^T R(\overline t, \overline t) B_i(\overline t)=z^T B_i(\overline t)=0 \; \forall i \in \N
 \]
