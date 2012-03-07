@@ -37,7 +37,7 @@
   {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
           \large ##1\ ##2\theorem@separator}\hbox{\strut}}}]}%
   {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
-          \large ##1\ ##2\ (##3)\theorem@separator}\hbox{\strut}}}]}
+          \large ##1\ ##2\ ({##3})\theorem@separator}\hbox{\strut}}}]}
 \makeatother
 \theorembodyfont{}
 \theoremstyle{newBreak}
@@ -100,26 +100,21 @@
 		In der ganzen Arbeit gelten die folgenden Konventionen:
 		\begin{enumerate}
 			\item $T_0$ und $T_1$ seien reelle Zahlen und es sei $T_0 < T_1$.
-			\item $A: (T_0, T_1) \rightarrow \R^{n \times n}$ und $B: (T_0, T_1) 
+			\item $A: [T_0, T_1] \rightarrow \R^{n \times n}$ und $B: [T_0, T_1] 
 				\rightarrow \R^{n \times m}$ seien stetige Funktionen.
-			\item $x: (T_0, T_1) \rightarrow \R^n$ und $u: (T_0, T_1) 
-				\rightarrow \R^m$ seien stetige Funktionen
+			\item $x: [T_0, T_1] \rightarrow \R^n$ ist eine stetige Funktion
 		\end{enumerate}
 	\end{Bemerkung}
-	
-	Kehren wir zunächst zurück zu einer altbekannten Definition:
-	
+	Betrachte zunächst folgende altbekannte Definition:
 	\begin{Definition}[Anfangswertproblem]\label{AWP}\index{Anfangswertproblem}
-	Sei $b: (T_0, T_1) \rightarrow \R^n$ eine stetige Funktion. Eine Funktion 
+	Sei $b: [T_0, T_1] \rightarrow \R^n$ eine stetige Funktion. Eine Funktion 
 	$x$ wird Lösung des \emph{Anfangswertproblems (auch: AWP)} \[
 		\dot x(t) = A(t) x(t) + b(t)
 	\] genannt, falls diese Gleichung für alle $t \in [T_0, T_1]$ erfüllt ist, und
 	für gegebene $x_0 \in \R^n$ und $t_0 \in [T_0, T_1]$ die Gleichung $x(t_0) = 
 	x_0$ gilt.
 	\end{Definition}
-	
-	Nun können wir lineare Kontrollsysteme definieren. Diese werden einen zentralen Punkt in der Arbeit einnehmen. 
-	
+	Nun können lineare Kontrollsysteme definiert werden, welche zentralen Punkt in der Arbeit einnehmen. 
 	\begin{Definition}[Lineares Kontrollsystem]\index{lineares Kontrollsystem}
 		Ein System
 		\begin{align*}%\label{gl:ks}
@@ -127,21 +122,20 @@
 		\end{align*}
 		wird \emph{lineares Kontrollsystem} genannt.
 	\end{Definition}
-	
-		Anschaulich könnte man lineare Kontrollsysteme so interpretieren, dass zum 
+		Anschaulich kann man lineare Kontrollsysteme so interpretieren, dass zum 
 		Beispiel ein Raumfahrzeug mit einer Steuerung $u$ vom Startpunkt $x_0$ zu 
-		einem Punkt $x_1$ gebracht werden soll. Dabei modelliert $A$ die 
+		einem Punkt beliebigen anderen Punkt $x_1$ im Raum gebracht werden soll. 
+		Dabei modelliert $A$ die 
 		"`natürlichen"' Kräfte auf das Objekt, und $B$ bildet Eigenschaften der 
 		Steuerungseinheit des Raumschiffes, beispielsweise die Anordnung der 
 		Triebwerke, ab. $u$ wiederum stellt die konkrete Steuerung dar, also zu 
 		welchem Zeitpunkt die Triebwerke wie angesteuert werden sollen.
-	
 	\begin{Definition}[kontrollierbar]\index{kontrollierbar}
-		Seien $x_0, x_1 \in \R^n$. Ein lineares Kontrollsystem 
+		Ein lineares Kontrollsystem 
 			\[
 				\dot x(t) = A(t)x(t) + B(t)u(t)
 			\]
-		ist \emph{kontrollierbar}, falls es eine stetige Funktion $u$ gibt, sodass die Lösungfunktion $x$ des Anfangswertproblems 
+		ist \emph{kontrollierbar}, falls es für alle $x_0, x_1 \in \R^n$ eine stetige Funktion $u$ gibt, sodass die Lösungsfunktion $x$ des Anfangswertproblems 
 		\begin{align*}
 			\dot x(t) = A(t)x(t) + B(t)u(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad x(T_0) = x_0
 		\end{align*}
@@ -163,7 +157,7 @@
 		Für lineare Differentialgleichungssysteme \[
 			\dot x(t) = A \cdot x(t)
 		\] mit konstanten $A \in \R ^ {n \times n}$ ist es mithilfe der 
-		Exponentialfunktion einfach eine Fundamentalmatrix zu bestimmen, doch was
+		Exponentialfunktion einfach eine Fundamentalsystem zu bestimmen, doch was
 		geschieht, wenn $A$ wie in der in \ref{AWP} gegebenen Definition eines 
 		Anfangswertproblems abhängig von $t$ ist? In diesem Fall ist die
 		Fundamentalmatrix im allgemeinen nicht elementar bestimmbar.
@@ -174,12 +168,12 @@
 		\ref{Gram'sche Kontrollmatrix} können kann dann überpüft werden, ob das 
 		lineare Kontrollproblem kontrollierbar ist. 
 	\subsection*{Definition}
-		Sei $\Phi$ die Funktion, die das homogene Anfangswertproblem
+		Sei $\Phi:\R \rightarrow \R^{n \times n}$ die Funktion, die das homogene Anfangswertproblem
 		\[
 			\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau) = \E
 		\]
 		löst. Hierbei steht $\E \in \R^{n \times n}$ für die Einheitsmatrix. Offensichtlich ist $\Phi$ von der Wahl von $\tau$ abhängig. Definiere
-		also $\tilde R$ als die Funktion, die $\tau$ auf die Funktion $\Phi$ 
+		$\tilde R$ als die Funktion, die $\tau$ auf die Funktion $\Phi$ 
 		abbildet:
 		\[
 			\tilde R : [T_0, T_1] \rightarrow C^0( [T_0, T_1],\R^{n \times n}), 

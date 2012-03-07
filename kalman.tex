@@ -1,10 +1,11 @@
 \section{Kalman Rang Bedingung}
 
-Im Allgemeinen ist es schwer  die Gram'sche Matrix auszurechnen. Die Resolvente ist meist nicht einfach zu berechnen.
+Im Allgemeinen ist es schwer die Gram'sche Matrix auszurechnen. Die Resolvente ist meist nicht einfach zu berechnen.
 
-Also suchen wir ein handlicheres Kriterium. Dafür ziehen wir uns zunächst auf den zeitunabhängigen Fall zurück. Seien also $A$ und $B$ unabhängig von $t$. Es ist nicht klar, ob dann die Kontrollierbarkeit auch nicht von der Zeit abhängt. Schließlich gehen Anfangs- und Endpunkt in die Lösung mit ein.
+Man benötigt ein handlicheres Kriterium. Dafür zieht man sich zunächst auf den zeitunabhängigen Fall zurück. Seien also $A$ und $B$ unabhängig von $t$. \\
+Ob dann die Kontrollierbarkeit auch nicht von der Zeit abhängt oder welche Rolle die Wahl des Start- und Endpunktes spielen, ist noch von vorneherein klar. 
 
-Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,T_1]$. Ein leicht zu kontrollierbareres Kriterium ist gegeben durch das folgende
+Betrachte nun das lineare, zeitunabhängige System $\dot{x}=Ax+Bu$ in $[T_0,T_1]$. Ein Kriterium für die Kontrollierbarkeit ist gegeben durch das folgende
 
 \begin{Satz}[Kalman Rang Bedingung]\label{Kalman Rang Bedingung}
   Das lineare, zeitunabhängige System $\dot{x}=Ax+Bu$ ist in $[T_0,T_1]$ kontrollierbar genau dann wenn
@@ -20,7 +21,7 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
 \begin{Beweis}[zu \ref{Kalman Rang Bedingung}]
  \begin{enumerate}
   \item["`$\Leftarrow$"']
-    Da $A$ zeitunabhängig ist können wir die DGL leicht lösen und erhalten die Resolvente $R(t_1,t_2)=e^{(t_1-t_2)A} \; \forall  (t_1,t_2) \in [T_0,T_1]^2$ oder $R(t_1,t_2)=e^{(t_1-t_2)A} \; \forall \: (t_1,t_2) \in [T_0,T_1]^2$
+    Da $A$ zeitunabhängig ist können wir die Differentialgleichung leicht lösen und erhalten die Resolvente $R(t_1,t_2)=e^{(t_1-t_2)A} \; \forall  (t_1,t_2) \in [T_0,T_1]^2$ oder $R(t_1,t_2)=e^{(t_1-t_2)A} \; \forall \: (t_1,t_2) \in [T_0,T_1]^2$
 
     Bestimmen der Gramschen Matrix
     \begin{align*}
@@ -29,8 +30,10 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
 	=&\int\limits_{T_0}^{T_1} e^{(t_1-\tau)A} B B^T e^{(t_1-\tau)A^T} d\tau
     \end{align*}
 
-		Bewiesen wird die Kontraktion, also wird angenommen: $\dot x = Ax+Bu$ ist nicht kontrollierbar in $[T_0,T_1]$. Dann ist $\G$ nicht invertierbar und hat somit einen nicht trivialen Kern. Es exisitert also $y \in \R^n \setminus \{0\}$ mit $\G y=0$
-    Also auch
+		Bewiesen wird die Kontraktion, zu zeigen ist also: Wenn das System nicht kontrollierbar ist, dann ist der $\rang(A^0 \mid A^1B \mid A^2B \mid \dots  \mid A^{n-1}B) \neq n$. 
+		
+		Sei $\dot x = Ax+Bu$ nicht kontrollierbar in $[T_0,T_1]$. Dann ist $\G$ nicht invertierbar und hat somit einen nicht trivialen Kern. Es exisitert also $y \in \R^n \setminus \{0\}$ mit $\G y=0$
+    Demnach gilt
      \[
 	y^T \G y = 0 
      \]
@@ -53,8 +56,8 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
     \end{align*}
     i-faches Differenzen von $K(\tau)$ nach $\tau$ ergibt
     \begin{align*}
-      K^{(i)}(\tau)=y^T e^{(T_1-\tau)A} \cdot B (-1)^i A^i \\
-      K^{(i)}(T_1)=(-1)^i y^T A^i B
+      K^{(i)}(\tau)&=y^T e^{(T_1-\tau)A} \cdot B (-1)^i A^i \\
+      K^{(i)}(T_1)&=(-1)^i y^T A^i B
     \end{align*}
     Da $K \equiv 0$ auf $[T_0,T_1]$ gilt auch 
     \[
@@ -86,7 +89,7 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
     Angenommen, die Kalman Rang Bedigung wäre nicht erfüllt. Dann existiert ein $y \in \R^n$ mit $y^T A^i B = 0 \; \forall i \in \{0,\dots,n-1\}$.
 
     Durch Induktion lässt sich folgende Behauptung beweisen:
-    Alle Matrizen $A^m$ lassen sich durch eine Linearkombination $\sum\limits_{i=0}^{n-1} \alpha^i A^i $ darstellen
+    Alle Matrizen $A^m$ mit $m \in \N$ lassen sich durch eine Linearkombination $\sum\limits_{i=0}^{n-1} \alpha^i A^i $ darstellen
     \begin{enumerate}
       \item[(IA)]
       Betrachte das charakteristische Polynom $\chi_A$ der Matrix $A$.
@@ -110,19 +113,19 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
 		\end{enumerate}
 		Es folgt die Behauptung per vollständiger Induktion.		
         
-		Damit lässt sich für alle $m \in \N, m>n-1$ folgern:
+		Damit lässt sich für alle $m \in \N$ folgern:
 		\[
 			y^T A^m B = y^T (-\sum\limits_{i=0}^{n-1}\alpha_i A^i) B = -\sum\limits_{i=0}^{n-1} \alpha_i \underbrace{(y^T A^i B)}_{=0}=0
 		\]
 		Sei wieder 
 		\[
-			K(\tau):=y^{T e(T_1-\tau)A} B \; \tau \in [T_0,T_1].
+			K(\tau):=y^{T e(T_1-\tau)A} B, \; \tau \in [T_0,T_1].
 		\]
 		Dann ist 
 		\[
 			K^{(i)}(T_1)= (-1)^i y^T A^i B = 0
 		\]
-		$K$ ist analytisch, bildet man nun die Taylorreihe um $T_1$
+		$K$ ist analytisch, entspricht also ihrer Taylorreihe um $T_1$
 		\[
 			K(\tau) = \sum\limits_{i=0}^\infty \frac{K^{(i)}(T_1)}{i!} (\tau-T_1)^i = 0
 		\]
@@ -134,7 +137,7 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
 		\[
 		y^T \G y = 0
 		\]
-		Da $\G$ semipositiv definit und symmetrisch ist, ist durch $(x,y) = x^T \G y$ eine symmetrische semipositive Bilinearform gegeben und auf diese die Cauchy-Schwarzsche Ungleichung anwendbar: Sei $z \in \R^n$
+		Da $\G$ semipositiv definit und symmetrisch ist nach (\ref{Gram'sche Kontrollmatrix:definitheit}), ist durch $(x,y) = x^T \G y$ eine symmetrische semipositive Bilinearform gegeben und auf diese die Cauchy-Schwarzsche Ungleichung anwendbar: Sei $z \in \R^n$
 		\[
 			0 \leq |y^T \G z| \leq \underbrace{\sqrt{y^T \G y}}_{=0} \cdot \sqrt{z^T \G z}=0
 		\]
@@ -152,7 +155,7 @@ Wir betrachten nun das lineare, zeitunabhänige System $\dot{x}=Ax+Bu$ in $[T_0,
 
 Jetzt soll das Ergebnis auf den zeitabhängigen Fall übertragen werden. Dafür wird zunächst induktiv die Folge $\{ B_i\}_{i \in \N} \subset \R^{n \times m} ([T_0,T_1])$ wie folgt definiert.
 \[
-	B_0(t)=B(t); \qquad B_i(t)=\dot B_{i-1}(t) - A(t) \cdot B_{i-1}(t) \; \forall t \in [T_0,T_1]
+	B_0(t)=B(t); \qquad B_i(\overline t)=\dot B_{i-1}(\overline t) - A(t) \cdot B_{i-1}(\overline t) \; \forall t \in [T_0,T_1]
 \]
 Damit erhält man folgenden Satz
 
@@ -165,10 +168,10 @@ Dann ist das System $\dot x = A(t) x +B(t) u$ kontrollierbar in $[T_0,T_1]$
 \end{Satz}
 
 \begin{Bemerkung}
-Im Gegensatz zum zeitunabhängigen Fall ist jetzt nur noch eine Folgerung gegeben. Und statt vorher nur eine Kombination "der ersten" $n$ Matrizen $A^0B, \dots A^{n-1}B$ zu prüfen war, gibt es jetzt unendlich viele Kominationen der Matrizen $B_i(t)$ für jedes $t \in [T_0,T_1]$. 
+Im Gegensatz zum zeitunabhängigen Fall ist jetzt nur noch eine Folgerung gegeben. Und statt vorher nur eine Kombination "der ersten" $n$ Matrizen $A^0B, \dots, A^{n-1}B$ zu prüfen war, gibt es jetzt unendlich viele Kominationen der Matrizen $B_i(t)$ für jedes $t \in [T_0,T_1]$. 
 
 Die Forderung ist jedoch notwendig. Sei z.B.  $T_0=0, T_1=1, \;n=m=1 $ und $ A(t)=0, B(t)=t.$ Dann ist $B_0(t)=t, \;  B_1(t)=\dot B_0(t)-A(t)\cdot B_0(t)= B_0(t)=1$ und $B_i(t)=0 \; \forall i >1$. 
-	Würde man jetzt für $\overline t=0$ nur den Rang der aus den $n-1$ zusammengesetzten $B_i(\overline t)$ betrachten, ist dieser $\rang(B_0(\overline t)=0$, allerdings ist $\rang(B_1(\overline t)) =1$.
+	Würde man jetzt für $\overline t=0$ nur den Rang der aus den $n-1$ zusammengesetzten $B_i(\overline t)$ betrachten, ist dieser $\rang(B_0(\overline t))=0$, allerdings ist $\rang(B_1(\overline t)) =1$.
 \end{Bemerkung}
 
 \begin{Beweis}[zu \ref{Kalman Rang Bedingung zeitabhängig}]
@@ -181,7 +184,7 @@ Wiederum folgt aus der Stetigkeit
 \[
 	B(\tau)^T\cdot R(T_1,\tau)^T \cdot y = 0 \; \forall \tau \in [T_0,T_1]
 \]
-Indem $z:=R(T_1,\overline t)^T y$ definiert wird, kommt das $\overline t $ zum Einsatz. Zu bemerken ist, dass aus (\ref{Resolvente Eigenschaften:3}) folgt, dass $R(T_1,\overline t)$ invertierbar ist und damit dann auch $R(T_1,\overline t)^T$. Da $y \neq 0$, ist auch $z \neq 0$.\\
+Indem $z:=R(T_1,\overline t)^T y$ definiert wird, kommt das $\overline t $ zum Einsatz. Zu bemerken ist, dass aus (\ref{Resolvente Eigenschaften:3}) folgt, dass $R(T_1,\overline t)$ invertierbar ist und damit dann auch $R(T_1,\overline t)^T$. Das hießt $z \neq 0$, da $y \neq 0$.\\
 Definiere jetzt
 \[
 	K(\tau):=z^T R(T_1,\tau) B(\tau) \overset{\ref{Resolvente Eigenschaften:2}}{=} y^T R(T_1,\overline t) R(\overline t, \tau) B(\tau) = 0 \; \forall \tau \in [T_0,T_1]
@@ -216,7 +219,7 @@ Das wiederum heißt
 		\hdots \\
 		(B_{i_k})^T
 	\end{pmatrix}
-	=0 \in \R^{n\times k\cdot m}
+	=0 \in \R^{n\times m\cdot k}
 \]
 
 Also hat $(B_{i_1} \mid B_{i_2} \mid \dots \mid B_{i_k})^T$ keinen trivialen Kern und damit keinen vollen Rang. Durch die Beziehung Zeilenrang = Spaltenrang gilt dasselbe für $(B_{i_1} \mid B_{i_2} \mid \dots \mid B_{i_k})$, das ist dann die Verneinung der Bedingung aus Satz(\ref{Kalman Rang Bedingung zeitabhängig}).
