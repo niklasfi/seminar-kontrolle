@@ -1,0 +1,134 @@
+\documentclass{beamer}
+
+\usetheme{Warsaw}             % Falls Ihnen das Layout nicht gef�llt, k�nnen Sie hier
+                              % auch andere Themes w�hlen. Ein Verzeichnis der m�glichen 
+                              % Themes finden Sie im Kapitel 15 des beameruserguide.
+
+\usepackage[utf8]{inputenc} % um Umlaute direkt eingeben zu
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\AtBeginSection[]{\frame<beamer>{\frametitle{Inhalt} \tableofcontents[current]}}
+
+\newcommand{\defin}[1]{\textit{\color{blue}#1}}
+
+% ========== Abk�rzungen ==========
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\rang}[0]{\operatorname{rang}}
+
+\author{Niklas Fischer, Elisa Friebel, Marcel Goesmann}
+\title{Einführung in die Kontrolltheorie}
+\date{\today \\[.5\baselineskip] Vortrag zum Seminar Modellierung und Simulation}
+
+\begin{document}
+\frame{\maketitle}
+
+\section{Kalman Rang Bedingung}
+  \begin{frame}
+  Resolventen sind im Allgemeinen schwer zu bestimmen. 
+  \begin{block}{Frage}
+  Gibt es eine einfachere Möglichkeit Systeme auf Kontrollierbarkeit zu überprüfen?
+  \end{block}
+\end{frame}
+
+\subsection{zeitunabhängiger Fall}
+
+\frame{\frametitle{}
+\begin{block}{Kalman Rang Bedingung}
+ Das lineare, zeitunabhängige System $\dot{x}(t)=Ax(t)+Bu(t)$ ist in $[T_0,T_1]$ kontrollierbar genau dann wenn
+\[
+  \rang(A^0B \mid A^1B \mid A^2B \mid \dots  \mid A^{n-1}B)=n
+\]
+\end{block}
+\pause
+\begin{itemize}
+ \item $A \in \R^{n \times n}, \; B \in \R^{n \times m} \pause \Rightarrow (A^0B \mid \dots  \mid A^{n-1}B) \in \R^{n \times n\cdot m}$
+ \pause
+ \item Kontrolle des Systems ist unabhängig vom Intervall $[T_0,T_1]$
+\end{itemize}
+
+}
+
+\subsection{zeitabhängiger Fall}
+
+\frame{\frametitle{}
+
+Sei die Folge $\{B_n\}_{n \in \N}\subseteq \R^{n \times m}([T_0,T_1])$ wie folgt induktiv definiert:
+\[
+	B_0(t)=B(t); \qquad B_i(t)=\dot B_{i-1}(t) - A(t) \cdot B_{i-1}(t) \; \forall t \in [T_0,T_1]
+\]
+\pause
+
+\begin{block}{Kalman Rang Bedingung im zeitabhängigen Fall}
+ Wenn ein $\overline t \in [T_0,T_1]$ und $\{i_1,\dots i_k\}\subset \N$ für ein $k\in \N$ existieren, so dass
+\[
+	\rang(B_{i_1} (\overline t)\mid B_{i_2}(\overline t) \mid \dots \mid B_{i_{k}}(\overline t))=n, 
+\]
+dann ist das System
+\[
+  \dot x(t) = A(t) x(t) +B(t) u(t)
+\]
+kontrollierbar in $[T_0,T_1]$.
+\end{block}
+}
+
+
+\begin{frame}
+\frametitle{Vergleich des zeitabhängigen und zeitunabhängigen Falls}
+	\begin{columns}[t]
+		\column{5cm}
+		   \begin{block}{zeitunabhängiger Fall}
+         Das lineare, zeitunabhängige System $\dot{x}(t)=Ax(t)+Bu(t)$ ist in $[T_0,T_1]$ kontrollierbar \textbf{genau dann wenn}
+        \[
+          \rang(A^0B \mid \dots  \mid A^{n-1}B)=n
+        \]
+      \end{block}
+		
+		\column{5cm}
+		   \begin{block}{zeitabhängiger Fall}
+          Wenn ein $\overline t \in [T_0,T_1]$ und $\{i_1,\dots i_k\}\subset \N$ für ein $k\in \N$ existieren, so dass
+          \[
+	          \rang(B_{i_1} (\overline t) \mid \dots \mid B_{i_{k}}(\overline t))=n, 
+          \]
+dann ist das System $\dot x(t) = A(t) x(t) +B(t) u(t)$ kontrollierbar in $[T_0,T_1]$
+        \end{block}
+
+	\end{columns}
+	\pause
+	\begin{itemize}
+	\item im zeitabhängigen Fall ist nur noch eine Folgerung gegeben
+	\pause
+	\item es gibt unedlich viele Möglichkeiten für $\overline t$ und $\{i_1,\dots i_k\}$
+	\end{itemize}
+\end{frame}
+
+
+%}
+
+%
+%\begin{exampleblock}{(1.4) Beispiel}
+%Die Funktion $f: \R \to \R$, $x \mapsto 2 \cdot x + 3$ ist stetig, da die Identit�t und die konstanten Funktionen stetig sind.
+%\end{exampleblock}
+%}
+%
+%\frame{\frametitle{Definition: gleichm��ige Stetigkeit}
+%\begin{block}{(1.6) Definition}
+%Eine Funktion $f: D \to \R$ mit $D \subset \R$ hei�t \defin{gleichm��ig stetig}, wenn zu jedem $\varepsilon > 0$ ein $\delta > 0$ %existiert, so dass f�r alle $x, y \in D$ mit $|x - y| < \delta$ stets $|f(x) - f(y)| < \varepsilon$ gilt.
+%\end{block}
+%
+%\vspace*{3ex}
+%\uncover<2->{Es macht keinen Sinn, von einer gleichm��igen Stetigkeit in einem Punkt zu sprechen.}
+%}
+
+%\section{Zweiter Abschnitt}
+
+\end{document}
