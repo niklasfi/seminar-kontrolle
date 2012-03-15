@@ -16,7 +16,8 @@
 \usepackage[ngerman]{babel}
 \usepackage{makeidx}
 \usepackage{biblatex}
-\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{mathtools}
 \bibliography{seminar}
 \setlength{\headheight}{12.5pt}
 
@@ -47,6 +48,7 @@
 \newframedtheorem{Definition}[thmc]{Definition}
 \newtheorem{Bemerkung}[thmc]{Bemerkung}
 \newtheorem{Beispiel}[thmc]{Beispiel}
+\newtheorem{Exkurs}[thmc]{Exkurs}
 \theoremsymbol{}
 \newframedtheorem{Satz}[thmc]{Satz}
 \newframedtheorem{Lemma}[thmc]{Lemma}
@@ -95,6 +97,22 @@
 	\tableofcontents
 	\newpage
 	\pagestyle{mystyle}
+
+
+\setcounter{section}{-1}
+
+\section{Einleitung}
+
+\begin{center}
+\begin{figure}[ht]
+\includegraphics[clip,scale=0.7]{umlauf}\caption{Trajektorie der Dawn Sonde \cite{NASA2009}}
+\end{figure}
+\end{center}
+
+In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie geben. Sie befasst sich hauptsächlich mit der Steuerung von Differentialgleichungen. Das heißt, die Trajektorie einer Lösung einer Differentialgleichung soll zu einer bestimmten Zeit $t_1$ einen bestimmten Zustand $x_1$ erreichen. Anwendung findet die Theorie zum Beispiel bei der Steuerung von Raumfahrzeugen, wie der Dawn Sonde. Ziel der Mission war es die Planeten Vesta und Ceres zu besuchen. Es war also eine Trajektorie gesucht, die von der Erde ($x_0$) im Zeitpunkt $t_0$ ausgehend Vesta ($x_1$) erreicht. 
+
+\newpage
+
 \section{Definitionen}
 	\begin{Bemerkung}
 		In der ganzen Arbeit gelten die folgenden Konventionen:
@@ -114,26 +132,12 @@
 	für gegebene $x_0 \in \R^n$ und $t_0 \in [T_0, T_1]$ die Gleichung $x(t_0) = 
 	x_0$ gilt.
 	\end{Definition}
-	Nun können lineare Kontrollsysteme definiert werden, welche zentralen Punkt in der Arbeit einnehmen. 
-	\begin{Definition}[Lineares Kontrollsystem]\index{lineares Kontrollsystem}
-		Ein System
-		\begin{align*}%\label{gl:ks}
-			\dot x(t) = A(t) x(t) + B(t) u(t),\quad t \in [T_0, T_1]
-		\end{align*}
-		wird \emph{lineares Kontrollsystem} genannt.
-	\end{Definition}
-		Anschaulich kann man lineare Kontrollsysteme so interpretieren, dass zum 
-		Beispiel ein Raumfahrzeug mit einer Steuerung $u$ vom Startpunkt $x_0$ zu 
-		einem Punkt beliebigen anderen Punkt $x_1$ im Raum gebracht werden soll. 
-		Dabei modelliert $A$ die 
-		"`natürlichen"' Kräfte auf das Objekt, und $B$ bildet Eigenschaften der 
-		Steuerungseinheit des Raumschiffes, beispielsweise die Anordnung der 
-		Triebwerke, ab. $u$ wiederum stellt die konkrete Steuerung dar, also zu 
-		welchem Zeitpunkt die Triebwerke wie angesteuert werden sollen.
-	\begin{Definition}[kontrollierbar]\index{kontrollierbar}
+	Nun können lineare Kontrollsysteme beziehungsweise die Kontrollierbarkeit definiert werden, welche einen zentralen Punkt in der Arbeit einnehmen. 
+	
+	\begin{Definition}[lineares Kontrollsystem, kontrollierbar]\index{lineares Kontrollsystem}\index{kontrollierbar}
 		Ein lineares Kontrollsystem 
 			\[
-				\dot x(t) = A(t)x(t) + B(t)u(t)
+				\dot x(t) = A(t)x(t) + B(t)u(t),\quad t \in [T_0, T_1]
 			\]
 		ist \emph{kontrollierbar}, falls es für alle $x_0, x_1 \in \R^n$ eine stetige Funktion $u$ gibt, sodass die Lösungsfunktion $x$ des Anfangswertproblems 
 		\begin{align*}
@@ -141,10 +145,17 @@
 		\end{align*}
 		in $T_1$ den Wert $x_1$ annimmt.
 	\end{Definition}
-	Im Gegensatz zu dem oben beschriebenen Anwendungsfall ist für die 
-	Kontrollierbarkeit eines Systems also nicht nur erforderlich, dass die Sonde 
-	von der Erde aus einen bestimmten Punkt im Weltall erreichen kann, sondern, 
-	dass sie von jedem Punkt ausgehend jeden anderen Erreichen kann.
+	Anschaulich kann man die Kontrollierbarkeit linearer Kontrollsysteme so interpretieren, dass zum 
+	Beispiel ein Raumfahrzeug mit einer Steuerung $u$ vom Startpunkt $x_0$ zu 
+	einem Punkt beliebigen anderen Punkt $x_1$ im Raum gebracht werden können muss. 
+	Dabei modelliert $A$ die 
+	"`natürlichen"' Kräfte auf das Objekt, und $B$ bildet Eigenschaften der 
+	Steuerungseinheit des Raumschiffes, beispielsweise die Anordnung der 
+	Triebwerke, ab. $u$ wiederum stellt die konkrete Steuerung dar, also zu 
+	welchem Zeitpunkt die Triebwerke wie angesteuert werden sollen. 
+	In der Raumfahrt geht es darum eine Raumsonde von der Erde aus zu einem einzigen bestimmten Punkt zu steuern.
+	Im Gegensatz dazu ist es für die Kontrollierbarkeit eines Systems wichtig, 
+	dass die Sonde von jedem Punkt ausgehend jeden anderen Erreichen kann.
 	
 	
 	\section{Die Resolvente}
@@ -157,7 +168,7 @@
 		Für lineare Differentialgleichungssysteme \[
 			\dot x(t) = A \cdot x(t)
 		\] mit konstanten $A \in \R ^ {n \times n}$ ist es mithilfe der 
-		Exponentialfunktion einfach eine Fundamentalsystem zu bestimmen, doch was
+		Exponentialfunktion einfach ein Fundamentalsystem zu bestimmen, doch was
 		geschieht, wenn $A$ wie in der in \ref{AWP} gegebenen Definition eines 
 		Anfangswertproblems abhängig von $t$ ist? In diesem Fall ist die
 		Fundamentalmatrix im allgemeinen nicht elementar bestimmbar.
@@ -245,8 +256,7 @@
 		
 			Die Stetigkeit in der 2. Komponente ($\tau$) folgt aus dem Satz über die
 			Stetige Abhängigkeit aus \cite{KriegWalcher2010}.
-			
-			Betrachte die Anfangswertprobleme
+			Für $\tau_1, \tau_2 \in [T_0,T_1]$ betrachte die Anfangswertprobleme
 			\[
 				\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau_1) = \E
 			\]
@@ -283,30 +293,30 @@
 				R(t_1, t_1) = \tilde R (t_1)(t_1) = \Phi(t_1) = \E.
 			\]
 			\item 
-				Erinnern wir uns an die Vektorraumeigenschaft von homogenen Differentialgleichungen wie in \cite{KriegWalcher2010}[S. 43] beschrieben. Für uns interessant ist, dass die Abbildung die einem Anfangswert eine Lösungsfunktion zuordnet ein Isomorphismus ist. Wenn also die Funktion $\Phi$ das Anfangswertproblem \[
-					\dot M = A M \quad \text{mit} \quad M(t_0) = C
+				Betrachte die wie in \cite{KriegWalcher2010}[S. 43] beschriebene Vektorraumeigenschaft von homogenen Differentialgleichungen. Interessant ist, dass die Abbildung die einem Anfangswert eine Lösungsfunktion zuordnet ein Isomorphismus ist. Wenn also die Funktion $\Phi$ das Anfangswertproblem \[
+					\dot M(t) = A(t) M(t) \quad \text{mit} \quad M(t_0) = C
 				\] löst,
 				so löst $\Phi \cdot D$ das Anfangswertproblem \[
-					\dot M = A M \quad \text{mit} \quad M(t_0) = C \cdot D.
+					\dot M(t) = A(t) M(t) \quad \text{mit} \quad M(t_0) = C \cdot D.
 				\]
 
 				Mit dieser Eigenschaft kann die Aussage gezeigt werden. Betrachte $\tilde R(t_2)$ und $\tilde R(t_3)$. Diese beiden Funktionen sind die Lösungen der Anfangswertprobleme 
 				\[
-					\dot M_3 = M_3 A \quad \text{mit} \quad M_3(t_3) = \E
-				\]
+					\dot M_2(t) = A(t) M_2(t) \quad \text{mit} \quad M_2(t_2) = \E.
+				\]				
 				beziehungsweise
 				\[
-					\dot M_2 = M_2 A \quad \text{mit} \quad M_2(t_2) = \E.
+					\dot M_3(t) = A(t) M_3(t) \quad \text{mit} \quad M_3(t_3) = \E
 				\]
 				Also löst $\tilde R(t_2) \cdot R(t_2,t_3)$ das Anfangswertproblem
 				\[
-					\dot M_2 = M_2 A \quad \text{mit} \quad M_2(t_2) = R(t_2,t_3).
+					\dot M_2(t) = A(t)M_2(t) \quad \text{mit} \quad M_2(t_2) = R(t_2,t_3).
 				\]
 				Wertet man nun $\tilde R(t_2) \cdot R(t_2,t_3)$ in $t_2$ aus, so erhält man
 				\[
 					R(t_2,t_2) \cdot R(t_2,t_3) = R(t_2,t_3) = \tilde R(t_3)(t_2).
 				\]
-				Da die Funktion $(t,x) \mapsto A(t) x$ in $x$ lokal einer Lipschitzbedingung genügt, sind die Lösungen von Anfangswertproblemen eindeutig bestimmt. Aus der obigen Gleichung folgt also, dass die Bahnen von $\tilde R(t_3)$ und $\tilde R(t_2) \cdot R(t_2,t_3)$ übereinstimmen, was dazu führt, dass die Lösungsfunktionen in $t_1$ ausgewertet auch übereinstimmen.
+				Da die Funktion $(t,x) \mapsto A(t) x$ in $x$ lokal einer Lipschitzbedingung genügt, sind die Lösungen von Anfangswertproblemen eindeutig bestimmt. Aus der obigen Gleichung folgt also, dass die Bahnen von $\tilde R(t_3)$ und $\tilde R(t_2) \cdot R(t_2,t_3)$ in $t_2$ übereinstimmen. Daraus folgt, dass beide Bahnen identisch sein müssen, was dazu führt, dass die Lösungsfunktionen in $t_1$ ausgewertet auch übereinstimmen müssen.
 			\item 
 				\[
 					R(t_1, t_2) \cdot R(t_2, t_1) \overset{\ref{Resolvente Eigenschaften:2}}= R(t_1, t_1) \overset{\ref{Resolvente Eigenschaften:1}}= E_n
@@ -327,7 +337,7 @@
 				\item
 					Die Definition der Resolvente mit ihrem Anfangswertproblem liefert uns
 					die Interpretation \[
-						R(t, \tau ) = E_n + \int_\tau^t A(t) \cdot R(t, \tau) dt.
+						R(t, \tau ) = E_n + \int_\tau^t A(s) \cdot R(s, \tau) ds.
 					\]
 					Differenzieren liefert
 					\[
@@ -344,12 +354,13 @@
 						0 = \left [ \frac{\partial R}{\partial t_1}R(t_1, t_2) + R(t_1, t_2) \cdot A(t_2) \right] \cdot R(t_2, t_1)
 					\] folgt.
 					
-					\ref{Resolvente Eigenschaften:3} liefert uns, dass $R(t_1, t_2)$ 
-					invertierbar ist ($R(t_2, t_1)$ ist die zugehörige Inverse). Also
+					\ref{Resolvente Eigenschaften:3} liefert, dass $R(t_2, t_1)$ 
+					invertierbar ist ($R(t_1, t_2)$ ist die zugehörige Inverse). Also
 					gilt:
 					\[
-						\frac{\partial R}{\partial t_2}R(t_1, t_2) = - R(t_1, t_2) \cdot A(t_2).
+						\frac{\partial R}{\partial t_2}R(t_1, t_2) = - R(t_1, t_2) \cdot A(t_2),
 					\]
+					was zu zeigen war.
 			\end{enumerateBew}
 		\end{Beweis}
 
@@ -367,14 +378,15 @@
 			\begin{enumerateBew}
 				\item
 					 Differenzieren von \ref{Resolvente AWP:1} nach $t_1$ ergibt 								\begin{align*}
-						\frac d{dt_1} x(t_1) & = \frac d{dt_1} \left(R(t_1, t_0)x(t_0) + \int_{t_0}^{t_1} R(t,\tau) b(\tau) d\tau \right)\\
-						& = \frac d{dt_1}  R(t_1,t_0)x(t_0) + \frac d{dt_1} \int_{t_0}^{t_1} R(t_1,\tau) b(\tau) d\tau \\
+						& \frac \partial{\partial t_1} x(t_1) \\
+						 = & \frac \partial{\partial t_1} \left(R(t_1, t_0)x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau) b(\tau) d\tau \right)\\
+						 = & \frac \partial {\partial t_1}  R(t_1,t_0)x(t_0) + \frac \partial {\partial t_1} \int_{t_0}^{t_1} R(t_1,\tau) b(\tau) d\tau.
 						%LEIBNITZ REGEL FÜR PARAMETERINTEGRALE
-						& = A(t_1)R(t_1,t_0)x(t_0) \\
-						& \qquad + \int_{t_0}^{t_1} \frac d{dt_1} R(t_1,\tau)b(\tau)d\tau +  R(t_1,t_1)b(\tau) \cdot 1 - R(t_1,t_0)b(t_0) \cdot 0 \\
-						& = A(t_1)R(t_1,t_0)x(t_0) + \int_{t_0}^{t_1} A(t_1) R(t_1,\tau)b(\tau)d\tau +  R(t_1,t_1)b(\tau) \\
-						& = A(t_1)\left[R(t_1,t_0)x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)b(\tau )d\tau \right] + b(t_1) \\
-						& = A(t_1) x(t_1) + b(t_1).
+						\intertext{Mit der Leibnitzregel für Parameterintegrale folgt}
+						= & A(t_1)R(t_1,t_0)x(t_0) + \\ & \qquad \int_{t_0}^{t_1} \frac \partial {\partial t_1} R(t_1,\tau)b(\tau)d\tau +  R(t_1,t_1)b(t_0) \cdot 1 - R(t_1,t_0)b(t_0) \cdot 0 \\
+						= & A(t_1)R(t_1,t_0)x(t_0) + \int_{t_0}^{t_1} A(t_1) R(t_1,\tau)b(\tau)d\tau +  R(t_1,t_1)b(t_1) \\
+						= & A(t_1)\left[R(t_1,t_0)x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau)b(\tau )d\tau \right] + b(t_1) \\
+						= & A(t_1) x(t_1) + b(t_1).
 					\end{align*}
 					Also erfüllt \ref{Resolvente AWP:1} das Anfangswertproblem \eqref{Resolvente AWP:star}.
 				\item
@@ -401,9 +413,9 @@
 		
 		\begin{Beweis}
 			\begin{enumerateBew}
-			\item Für eine beliebige quadratische Matrix $M = (m)_{i,j}\in R^{n \times n}$ ist $M\cdot M^T$
+			\item Für eine beliebige quadratische Matrix $M = (m)_{i,j}\in \R^{n \times n}$ ist $M\cdot M^T$
 			symmetrisch. Da das Integral einer Matrix als Integral über die Matrixeinträge 
-			definiert ist, und $m_{i,j} = m_{j,i}$ ist das Integral über eine symmetrische
+			definiert ist, und $m_{i,j} = m_{j,i}$ gilt, ist das Integral über eine symmetrische
 			Matrix wieder symmetrisch. Wähle nun $M := R(T_1,\tau)\cdot B(\tau)$, dann ist
 			$\G$ symmetrisch.
 			\item Es gilt für $x \in \R^n$:
@@ -416,7 +428,7 @@
 		\end{enumerateBew}
 		\end{Beweis}
 		
-		\begin{Satz}
+		\begin{Satz}\label{Kontrollierbarkeit}
 			Ein lineares Kontrollsystem \[
 				\dot x(t) = A(t) \cdot x(t) + B(t) \cdot u(t)
 			\] ist genau dann kontrollierbar, wenn seine
@@ -426,8 +438,8 @@
 		\begin{Beweis}
 			\begin{enumerate}
 				\item["`$\Leftarrow$"': ]
-					Sei $\G$ invertierbar, $x^0, x^1 \in R^n$ beiliebig. Definiere \[
-						\bar u: (T_0, T_1) \rightarrow R^m, \tau \mapsto B(\tau)^T\cdot R(T_1,\tau)^T\G^{-1}\cdot (x^1-R(T_1, T_0)\cdot x^0)
+					Sei $\G$ invertierbar, $x^0, x^1 \in \R^n$ beiliebig. Definiere \[
+						\bar u: (T_0, T_1) \rightarrow \R^m, \tau \mapsto B(\tau)^T\cdot R(T_1,\tau)^T\G^{-1}\cdot (x^1-R(T_1, T_0)\cdot x^0)
 					\]
 					Dann ist $\bar u$ stetig, da $\G^{-1}(x^1-R(T_1, T_0)\cdot x^0)$ eine
 					von $\tau$ unabhängige Konstante ist, und $B$, sowie $R$ stetig sind.
@@ -467,7 +479,7 @@
 					\]
 					Dann gilt wieder mit \ref{Resolvente AWP:2} \begin{align*}
 						x(t) = & R(t, T_0) \cdot x^0+ \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau \\
-								 = & \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau.
+								 \overset{x^0=0}= & \int_{T_0}^t R(t, \tau) \cdot B(\tau) u(\tau) d\tau.
 								 \tag{$\star\star$}\label{eqn:Gramsche Kontrollmatrix:star2}
 					\end{align*}
 					
@@ -524,7 +536,7 @@
 		\begin{align*}
 			& \int_{T_0}^{T_1}\bar u(\tau)^T v(\tau) d\tau \\
 			\overset{\text{Def. }u}= & \int_{T_0}^{T_1}(B(\tau)^T R(T_1,\tau)^T\G^{-1} (x^1-R(T_1, T_0) x^0))^T v(\tau) d\tau \\
-			\overset{\G \text{ sym.}}= & \int_{T_0}^{T_1} (x^1-R(T_1,T_0)x^0)^T \G^{-1}R(T_1,\tau)B(\tau)v(\tau)d\tau \\
+			\overset{\G^{-1} \text{ sym.}}= & \int_{T_0}^{T_1} (x^1-R(T_1,T_0)x^0)^T \G^{-1}R(T_1,\tau)B(\tau)v(\tau)d\tau \\
 			= \;\;\,& (x^1-R(T_1,T_0)x^0)^T \G^{-1} \int_{T_0}^{T_1} R(T_1,\tau)B(\tau)v(\tau)d\tau
 		\end{align*}
 		und für $\int_{T_0}^{T_1} R(T_1,\tau)B(\tau)v(\tau)d\tau$ gilt 
@@ -536,10 +548,10 @@
 			=& 0
 			\tag{$\star\star$}\label{eqn:Gramsche Minimalitaet:star2} 
 		\end{align*}
-		wobei \eqref{eqn:Gramsche Minimalitaet:star} aus mit Umstellen aus \ref{Resolvente AWP:2} folgt:
+		wobei \eqref{eqn:Gramsche Minimalitaet:star} aus Umstellen von \ref{Resolvente AWP:2} folgt:
 		\begin{align*}
-			  & x(T_1) =R(T_1,T_0) x^0 + \int^{T_1}_{T_0}R(T^1,\tau)b(\tau)d\tau \\
-			\Leftrightarrow {}&  x(T_1) - R(T_1,T_0) x^0 = \int^{T_1}_{T_0}R(T^1,\tau)b(\tau)d\tau
+			  & x(T_1) =R(T_1,T_0) x^0 + \int^{T_1}_{T_0}R(T_1,\tau)B(\tau)u(\tau)d\tau \\
+			\Leftrightarrow {}&  x(T_1) - R(T_1,T_0) x^0 = \int^{T_1}_{T_0}R(T_1,\tau)B(\tau)u(\tau)d\tau
 			\tag{$\star$}\label{eqn:Gramsche Minimalitaet:star} .
 		\end{align*}
 		Mit \eqref{eqn:Gramsche Minimalitaet:star2} gilt also
@@ -558,6 +570,7 @@
 		wird.
 		
 \input{kalman}
+\input{marcel}
 \newpage
 \printbibliography
 \newpage
