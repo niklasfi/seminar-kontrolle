@@ -131,7 +131,7 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 	für gegebene $x_0 \in \R^n$ und $t_0 \in [T_0, T_1]$ die Gleichung $x(t_0) = 
 	x_0$ gilt.
 	\end{Definition}
-	Nun können lineare Kontrollsysteme beziehungsweise die Kontrollierbarkeit definiert werden, welche einen zentralen Punkt in der Arbeit einnehmen. 
+	Nun können lineare Kontrollsysteme beziehungsweise die Kontrollierbarkeit definiert werden, welche eine zentrale Rolle in der Arbeit einnehmen. 
 	
 	\begin{Definition}[lineares Kontrollsystem, kontrollierbar]\index{lineares Kontrollsystem}\index{kontrollierbar}
 		Ein lineares Kontrollsystem 
@@ -159,8 +159,8 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 	
 	\section{Die Resolvente}
 	\subsection*{Einleitung}
-		Von besonderem Interesse ist jetzt natürlich ein Kriterium für die 
-		Kontrolleribarkeit eines linearen Kontrollsystems. Dieses wird in
+		Von besonderem Interesse ist natürlich ein Kriterium für die 
+		Kontrollierbarkeit eines linearen Kontrollsystems. Dieses wird in
 		Abschnitt \ref{Gram'sche Kontrollmatrix} geliefert. Hierfür ist allerdings
 		etwas Vorarbeit notwendig.
 		
@@ -173,9 +173,9 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 		Fundamentalmatrix im allgemeinen nicht elementar bestimmbar.
 		
 		Diese Klippe wird mit Resolvente $R$, die uns eine eindeutig bestimmte 
-		Fundamentalmatrix eines Anfangswertproblems	liefert, geschickt umschifft.
+		Fundamentalmatrix eines Anfangswertproblems liefert, geschickt umschifft.
 		Mit der Resolvente und dem zentralen Satz aus Abschnitt
-		\ref{Gram'sche Kontrollmatrix} können kann dann überpüft werden, ob das 
+		\ref{Gram'sche Kontrollmatrix} können kann dann überprüft werden, ob das 
 		lineare Kontrollproblem kontrollierbar ist. 
 	\subsection*{Definition}
 		Sei $\Phi:\R \rightarrow \R^{n \times n}$ die Funktion, die das homogene Anfangswertproblem
@@ -254,7 +254,7 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 			jeder Lösungsfunktion $\Phi$ des von $\tau$ abhängigen Anfangswertproblems.
 		
 			Die Stetigkeit in der 2. Komponente ($\tau$) folgt aus dem Satz über die
-			Stetige Abhängigkeit aus \cite{KriegWalcher2010}.
+			Stetige Abhängigkeit\index{Satz über stetige Abhängigkeit} aus \cite{KriegWalcher2010}.
 			Für $\tau_1, \tau_2 \in [T_0,T_1]$ betrachte die Anfangswertprobleme
 			\[
 				\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau_1) = \E
@@ -284,11 +284,11 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 		
 		\begin{Beweis}
 		\begin{enumerateBew}
-			\item Betrachten wir das zu $R(t_1, t_1) $ gehörige 
+			\item Das zu $R(t_1, t_1) $ gehörige 
 			Anfangswertproblem \[
 				\dot M(t) = A(t) \cdot M(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad M(t_1) = \E
-			\] mit Lösung $\Phi$.
-			Nun gilt: \[
+			\] habe die Lösung $\Phi$.
+			Dann gilt: \[
 				R(t_1, t_1) = \tilde R (t_1)(t_1) = \Phi(t_1) = \E.
 			\]
 			\item 
@@ -299,7 +299,7 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 					\dot M(t) = A(t) M(t) \quad \text{mit} \quad M(t_0) = C \cdot D.
 				\]
 
-				Mit dieser Eigenschaft kann die Aussage gezeigt werden. Betrachte $\tilde R(t_2)$ und $\tilde R(t_3)$. Diese beiden Funktionen sind die Lösungen der Anfangswertprobleme 
+				Mit dieser Eigenschaft kann die Aussage gezeigt werden, wenn man $\tilde R(t_2)$ und $\tilde R(t_3)$ betrachtet. Diese beiden Funktionen sind die Lösungen der Anfangswertprobleme 
 				\[
 					\dot M_2(t) = A(t) M_2(t) \quad \text{mit} \quad M_2(t_2) = \E.
 				\]				
@@ -315,7 +315,7 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 				\[
 					R(t_2,t_2) \cdot R(t_2,t_3) = R(t_2,t_3) = \tilde R(t_3)(t_2).
 				\]
-				Da die Funktion $(t,x) \mapsto A(t) x$ in $x$ lokal einer Lipschitzbedingung genügt, sind die Lösungen von Anfangswertproblemen eindeutig bestimmt. Aus der obigen Gleichung folgt also, dass die Bahnen von $\tilde R(t_3)$ und $\tilde R(t_2) \cdot R(t_2,t_3)$ in $t_2$ übereinstimmen. Daraus folgt, dass beide Bahnen identisch sein müssen, was dazu führt, dass die Lösungsfunktionen in $t_1$ ausgewertet auch übereinstimmen müssen.
+				Da die Funktion $(t,x) \mapsto A(t) x$ in $x$ lokal einer Lipschitzbedingung genügt, sind die Lösungen von Anfangswertproblemen eindeutig bestimmt. Aus der obigen Gleichung folgt also, dass die Bahnen von $\tilde R(t_3)$ und $\tilde R(t_2) \cdot R(t_2,t_3)$ in $t_2$ übereinstimmen. Daraus folgt wiederum, dass beide Bahnen identisch sein müssen und, dass die Lösungsfunktionen in $t_1$ ausgewertet auch übereinstimmen müssen.
 			\item 
 				\[
 					R(t_1, t_2) \cdot R(t_2, t_1) \overset{\ref{Resolvente Eigenschaften:2}}= R(t_1, t_1) \overset{\ref{Resolvente Eigenschaften:1}}= E_n
@@ -334,7 +334,7 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 		\begin{Beweis}
 			\begin{enumerateBew}
 				\item
-					Die Definition der Resolvente mit ihrem Anfangswertproblem liefert uns
+					Die Definition der Resolvente mit ihrem Anfangswertproblem liefert
 					die Interpretation \[
 						R(t, \tau ) = E_n + \int_\tau^t A(s) \cdot R(s, \tau) ds.
 					\]
@@ -343,7 +343,7 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 						\frac{\partial R}{\partial t}R(t,\tau) = A(t) \cdot R(t, \tau).
 					\]
 				\item
-					Differenzieren von \ref{Resolvente Eigenschaften:3} nach $t_2$ gibt uns
+					Differenzieren von \ref{Resolvente Eigenschaften:3} nach $t_2$ gibt
 					\[
 						\frac{\partial R}{\partial t_2} E_n = \frac{\partial R}{\partial t_2} R(t_1, t_2) \cdot R(t_2, t_1)
 					\] also \[
@@ -437,7 +437,7 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 		\begin{Beweis}
 			\begin{enumerate}
 				\item["`$\Leftarrow$"': ]
-					Sei $\G$ invertierbar, $x^0, x^1 \in \R^n$ beiliebig. Definiere \[
+					Sei $\G$ invertierbar, $x^0, x^1 \in \R^n$ beliebig. Definiere \[
 						\bar u: (T_0, T_1) \rightarrow \R^m, \tau \mapsto B(\tau)^T\cdot R(T_1,\tau)^T\G^{-1}\cdot (x^1-R(T_1, T_0)\cdot x^0)
 					\]
 					Dann ist $\bar u$ stetig, da $\G^{-1}(x^1-R(T_1, T_0)\cdot x^0)$ eine
@@ -470,10 +470,10 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 					\end{align*}
 					Daraus folgt 
 					\begin{align*}
-						y^T R(T_1, \tau) B(\tau) = 0 \tag{$\star$}\label{eqn:Gramsche Kontrollmatrix:star}
+						y^T R(T_1, \tau) B(\tau) = 0, \tag{$\star$}\label{eqn:Gramsche Kontrollmatrix:star}
 					\end{align*}
 					da $\tau \mapsto B(\tau)^T R(T_1, \tau)^T y$ stetig ist.
-					Sei nun $u: [T_0, T_1] \rightarrow R^m$ eine beliebige stetige Funktion. Dazu sei $x$ die Lösung des Anfangswertproblems \[
+					Sei nun $u: [T_0, T_1] \rightarrow R^m$ eine beliebige stetige Funktion und $x$ sei die Lösung des Anfangswertproblems \[
 						\dot x(t) = A(t) x(t) + B(t) u(t) \quad \text{mit} \quad x(T_1) = 0 = x^1.
 					\]
 					Dann gilt wieder mit \ref{Resolvente AWP:2} \begin{align*}
