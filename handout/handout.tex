@@ -1,0 +1,86 @@
+\documentclass[a4paper,twoside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{framed}
+\usepackage[framed,thmmarks]{ntheorem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+%\usepackage{cmbright}
+\usepackage[a4paper,left=31mm,right=31mm,top=25mm,bottom=29mm]{geometry}
+%\usepackage{fullpage}
+ 
+\theoremstyle{nonumberplain}
+\theorembodyfont{}
+\newframedtheorem{Definition}{Definition}
+\newframedtheorem{Lemma}{Lemma}
+
+\newcommand{\R}[0]{\mathbb{R}}
+\newcommand{\G}[0]{\mathfrak{C}}
+\newcommand{\E}[1][n]{\mathrm{E_{#1}}}
+\newcommand{\Id}[1][n]{\mathrm{Id_{#1}}}
+
+
+\begin{document}
+\begin{Definition}[Lineares Kontrollsystem]\index{lineares Kontrollsystem}
+		Ein System
+		\begin{align*}%\label{gl:ks}
+			\dot x(t) = A(t) x(t) + B(t) u(t),\quad t \in [T_0, T_1]
+		\end{align*}
+		wird \emph{lineares Kontrollsystem} genannt.
+	\end{Definition}
+	
+	\begin{Definition}[kontrollierbar]\index{kontrollierbar}
+		Ein lineares Kontrollsystem 
+			\[
+				\dot x(t) = A(t)x(t) + B(t)u(t)
+			\]
+		ist \emph{kontrollierbar}, falls es für alle $x_0,x_1 \in \R^n$ eine stetige Funktion $u$ gibt, sodass die Lösungsfunktion $x$ des Anfangswertproblems 
+		\begin{align*}
+			\dot x(t) = A(t)x(t) + B(t)u(t) \; \forall t \in [T_0, T_1] \quad \text{mit} \quad x(T_0) = x_0
+		\end{align*}
+		in $T_1$ den Wert $x_1$ annimmt.
+	\end{Definition}
+	
+		\begin{Definition}[Resolvente]
+			Die \emph{Resolvente} eines linearen Systems ist definiert als
+			\[
+				R: [T_0, T_1] \times [T_0, T_1] \rightarrow \R^{n \times n},
+				(t, \tau) \mapsto \tilde R(\tau)(t),
+			\]
+			 wobei $\tilde R(\tau)$ das homogene Anfangswertproblem 
+			\[
+			\dot M(t) = A(t)\cdot M(t) \; \forall t \in [T_0, T_1]  \quad \text{mit} \quad M(\tau) = \E
+			\] löst.
+		\end{Definition}
+
+
+\begin{Lemma}[Eigenschaften der Resolvente]
+\mbox{}
+\columnsep0pt
+\begin{multicols*}{2}
+\begin{enumerate}
+	\item $R$ ist stetig
+	\item $	R(t_1,t_1) = \E$
+	\item $ R(t_1, t_2) \cdot R(t_2, t_3) = R(t_1, t_3)$
+	\item $ R(t_1, t_2) \cdot R(t_2, t_1) = \E$ 
+	\item $ \frac{\partial R}{\partial t} (t, \tau) = A(t) \cdot R(t,\tau) \; \forall t,\tau \in [T_0, T_1]$
+	\item $ \frac{\partial R}{\partial \tau} (t, \tau) = - R(t, \tau) \cdot A(\tau) \; \forall t,\tau \in [T_0, T_1]$
+	\item $x(t_1) = R(t_1, t_0) x(t_0) + \int_{t_0}^{t_1} R(t_1,\tau) b(\tau) d\tau$
+	\item $x(t) = R(t, T_0) x^0+ \int_{T_0}^t R(t, \tau)  b(\tau)d\tau$.
+\end{enumerate}
+\end{multicols*}
+
+\end{Lemma}
+
+\begin{Definition}[Gram'sche Kontrollmatrix]\index{Gram'sche Kontrollmatrix}
+			Für ein Kontrollsystem \[
+				\dot x(t) = A(t) x(t) + B(t) u(t)
+			\]
+			heißt die Matrix \[
+				\G:=\int_{T_0}^{T_1} R(T_1, \tau) \cdot B(\tau) \cdot B(\tau)^T\cdot R(T_1, \tau)^T d\tau \in \R^{n \times n}
+			\] Gram'sche Kontrollmatrix.
+		\end{Definition}
+		
+\end{document}
