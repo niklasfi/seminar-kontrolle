@@ -30,7 +30,7 @@ einfache Beispiel zeigt:
 \begin{Beispiel}
 [nicht kontrollierbares System]\label{bsp1}
 
-Sei ein zeitunabh"angiges lineare Kontrollsystem gegeben durch die
+Sei ein zeitunabh"angiges lineares Kontrollsystem gegeben durch die
 Matrizen
 $$
 A=\begin{pmatrix}1 & 0\\
@@ -56,12 +56,12 @@ Begriff ein:
 \begin{Definition}[Erreichbarkeitsmenge]
 Wir definieren die Menge 
 \begin{align*}
-\mathcal{R}(t):=\{x_{1}\in\mathbb{R}^{n}|\text{ es ex. eine Steuerung }u\\
-x\text{ L"osung des Kontrollsystems und es gilt }x(t)=x_{1}\}
+\mathcal{R}(t):=&\{x_{1}\in\mathbb{R}^{n}|\text{ es ex. eine Steuerung }u\\
+&x\text{ L"osung des Kontrollsystems und es gilt }x(t)=x_{1}\}
 \end{align*}
 \end{Definition}
 
-Das hei"st $\text{\ensuremath{\mathcal{R}}(t) ist der Menge der Zust"ande (oder Punkte), die von \ensuremath{x_{0}=0}}$
+Das hei"st $\text{\ensuremath{\mathcal{R}}(t) ist die Menge der Zust"ande (oder Punkte), die von \ensuremath{x_{0}=0}}$
 in der Zeit $t=T_{1}-T_{0}$ durch alle m"oglichen Steuerungen $u$
 erreicht werden k"onnen.
 
@@ -114,26 +114,26 @@ Verlauf kurz $\mathcal{R}$ statt $\mathcal{R}(t)$.
 
 \subsection*{Hilbert-Eindeutigkeits-Methode (HUM)}
 
-Ziel ist es jetzt also einen Weg zu finden, um eine Steuerungsfunktion
+Ziel ist es jetzt einen Weg zu finden, um eine Steuerungsfunktion
 zu bestimmen, die unabh"angig von der Kontrollierbarkeit, leicht zu
-Berechnen und in einem noch zu definierenden Sinne \emph{optimal}
-ist. Einen solchen Weg bzw. Algorithmus liefert uns die \emph{HUM}.
+berechnen und in einem noch zu definierenden Sinne \emph{optimal}
+ist. Einen solchen Weg bzw. Algorithmus liefert uns die \emph{Hilbert-Eindeutigkeits-Methode(HUM)}.
 
 Dazu f"uhren wir zun"achst ein Differentialgleichungssystem ein:
 
 \begin{Definition}[adjungiertes System]
 
 
-Wir definieren f"ur ein $ $$\phi_{1}\in\mathbb{R}^{n}$ das adjungierte
+Wir definieren f"ur ein $ \phi_{1}\in\mathbb{R}^{n}$ das adjungierte
 zeitumgekehrte homogene Kontrollsystem
 $$
 \dot{\phi}=-A(t)^T\phi,~~~~\phi(T_{1})=\phi_{1}
 $$
 und bezeichnen die L"osung mit $\phi(t)$.\end{Definition}
 
-Die Bezeichnung \emph{zeitumgekehrt} rechtfertigt die Tatsache, dass
-die L"osung des Anfangswertproblems die L"osungsbahn des Anfangswertproblems $\dot{\phi}=A(t)\phi,~~\phi(T_{1})=\phi_{1}$ genau umgekehrt durchl"auft.
-Um nun die HUM formulieren zu k"onnen, ben"otigen wir die Folgende, in
+Die Bezeichnung \emph{zeitumgekehrt} wird durch die Tatsache gerechtfertigt, dass
+die L"osung dieses Anfangswertproblems die L"osungsbahn des Anfangswertproblems  $\dot{\phi}=A(t)\phi,~~\phi(T_{1})=\phi_{1}$ genau umgekehrt durchl"auft.
+Um nun die HUM formulieren zu k"onnen, ben"otigen wir die folgende, in
 einem Korollar zusammengefasste, Identit"at:
 
 \begin{Korollar}
@@ -240,6 +240,7 @@ $\mathcal U$ ist ein Untervektorraum.
 \end{Lemma}
 \begin{Beweis}
 \begin{enumerate}
+\item[ ]
 \item $0 \in \mathcal U$, da f"ur $\phi_1=0$ gilt: $\phi(t) \equiv 0$, damit ist $\bar u(t) =B(t) \phi(t) \equiv 0$
 \item Seien $u_1,u_2 \in \mathcal U$, dann ist zu zeigen, dass $u_1+u_2$ ebenfalls in $\mathcal U$ liegt:
 \begin{align*}
