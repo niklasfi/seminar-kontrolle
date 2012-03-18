@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[      3786,        105]
-NotebookOptionsPosition[      3438,         88]
-NotebookOutlinePosition[      3803,        104]
-CellTagsIndexPosition[      3760,        101]
+NotebookDataLength[      3551,        102]
+NotebookOptionsPosition[      3202,         85]
+NotebookOutlinePosition[      3567,        101]
+CellTagsIndexPosition[      3524,         98]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -43,7 +43,9 @@ Cell[BoxData[
   3.5410630843671722`*^9, 3.541063139287766*^9}, {3.5410632032947083`*^9, 
   3.5410632072748947`*^9}, {3.541063245247468*^9, 3.541063269481751*^9}, {
   3.541063345082182*^9, 3.541063354895897*^9}, {3.541063502381441*^9, 
-  3.541063709031279*^9}, {3.54106396616963*^9, 3.541063987911642*^9}}],
+  3.541063709031279*^9}, {3.54106396616963*^9, 3.541063987911642*^9}, {
+  3.5410640650270033`*^9, 3.541064071924911*^9}, {3.541064162325622*^9, 
+  3.5410642023510103`*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{{}, {}, 
@@ -78,12 +80,7 @@ zzfw9rjUsKItXOU+6Bb8B1cbPc3b2/hfxrMqyQ==
   PlotRangePadding->{
     Scaled[0.02], 
     Scaled[0.02]}]], "Output",
- CellChangeTimes->{
-  3.541063022661553*^9, {3.541063107186763*^9, 3.541063120213943*^9}, 
-   3.541063208274446*^9, {3.541063262326269*^9, 3.541063270566861*^9}, {
-   3.541063348162654*^9, 3.541063355348089*^9}, 3.5410635066317577`*^9, {
-   3.541063536805972*^9, 3.541063639388507*^9}, {3.541063680833538*^9, 
-   3.541063709404212*^9}, {3.54106397675394*^9, 3.541063988291246*^9}}]
+ CellChangeTimes->{3.5410642388576803`*^9}]
 }, Open  ]]
 },
 WindowToolbars->"EditBar",
@@ -104,8 +101,8 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[567, 22, 998, 23, 77, "Input"],
-Cell[1568, 47, 1854, 38, 390, "Output"]
+Cell[567, 22, 1100, 25, 77, "Input"],
+Cell[1670, 49, 1516, 33, 390, "Output"]
 }, Open  ]]
 }
 ]
