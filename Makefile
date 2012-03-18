@@ -11,4 +11,7 @@ all: $(addsuffix .pdf,$(TARGET))
 	${LTX} $^
 
 clean:
+	rm seminar.pdf
+
+cleanest:
 	rm -rf $(shell tr "\n" " " < .gitignore)
