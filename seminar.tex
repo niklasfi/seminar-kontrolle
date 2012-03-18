@@ -172,10 +172,9 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 		Anfangswertproblems abhängig von $t$ ist? In diesem Fall ist die
 		Fundamentalmatrix im allgemeinen nicht elementar bestimmbar.
 		
-		Diese Klippe wird mit Resolvente $R$, die uns eine eindeutig bestimmte 
-		Fundamentalmatrix eines Anfangswertproblems liefert, geschickt umschifft.
+		Zur Lösung dieses Problems führen wir die Resolvente $R$ ein.
 		Mit der Resolvente und dem zentralen Satz aus Abschnitt
-		\ref{Gram'sche Kontrollmatrix} können kann dann überprüft werden, ob das 
+		\ref{Gram'sche Kontrollmatrix} kann dann überprüft werden, ob das 
 		lineare Kontrollproblem kontrollierbar ist. 
 	\subsection*{Definition}
 		Sei $\Phi:\R \rightarrow \R^{n \times n}$ die Funktion, die das homogene Anfangswertproblem
@@ -334,14 +333,14 @@ In unserem Seminar wollen wir eine Einführung in die lineare Kontrolltheorie ge
 		\begin{Beweis}
 			\begin{enumerateBew}
 				\item
-					Die Definition der Resolvente mit ihrem Anfangswertproblem liefert
-					die Interpretation \[
-						R(t, \tau ) = E_n + \int_\tau^t A(s) \cdot R(s, \tau) ds.
+					Sei $\tau \in [T_0, T_1]$ beliebig. Da $t \mapsto R(t,\tau)$ das Anfangswertproblem \[
+						\dot M(t) = A(t) \cdot M(t) \quad \text{mit} \quad M(\tau) = E_n
 					\]
-					Differenzieren liefert
+					löst, muss 
 					\[
-						\frac{\partial R}{\partial t}R(t,\tau) = A(t) \cdot R(t, \tau).
+						\frac{\partial R}{\partial t}R(t,\tau) = A(t) \cdot R(t, \tau)
 					\]
+					für alle $t \in [T_0, T_1]$ gelten.
 				\item
 					Differenzieren von \ref{Resolvente Eigenschaften:3} nach $t_2$ gibt
 					\[
