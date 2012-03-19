@@ -25,12 +25,12 @@ zu Grunde gelegt.
 Die Steuerung $\bar{u}$ konnte nur definiert werden, da die Gramsche
 Kontrollmatrix $\mathfrak{C}$ invertierbar war, was genau dann der
 Fall ist, wenn das Kontrollsystem  kontrollierbar ist.
-Dies ist nat"urlich im Allgemeinen nicht immer der Fall, wie das folgende
+Dies ist natürlich im Allgemeinen nicht immer der Fall, wie das folgende
 einfache Beispiel zeigt:
 \begin{Beispiel}
 [nicht kontrollierbares System]\label{bsp1}
 
-Sei ein zeitunabh"angiges lineares Kontrollsystem gegeben durch die
+Sei ein zeitunabhängiges lineares Kontrollsystem gegeben durch die
 Matrizen
 $$
 A=\begin{pmatrix}1 & 0\\
@@ -43,13 +43,13 @@ Dann folgt direkt mit Hilfe des Kalman-Rang-Kriteriums, dass das System
 nicht kontrollierbar ist, da $A^{i}=A,\,\forall i\in\mathbb{N}$
 und damit $rang(B\,|\, AB)=1$.
 \end{Beispiel}
-Dar"uber hinaus ist selbst bei kontrollierbaren Systemen
+Darüber hinaus ist selbst bei kontrollierbaren Systemen
 die Gramsche Kontrollmatrix nicht ohne weiteres berechenbar und/oder
-der Aufwand f"ur Bestimmung und Invertierung in keinem akzeptablem
+der Aufwand für Bestimmung und Invertierung in keinem akzeptablem
 Rahmen (Rechenaufwand Matrixinvertierung $\mathcal{O}(n^{3})$). 
 
-Um dennoch weitere Aussagen "uber solche Systeme treffen zu k"onnen,
-die eben nicht kontrollierbar sind, f"uhren wir einen neuen
+Um dennoch weitere Aussagen über solche Systeme treffen zu können,
+die eben nicht kontrollierbar sind, führen wir einen neuen
 Begriff ein:
 
 
@@ -57,25 +57,25 @@ Begriff ein:
 Wir definieren die Menge 
 \begin{align*}
 \mathcal{R}(t):=&\{x_{1}\in\mathbb{R}^{n}|\text{ es ex. eine Steuerung }u\\
-&x\text{ L"osung des Kontrollsystems und es gilt }x(t)=x_{1}\}
+&x\text{ Lösung des Kontrollsystems und es gilt }x(t)=x_{1}\}
 \end{align*}
 \end{Definition}
 
-Das hei"st $\text{\ensuremath{\mathcal{R}}(t) ist die Menge der Zust"ande (oder Punkte), die von \ensuremath{x_{0}=0}}$
-in der Zeit $t=T_{1}-T_{0}$ durch alle m"oglichen Steuerungen $u$
-erreicht werden k"onnen.
+Das hei"st $\text{\ensuremath{\mathcal{R}}(t) ist die Menge der Zustände (oder Punkte), die von \ensuremath{x_{0}=0}}$
+in der Zeit $t=T_{1}-T_{0}$ durch alle möglichen Steuerungen $u$
+erreicht werden können.
 
-F"ur unser Beispiel (\ref{bsp1}) l"asst sich die Erreichbarkeitsmenge
+Für unser Beispiel (\ref{bsp1}) lässt sich die Erreichbarkeitsmenge
 wie folgt bestimmen:
 
-Die L"osung des Anfangswertproblems hat die Form
+Die Lösung des Anfangswertproblems hat die Form
 $$
 x(t)=e^{A(t-T_{0})}x_{0}+\int_{T_{0}}^{t}e^{A(t-s)}Bu(s)ds=\int_{T_{0}}^{t}e^{A(t-s)}\begin{pmatrix}1\\
 1
 \end{pmatrix}u(s)ds
 $$
-Und damit, wegen der Diagonalit"at von $A(t)$, ergibt sich f"ur die
-L"osungskomponenten
+Und damit, wegen der Diagonalität von $A(t)$, ergibt sich für die
+Lösungskomponenten
 $$
 \begin{pmatrix}x_{1}(t)\\
 x_{2}(t)
@@ -83,7 +83,7 @@ x_{2}(t)
 \int_{T_{0}}^{t}e^{(t-s)}u(s)ds
 \end{pmatrix}
 $$
-Das hei"st, beide L"osungskomponente sind f"ur jede Steuerung $u$ zu
+Das hei"st, beide Lösungskomponente sind für jede Steuerung $u$ zu
 jeder Zeit $t>T_{0}$ identisch:
 
 %\vspace{5cm}
@@ -94,54 +94,54 @@ jeder Zeit $t>T_{0}$ identisch:
 \end{center}
 %\vspace{5cm}
 
-Die Erreichbarkeitsmenge eines Kontrollsystems hat einige n"utzliche
-Eigenschaften, die hier zwar kurz erw"ahnt werden sollen, jedoch nicht
+Die Erreichbarkeitsmenge eines Kontrollsystems hat einige nützliche
+Eigenschaften, die hier zwar kurz erwähnt werden sollen, jedoch nicht
 bewiesen werden, da wir sie in unserem Kontext nicht verwenden.
 
 \begin{Lemma}
 Eigenschaften der Erreichbarkeitsmenge
 
 \begin{itemize}
-\item $\mathcal{R}(t)$ ist f"ur alle $t\geq0$ ein Untervektorraum des $\mathbb{R}^{n}$.
-\item $\mathcal{R}(t)=\mathcal{R}(s)$ f"ur alle $s,t>0.$
+\item $\mathcal{R}(t)$ ist für alle $t\geq0$ ein Untervektorraum des $\mathbb{R}^{n}$.
+\item $\mathcal{R}(t)=\mathcal{R}(s)$ für alle $s,t>0.$
 \end{itemize}
 \end{Lemma}
 Das hei"st also, die Erreichbarkeitsmenge $x_{0}+\mathcal{R}(t)$ ist
 ein affiner Unterraum mit der Dimension von $\mathcal{R}(t)$ und
-$\mathcal{R}(t)$ ist zeitunabh"angig - man kann einen Zustand, falls
+$\mathcal{R}(t)$ ist zeitunabhängig - man kann einen Zustand, falls
 er erreichbar ist, in jeder Zeit erreichen. Wir schreiben im weiteren
 Verlauf kurz $\mathcal{R}$ statt $\mathcal{R}(t)$.
 
 \subsection*{Hilbert-Eindeutigkeits-Methode (HUM)}
 
 Ziel ist es jetzt einen Weg zu finden, um eine Steuerungsfunktion
-zu bestimmen, die unabh"angig von der Kontrollierbarkeit, leicht zu
+zu bestimmen, die unabhängig von der Kontrollierbarkeit, leicht zu
 berechnen und in einem noch zu definierenden Sinne \emph{optimal}
 ist. Einen solchen Weg bzw. Algorithmus liefert uns die \emph{Hilbert-Eindeutigkeits-Methode(HUM)}.
 
-Dazu f"uhren wir zun"achst ein Differentialgleichungssystem ein:
+Dazu führen wir zunächst ein Differentialgleichungssystem ein:
 
 \begin{Definition}[adjungiertes System]
 
 
-Wir definieren f"ur ein $ \phi_{1}\in\mathbb{R}^{n}$ das adjungierte
+Wir definieren für ein $ \phi_{1}\in\mathbb{R}^{n}$ das adjungierte
 zeitumgekehrte homogene Kontrollsystem
 $$
 \dot{\phi}=-A(t)^T\phi,~~~~\phi(T_{1})=\phi_{1}
 $$
-und bezeichnen die L"osung mit $\phi(t)$.\end{Definition}
+und bezeichnen die Lösung mit $\phi(t)$.\end{Definition}
 
 Die Bezeichnung \emph{zeitumgekehrt} wird durch die Tatsache gerechtfertigt, dass
-die L"osung dieses Anfangswertproblems die L"osungsbahn des Anfangswertproblems  $\dot{\phi}=A(t)\phi,~~\phi(T_{1})=\phi_{1}$ genau umgekehrt durchl"auft.
-Um nun die HUM formulieren zu k"onnen, ben"otigen wir die folgende, in
-einem Korollar zusammengefasste, Identit"at:
+die Lösung dieses Anfangswertproblems die Lösungsbahn des Anfangswertproblems  $\dot{\phi}=A(t)\phi,~~\phi(T_{1})=\phi_{1}$ genau umgekehrt durchläuft.
+Um nun die HUM formulieren zu können, benötigen wir die folgende, in
+einem Korollar zusammengefasste, Identität:
 
 \begin{Korollar}
-Sei $x : [t_0,t_1] \rightarrow \mathbb R^n$ die L"osung des Anfangswertproblems
+Sei $x : [t_0,t_1] \rightarrow \mathbb R^n$ die Lösung des Anfangswertproblems
 \begin{align*} \label{hum1} \tag{$\star$}
 \dot x = A(t)x+B(t)u(t) ~~~~ \forall x(t_0)=0
 \end{align*}
-Sei au"serdem $\phi_1 \in \mathbb R^n$ und $\phi : [t_0,t_1] \rightarrow \mathbb R^n $ die L"osung des  adjungierten Systems
+Sei au"serdem $\phi_1 \in \mathbb R^n$ und $\phi : [t_0,t_1] \rightarrow \mathbb R^n $ die Lösung des  adjungierten Systems
 \begin{align*}
 \dot \phi = -A(t)^T\phi ~~~~ \phi(t_1)=\phi_1
 \end{align*}
@@ -152,7 +152,7 @@ x(t_1) \cdot \phi_1 = \int_{t_0}^{t_1} u(\tau) \cdot B(\tau)^T \phi(\tau) d\tau.
 \end{Korollar}
 
 \begin{Beweis}
-Vorbemerkung: Um die Aussage zu beweisen, wollen wir uns zun"achst klarmachen, dass mit dem Hauptsatz der Differential- und Integralrechnung gilt:
+Vorbemerkung: Um die Aussage zu beweisen, wollen wir uns zunächst klarmachen, dass mit dem Hauptsatz der Differential- und Integralrechnung gilt:
 \begin{align*}
 \int_{t_0}^{t_1} \frac{d}{d\tau} (x(\tau) \cdot \phi(\tau)) d\tau 
 &= x(t_1) \cdot  \underbrace{\phi(t_1)}_{=\phi_1} - \underbrace{x(t_0)}_{=0} \cdot \phi(t_0) \\
@@ -180,7 +180,7 @@ Wir definieren folgende Abbildung:
 \Lambda : \mathbb R^n \rightarrow \mathbb R^n, \phi_1 \mapsto x(t_1)
 \end{align*}
 Also bildet $\Lambda$ einen Startzustand von $\phi$ auf einen Endzustand von $x$ ab.
-Wobei $x: [t_0,t_1] \rightarrow \mathbb R^n$ die L"osung des Anfangswertproblems
+Wobei $x: [t_0,t_1] \rightarrow \mathbb R^n$ die Lösung des Anfangswertproblems
 \begin{align*}
 \dot x = A(t)x + B(t) \bar u(t) ~~~~ x(t_0)=0
 \end{align*}
@@ -189,25 +189,25 @@ mit
 \bar u(t):=B(t)^T \phi(t)
 \label{baru} \tag{$\star\star$}
 \end{align*}
-und $\phi :[t_0,t_1] \rightarrow \mathbb R^n$ L"osung des adjungierten Systems
+und $\phi :[t_0,t_1] \rightarrow \mathbb R^n$ Lösung des adjungierten Systems
 \begin{align*}
 \dot \phi = -A(t)^T \phi ~~~~ \phi(t_1) = \phi_1 , ~ t\in [t_0,t_1]
 \end{align*}
- f"ur ein beliebiges $\phi_1$ ist.
+ für ein beliebiges $\phi_1$ ist.
 \end{Definition}
 
 \begin{Korollar}
 $\Lambda$ liefert uns also einen Algorithmus, um eine Steuerung $\bar u$ zu generieren, der wie folgt zu verstehen ist:
 \begin{enumerate}
-\item W"ahle ein $\phi_1 \in \mathbb R^n$ 
-\item L"ose das Anfangswertproblem $\dot \phi = -A(t)^T \phi, ~ \phi(t_1) = \phi_1$
-\item Berechne $\bar u(t)=B(t)^T \phi(t)$, wobei $\phi(t)$ die L"osung des in Schritt 2 gel"osten Anfangswertproblems ist.
-\item L"ose das Anfangswertproblem $\dot x = A(t)x + B(t) \bar u(t), ~x(t_0)=0$
+\item Wähle ein $\phi_1 \in \mathbb R^n$ 
+\item Löse das Anfangswertproblem $\dot \phi = -A(t)^T \phi, ~ \phi(t_1) = \phi_1$
+\item Berechne $\bar u(t)=B(t)^T \phi(t)$, wobei $\phi(t)$ die Lösung des in Schritt 2 gelösten Anfangswertproblems ist.
+\item Löse das Anfangswertproblem $\dot x = A(t)x + B(t) \bar u(t), ~x(t_0)=0$
 \end{enumerate}
 \end{Korollar}
 
 \begin{Bemerkung}[Eindeutigkeit]
-Die Abbildung $\Lambda$ ist injektiv, da sowohl in Schritt 2, also auch in Schritt 4 eindeutig l"osbare Anfangswertprobleme berechnet werden, somit ist $\bar u$ eindeutig bestimmt und damit wiederum wird jedem $\phi_1$ genau ein $x(T_1)$ zugeordnet.
+Die Abbildung $\Lambda$ ist injektiv, da sowohl in Schritt 2, also auch in Schritt 4 eindeutig lösbare Anfangswertprobleme berechnet werden, somit ist $\bar u$ eindeutig bestimmt und damit wiederum wird jedem $\phi_1$ genau ein $x(T_1)$ zugeordnet.
 \end{Bemerkung}
 
 Was die Bemerkung bereits andeutet und den Vorteil der HUM ausmacht, fasst das folgende Theorem zusammen:
@@ -229,35 +229,35 @@ Dies folgt direkt aus der Definition von $\Lambda$, da $\bar u \in L^{\infty}$
 \\
 "$\subseteq$":
 Zu zeigen ist, dass ein beliebiges $x_1 \in \mathcal R$ im Bild der Abbildung $\Lambda$ liegt.
-Sei also $x_1 \in \mathcal R$ beliebig, das hei"st es existiert eine Sterung $u^*$, so dass die L"osung $x^*(t)$ sowohl das Anfangswertproblem $$\dot x = A(t)x + B(t)  u^*(t), ~x(t_0)=0$$
-als auch $$x^*(t_1)=x_1$$ erf"ullt.
+Sei also $x_1 \in \mathcal R$ beliebig, das hei"st es existiert eine Sterung $u^*$, so dass die Lösung $x^*(t)$ sowohl das Anfangswertproblem $$\dot x = A(t)x + B(t)  u^*(t), ~x(t_0)=0$$
+als auch $$x^*(t_1)=x_1$$ erfüllt.
 
 Sei jetzt $\mathcal U \subset C^0([T_0,T_1], \mathbb R^m)$ definiert durch: $$ \mathcal U := \{ u \in C^0([T_0,T_1], \mathbb R^m) | ~ u(t) = B(t)^T\phi(t) \} $$
-mit $\phi(t)$ L"osung des adjungierten Systems $\dot \phi = -A(t)^T \phi, ~ \phi(t_1) = \bar\phi $ f"ur ein beliebiges $\bar\phi \in \mathbb R^n$.
-Um sp"ater eine orthogonale Projektion auf $\mathcal U$ definieren zu k"onnen, m"ussen wir zeigen, dass $\mathcal U$ ein endlich-dimensionaler Untervektorraum (UVR) ist:
+mit $\phi(t)$ Lösung des adjungierten Systems $\dot \phi = -A(t)^T \phi, ~ \phi(t_1) = \bar\phi $ für ein beliebiges $\bar\phi \in \mathbb R^n$.
+Um später eine orthogonale Projektion auf $\mathcal U$ definieren zu können, müssen wir zeigen, dass $\mathcal U$ ein endlich-dimensionaler Untervektorraum (UVR) ist:
 \begin{Lemma}
 $\mathcal U$ ist ein Untervektorraum.
 \end{Lemma}
 \begin{Beweis}
 \begin{enumerate}
 \item[ ]
-\item $0 \in \mathcal U$, da f"ur $\phi_1=0$ gilt: $\phi(t) \equiv 0$, damit ist $\bar u(t) =B(t) \phi(t) \equiv 0$
+\item $0 \in \mathcal U$, da für $\phi_1=0$ gilt: $\phi(t) \equiv 0$, damit ist $\bar u(t) =B(t) \phi(t) \equiv 0$
 \item Seien $u_1,u_2 \in \mathcal U$, dann ist zu zeigen, dass $u_1+u_2$ ebenfalls in $\mathcal U$ liegt:
 \begin{align*}
 u_1+u_2 = B(t)^T \phi_1(t) + B(t)^T\phi_2(t) = B(t)^T  \underbrace{(\phi_1(t) +\phi_2(t))}_{=\phi(t)\text{, da Lsg. VR}} \in \mathcal U
 \end{align*}
-\item F"ur ein $u\in \mathcal U$ und ein $\lambda \in \mathbb R$ gilt $\lambda u \in \mathcal U$.
+\item Für ein $u\in \mathcal U$ und ein $\lambda \in \mathbb R$ gilt $\lambda u \in \mathcal U$.
 \end{enumerate}
 Damit ist $\mathcal U$ ein Untervektorraum von $C^0([T_0,T_1], \mathbb R^m)$ mit $dim(\mathcal U) \leq n$.
 \end{Beweis}
-Nachdem wir den Hilfssatz bewiesen haben, jetzt weiter zum unspr"unglichen Beweis unseres Theorems:
+Nachdem wir den Hilfssatz bewiesen haben, jetzt weiter zum unsprünglichen Beweis unseres Theorems:
 Sei also $\bar u$ die orthogonale Projektion von $u^*$ auf $\mathcal U$.
 
 \begin{Exkurs*}
 
 Orthogonale Projektion: Sei $V$ ein endlich dimensionaler Vektorraum mit positiv definitem Skalarprodukt und $U$ ein Untervektorraum von $V$, dann ist die orthogonale Projektion auf $U$ eine Abbildung $p : V \rightarrow V$ mit:
 
-F"ur alle $v \in V$ gilt
+Für alle $v \in V$ gilt
 \begin{enumerate}
 \item $p(v) \in U$
 \item $v-p(v) \in U^{\perp}$
@@ -273,7 +273,7 @@ $$\Leftrightarrow$$
 \int u^* \cdot u = \int \bar u \cdot u,~~~~ \forall u \in \mathcal U
 \end{align*}
 
-Sei weiter $\bar x : [t_0,t_1]\leftarrow \mathbb R^n$ L"osung des Anfangswertproblems 
+Sei weiter $\bar x : [t_0,t_1]\leftarrow \mathbb R^n$ Lösung des Anfangswertproblems 
 \[
 \dot x = A(t)x + B(t) \underbrace{\cdot \bar u(t),}_{\text{orth. Proj.}} ~~~ x(t_0)=0
 \]
@@ -285,15 +285,15 @@ x_1 \cdot \phi_1 = x^*(t_1) \cdot \phi_1 &= \int_{t_0}^{t_1} u^* \cdot B(t)^T \p
 \end{align*}
 $\Rightarrow x_1 \cdot \phi_1 = \bar x(t_1) \cdot \phi_1 \Rightarrow \bar x(t_1) = x_1$
 
-Da $\bar u \in \mathcal U$ existiert ein $\bar \phi_1 \in \mathbb R^n$, so dass $\bar \phi (t)$ L"osung des Anfangswertproblems  $\dot \phi = -A(t)^T \phi, ~ \phi(t_1) = \bar\phi_1 $. $\Lambda$ ist injektiv, damit folgt direkt  $x_1 = \Lambda(\bar\phi_1) \in \Lambda(\mathbb R^n)$ und somit ist die Inklusion gezeigt.
+Da $\bar u \in \mathcal U$ existiert ein $\bar \phi_1 \in \mathbb R^n$, so dass $\bar \phi (t)$ Lösung des Anfangswertproblems  $\dot \phi = -A(t)^T \phi, ~ \phi(t_1) = \bar\phi_1 $. $\Lambda$ ist injektiv, damit folgt direkt  $x_1 = \Lambda(\bar\phi_1) \in \Lambda(\mathbb R^n)$ und somit ist die Inklusion gezeigt.
 
 Und damit ist der erste Teil des Theorems gezeigt. Es gilt also $$\mathcal R = \Lambda(\mathbb R^n)$$
 \end{Beweis}
-Das hei"st wir haben eine M"oglichkeit gefunden einem jeden Punkt des $\mathbb R^n$ genau einen Punkt der Erreichbarkeitsmenge zuzuordnen. Zudem l"asst sich die Steuerung $\bar u$ leichter berechnen und ist unabh"angig von der Gramschen Kontrollmatix. Jetzt wollen wir noch zeigen, dass unser $\bar u$ die selbe Steuerung wie in Beweis zu \ref{Kontrollierbarkeit} ist, jedoch in einem allgemeinerem Rahmen, n"amlich ohne Regularit"at von $\mathfrak C$:
+Das hei"st wir haben eine Möglichkeit gefunden einem jeden Punkt des $\mathbb R^n$ genau einen Punkt der Erreichbarkeitsmenge zuzuordnen. Zudem lässt sich die Steuerung $\bar u$ leichter berechnen und ist unabhängig von der Gramschen Kontrollmatix. Jetzt wollen wir noch zeigen, dass unser $\bar u$ die selbe Steuerung wie in Beweis zu \ref{Kontrollierbarkeit} ist, jedoch in einem allgemeinerem Rahmen, nämlich ohne Regularität von $\mathfrak C$:
 
-Bereits in Beweis zu \ref{Kontrollierbarkeit} hatten wir gesehen, dass unsere Steuerung in gewissen Sinne optimal ist und dies sogar als einzige Steuerung. Also m"ussen wir nur zeigen, dass unsere, durch die HUM generierte Steuerung ebenfalls optimal  ist:
+Bereits in Beweis zu \ref{Kontrollierbarkeit} hatten wir gesehen, dass unsere Steuerung in gewissen Sinne optimal ist und dies sogar als einzige Steuerung. Also müssen wir nur zeigen, dass unsere, durch die HUM generierte Steuerung ebenfalls optimal  ist:
 \begin{Satz}[Teil 2]
-Wenn $x_1= \Lambda(\phi_1)$ und $u$ eine weitere Kontrollfunktion ist, welche das Kontrollsystem $\dot x = A(t)x+B(t)u,~ t\in[t_0,t_1]$ von $x_0=0$ nach $x_1 \in \mathbb R^n$ w"ahrend des Zeitintervalls $[t_0,t_1]$ steuert. Dann gilt:
+Wenn $x_1= \Lambda(\phi_1)$ und $u$ eine weitere Kontrollfunktion ist, welche das Kontrollsystem $\dot x = A(t)x+B(t)u,~ t\in[t_0,t_1]$ von $x_0=0$ nach $x_1 \in \mathbb R^n$ während des Zeitintervalls $[t_0,t_1]$ steuert. Dann gilt:
 \begin{align*}
 \int_{t_0}^{t_1} \|\bar u(\tau) \|^2 d\tau \leq \int_{t_0}^{t_1} \| u(\tau) \|^2 d\tau
 \end{align*}
@@ -301,11 +301,11 @@ Wobei $\bar u$ wie in (\ref{baru}) und Gleichheit genau dann gilt, wenn $ u \equ
 \end{Satz}
 
 \begin{Beweis}
-Sei $v:=u-\bar u$ und damit $u=\bar u + v$, dann gilt wegen der Orthogonalit"at:
+Sei $v:=u-\bar u$ und damit $u=\bar u + v$, dann gilt wegen der Orthogonalität:
 \begin{align*}
 \int_{t_0}^{t_1} \| u(\tau) \|^2 d\tau = \int_{t_0}^{t_1} \|\bar u(\tau) \|^2 d\tau + \underbrace{\int_{t_0}^{t_1} \|v(\tau) \|^2 d\tau}_{\geq 0} + 2\cdot \underbrace{\int_{t_0}^{t_1} \| \bar u(\tau)\cdot v\|^2 d\tau}_{=0 \text{, orth. Proj.}}
 \end{align*}
 Insbesondere gilt $v\equiv 0$ nur, genau dann wenn $u \equiv \bar u$ ist.
 
-Unser $\bar u$ ist also optimal und erf"ullt damit die Gleichheit zur Steuerung aus Beweis zu \ref{Kontrollierbarkeit}.
+Unser $\bar u$ ist also optimal und erfüllt damit die Gleichheit zur Steuerung aus Beweis zu \ref{Kontrollierbarkeit}.
 \end{Beweis}
