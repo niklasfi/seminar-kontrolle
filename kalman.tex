@@ -3,7 +3,7 @@
 Im Allgemeinen ist es schwer die Gram'sche Matrix auszurechnen. Die Resolvente ist meist nicht einfach zu berechnen.
 
 Man benötigt ein handlicheres Kriterium. Dafür zieht man sich zunächst auf den zeitunabhängigen Fall zurück. Seien also $A$ und $B$ unabhängig von $t$. \\
-Ob dann die Kontrollierbarkeit auch nicht von der Zeit abhängt oder welche Rolle die Wahl des Start- und Endpunktes spielen, ist noch von vorneherein klar. %TODO Satzbau
+Ob dann die Kontrollierbarkeit überhaupt nicht von der Zeit abhängt oder ob die Wahl des Start- und Endpunktes eine Rolle spielen, ist zunächst unklar. %TODO Satzbau
 
 Betrachte nun das lineare, zeitunabhängige System $\dot{x}=Ax(t)+Bu(t)$ in $[T_0,T_1]$. Ein Kriterium für die Kontrollierbarkeit ist gegeben durch den folgenden Satz.
 
@@ -84,7 +84,7 @@ Dann ist $\G$ nicht invertierbar und hat somit einen nicht trivialen Kern. Es ex
     	 \end{pmatrix}
     	 \cdot y=0 \in \R^{n^2}
     \]
-    Also hat $(A^0 B | A^1 B | \dots | A^{n-1} B)^T$ keinen trivialen Kern, und somit keinen vollen Rang. Da der Zeilenrang gleich dem Spaltenrang ist, kann auch $(A^0 B | A^1 B | \dots | A^{n-1} B)$ nicht vollen Rang haben. Das ist aber ein Widerspruch zur Kalman Rang Bedingung.
+    Also hat $(A^0 B | A^1 B | \dots | A^{n-1} B)^T$ keinen trivialen Kern, und somit keinen vollen Rang. Da der Zeilenrang gleich dem Spaltenrang ist, kann auch \\$(A^0 B | A^1 B | \dots | A^{n-1} B)$ nicht vollen Rang haben. Das ist aber ein Widerspruch zur Kalman Rang Bedingung.
    \item["`$\Rightarrow$"']
     Die Rückrichtung wird wieder per Kontraktion gezeigt, die Beweisidee ist dieselbe wie bei der Hinrichtung. 
 

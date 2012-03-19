@@ -28,7 +28,7 @@ einfache Beispiel zeigt:
 \begin{Beispiel}
 [nicht kontrollierbares System]\label{bsp1}
 
-Sei ein zeitunabhängiges lineare Kontrollsystem gegeben durch die
+Sei ein zeitunabhängiges lineares Kontrollsystem gegeben durch die
 Matrizen
 \[
 A=\begin{pmatrix}1 & 0\\
@@ -54,13 +54,14 @@ Begriff ein:
 \begin{Definition}[Erreichbarkeitsmenge]\index{Erreichbarkeitsmenge}
 Wir definieren die Menge 
 \begin{align*}
+<<<<<<< HEAD
 \mathcal{R}(t):= & \{ x_1\in\mathbb{R}^{n} : \;
 	\text{ Es existiert eine Steuerung $u$, sodass für die }\\
 		& \qquad \text{ Lösung $x$ des Kontrollsystems $x(t)=x_1$ gilt.} \}
 \end{align*}
 \end{Definition}
 
-Das heißt $\text{\ensuremath{\mathcal{R}}(t) ist der Menge der Zustände (oder Punkte), die von \ensuremath{x_{0}=0}}$
+Das heißt $\text{\ensuremath{\mathcal{R}}(t) ist die Menge der Zustände (oder Punkte), die von \ensuremath{x_{0}=0}}$
 in der Zeit $t=T_{1}-T_{0}$ durch alle möglichen Steuerungen $u$
 erreicht werden können.
 
@@ -112,26 +113,27 @@ Verlauf kurz $\mathcal{R}$ statt $\mathcal{R}(t)$.
 
 \subsection*{Hilbert-Eindeutigkeits-Methode (HUM)}
 
-Ziel ist es jetzt also einen Weg zu finden, um eine Steuerungsfunktion
+<<<<<<< HEAD
+Ziel ist es jetzt einen Weg zu finden, um eine Steuerungsfunktion
 zu bestimmen, die unabhängig von der Kontrollierbarkeit, leicht zu
-Berechnen und in einem noch zu definierenden Sinne \emph{optimal}
-ist. Einen solchen Weg bzw. Algorithmus liefert uns die \emph{HUM}.
+berechnen und in einem noch zu definierenden Sinne \emph{optimal}
+ist. Einen solchen Weg bzw. Algorithmus liefert uns die \emph{Hilbert-Eindeutigkeits-Methode(HUM)}.
 
 Dazu führen wir zunächst ein Differentialgleichungssystem ein:
 
 \begin{Definition}[adjungiertes System]\index{adjungiertes System}\index{zeitumgekehrtes Kontrollsystem}
-Wir definieren für ein $ $$\phi_{1}\in\mathbb{R}^{n}$ das adjungierte
+Wir definieren für ein $ \phi_{1}\in\mathbb{R}^{n}$ das adjungierte
 zeitumgekehrte homogene Kontrollsystem
 \[
 \dot{\phi}=-A(t)^T\phi, \quad \text{mit} \quad \phi(T_{1})=\phi_{1}
 \]
 und bezeichnen die Lösung mit $\phi(t)$.
 \end{Definition}
-Die Bezeichnung \emph{zeitumgekehrt} rechtfertigt die Tatsache, dass
-die Lösung des Anfangswertproblems die Lösungsbahn des Anfangswertproblems \[
+Die Bezeichnung \emph{zeitumgekehrt} wird durch die Tatsache gerechtfertigt, dass
+die Lösung dieses Anfangswertproblems die Lösungsbahn des Anfangswertproblems \[
 	\dot{\phi}=A(t)\phi, \quad \text{mit} \quad \phi(T_{1})=\phi_{1}
 \] genau umgekehrt durchläuft.
-Um nun die HUM formulieren zu können, benötigen wir die Folgende, in
+Um nun die HUM formulieren zu können, benötigen wir die folgende, in
 einem Korollar zusammengefasste, Identität:
 
 \begin{Korollar}
