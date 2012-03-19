@@ -61,7 +61,7 @@ Wir definieren die Menge
 \end{align*}
 \end{Definition}
 
-Das hei"st $\text{\ensuremath{\mathcal{R}}(t) ist die Menge der Zustände (oder Punkte), die von \ensuremath{x_{0}=0}}$
+Das heißt $\text{\ensuremath{\mathcal{R}}(t) ist die Menge der Zustände (oder Punkte), die von \ensuremath{x_{0}=0}}$
 in der Zeit $t=T_{1}-T_{0}$ durch alle möglichen Steuerungen $u$
 erreicht werden können.
 
@@ -83,7 +83,7 @@ x_{2}(t)
 \int_{T_{0}}^{t}e^{(t-s)}u(s)ds
 \end{pmatrix}
 $$
-Das hei"st, beide Lösungskomponente sind für jede Steuerung $u$ zu
+Das heißt, beide Lösungskomponente sind für jede Steuerung $u$ zu
 jeder Zeit $t>T_{0}$ identisch:
 
 %\vspace{5cm}
@@ -106,7 +106,7 @@ Eigenschaften der Erreichbarkeitsmenge
 \item $\mathcal{R}(t)=\mathcal{R}(s)$ für alle $s,t>0.$
 \end{itemize}
 \end{Lemma}
-Das hei"st also, die Erreichbarkeitsmenge $x_{0}+\mathcal{R}(t)$ ist
+Das heißt also, die Erreichbarkeitsmenge $x_{0}+\mathcal{R}(t)$ ist
 ein affiner Unterraum mit der Dimension von $\mathcal{R}(t)$ und
 $\mathcal{R}(t)$ ist zeitunabhängig - man kann einen Zustand, falls
 er erreichbar ist, in jeder Zeit erreichen. Wir schreiben im weiteren
@@ -141,7 +141,7 @@ Sei $x : [t_0,t_1] \rightarrow \mathbb R^n$ die Lösung des Anfangswertproblems
 \begin{align*} \label{hum1} \tag{$\star$}
 \dot x = A(t)x+B(t)u(t) ~~~~ \forall x(t_0)=0
 \end{align*}
-Sei au"serdem $\phi_1 \in \mathbb R^n$ und $\phi : [t_0,t_1] \rightarrow \mathbb R^n $ die Lösung des  adjungierten Systems
+Sei außerdem $\phi_1 \in \mathbb R^n$ und $\phi : [t_0,t_1] \rightarrow \mathbb R^n $ die Lösung des  adjungierten Systems
 \begin{align*}
 \dot \phi = -A(t)^T\phi ~~~~ \phi(t_1)=\phi_1
 \end{align*}
@@ -216,7 +216,7 @@ Mit den Vorausetzungen der vorangegangen Definition gilt:
 \begin{align*}
 \mathcal R = \Lambda(\mathbb R^n)
 \end{align*}
-Das hei"st also, dass das Bild der Abbildung $\Lambda$ genau gleich der Erreichbarkeitsmenge $\mathcal R$ des Kontrollsystems (\ref{hum1}) ist.
+Das heißt also, dass das Bild der Abbildung $\Lambda$ genau gleich der Erreichbarkeitsmenge $\mathcal R$ des Kontrollsystems (\ref{hum1}) ist.
 
 
 \end{Satz}
@@ -229,7 +229,7 @@ Dies folgt direkt aus der Definition von $\Lambda$, da $\bar u \in L^{\infty}$
 \\
 "$\subseteq$":
 Zu zeigen ist, dass ein beliebiges $x_1 \in \mathcal R$ im Bild der Abbildung $\Lambda$ liegt.
-Sei also $x_1 \in \mathcal R$ beliebig, das hei"st es existiert eine Sterung $u^*$, so dass die Lösung $x^*(t)$ sowohl das Anfangswertproblem $$\dot x = A(t)x + B(t)  u^*(t), ~x(t_0)=0$$
+Sei also $x_1 \in \mathcal R$ beliebig, das heißt es existiert eine Sterung $u^*$, so dass die Lösung $x^*(t)$ sowohl das Anfangswertproblem $$\dot x = A(t)x + B(t)  u^*(t), ~x(t_0)=0$$
 als auch $$x^*(t_1)=x_1$$ erfüllt.
 
 Sei jetzt $\mathcal U \subset C^0([T_0,T_1], \mathbb R^m)$ definiert durch: $$ \mathcal U := \{ u \in C^0([T_0,T_1], \mathbb R^m) | ~ u(t) = B(t)^T\phi(t) \} $$
@@ -289,7 +289,7 @@ Da $\bar u \in \mathcal U$ existiert ein $\bar \phi_1 \in \mathbb R^n$, so dass 
 
 Und damit ist der erste Teil des Theorems gezeigt. Es gilt also $$\mathcal R = \Lambda(\mathbb R^n)$$
 \end{Beweis}
-Das hei"st wir haben eine Möglichkeit gefunden einem jeden Punkt des $\mathbb R^n$ genau einen Punkt der Erreichbarkeitsmenge zuzuordnen. Zudem lässt sich die Steuerung $\bar u$ leichter berechnen und ist unabhängig von der Gramschen Kontrollmatix. Jetzt wollen wir noch zeigen, dass unser $\bar u$ die selbe Steuerung wie in Beweis zu \ref{Kontrollierbarkeit} ist, jedoch in einem allgemeinerem Rahmen, nämlich ohne Regularität von $\mathfrak C$:
+Das heißt wir haben eine Möglichkeit gefunden einem jeden Punkt des $\mathbb R^n$ genau einen Punkt der Erreichbarkeitsmenge zuzuordnen. Zudem lässt sich die Steuerung $\bar u$ leichter berechnen und ist unabhängig von der Gramschen Kontrollmatix. Jetzt wollen wir noch zeigen, dass unser $\bar u$ die selbe Steuerung wie in Beweis zu \ref{Kontrollierbarkeit} ist, jedoch in einem allgemeinerem Rahmen, nämlich ohne Regularität von $\mathfrak C$:
 
 Bereits in Beweis zu \ref{Kontrollierbarkeit} hatten wir gesehen, dass unsere Steuerung in gewissen Sinne optimal ist und dies sogar als einzige Steuerung. Also müssen wir nur zeigen, dass unsere, durch die HUM generierte Steuerung ebenfalls optimal  ist:
 \begin{Satz}[Teil 2]
